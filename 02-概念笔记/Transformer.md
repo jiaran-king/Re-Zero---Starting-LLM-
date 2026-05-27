@@ -82,13 +82,13 @@ Transformer 的 $O(1)$ 路径长度是其成功的关键理论优势——信息
 
 ## 关联
 
-- 属于：[[基础架构]]
-- 相关：[[Attention]] [[位置编码]] [[MHA变体：MQA与GQA]] [[MLA]] [[Flash Attention]] [[KV Cache]]
+- 属于：[基础架构](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.md)
+- 相关：[Attention](Attention.md) [位置编码](%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.md) [MHA变体：MQA与GQA](MHA%E5%8F%98%E4%BD%93%EF%BC%9AMQA%E4%B8%8EGQA.md) [MLA](MLA.md) [Flash Attention](Flash%20Attention.md) [KV Cache](KV%20Cache.md)
 - 用于：所有 LLM 相关笔记的上位概念
 
 ## 相关概念
 
-- [[Attention]]
-- [[位置编码]]
-- [[MHA变体：MQA与GQA]]
-- [[MLA]]
+- [Attention](Attention.md)
+- [位置编码](%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.md)
+- [MHA变体：MQA与GQA](MHA%E5%8F%98%E4%BD%93%EF%BC%9AMQA%E4%B8%8EGQA.md)
+- [MLA](MLA.md)

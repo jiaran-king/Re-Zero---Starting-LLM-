@@ -36,10 +36,10 @@ bias 在两个层面提供额外可学习自由度：
 
 ## 关联
 
-- 属于：[[Attention]]
-- 相关：[[Attention]] [[Transformer]]
+- 属于：[Attention](Attention.md)
+- 相关：[Attention](Attention.md) [Transformer](Transformer.md)
 - 用于：
 
 ## 相关概念
 
-- [[Attention]]
+- [Attention](Attention.md)

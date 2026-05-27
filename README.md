@@ -46,6 +46,7 @@
 ├── 06-模板/             # 笔记模板
 ├── 07-待整理/           # 临时 inbox
 ├── 08-图片/             # Canvas、图片和附件
+├── tools/               # GitHub 渲染辅助脚本
 ├── AGENTS.md            # LLM / Codex 维护本仓库时的总规则
 └── README.md
 ```
@@ -62,7 +63,8 @@
 | `05-资料摘录` | Source 层 | 原始资料、论文阅读、技术报告摘录和资料状态索引 |
 | `06-模板` | 模板层 | 概念笔记、项目笔记等模板 |
 | `07-待整理` | Inbox | 临时材料，只进不久留 |
-| `08-图片` | 附件层 | Obsidian Canvas、图片和其他附件 |
+| `08-图片` | 附件层 | Obsidian Canvas、图片、Canvas 静态预览和其他附件 |
+| `tools` | 维护工具 | GitHub 渲染适配、Canvas 预览生成等脚本 |
 
 ## 如何阅读
 
@@ -92,10 +94,10 @@
 
 需要注意：
 
-- Obsidian 的 `[[双链]]` 在 GitHub 上不会像 Obsidian 内部一样完整解析。
-- README 中的主要入口使用标准 Markdown 链接，适合 GitHub 浏览。
+- 仓库中的正文链接已尽量转换为标准 Markdown 相对链接，方便 GitHub 网页浏览；Obsidian 也可以打开这些链接。
 - `.obsidian` 中只保留必要配置；本地缓存、插件、主题、工作区状态等已通过 `.gitignore` 排除。
-- `08-图片` 中的 Canvas 文件可在 Obsidian 中查看，GitHub 只能显示 JSON 文本。
+- Obsidian Canvas 源文件仍保留在 `08-图片/*.canvas`；GitHub 页面中使用 `08-图片/canvas-preview/*.svg` 作为静态预览。
+- 如果新增或修改 Canvas / 双链，提交前运行 `python3 tools/github_render.py`，重新生成预览并把 Obsidian 双链转换成 GitHub 可渲染的 Markdown 链接。
 
 ## 资料与版权边界
 

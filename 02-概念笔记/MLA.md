@@ -122,12 +122,12 @@ $$(q_{t,i}^C)^\top k_{j,i}^C = (W_{UQ,i} c_t^Q)^\top (W_{UK,i} c_j^{KV}) = (c_t^
 
 ## 关联
 
-- 属于：[[推理优化]]
-- 相关：[[MHA变体：MQA与GQA]] [[KV Cache]] [[Attention]] [[位置编码： RoPE]] [[Transformer]]
-- 用于：[[大模型推理实验]]
+- 属于：[推理优化](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md)
+- 相关：[MHA变体：MQA与GQA](MHA%E5%8F%98%E4%BD%93%EF%BC%9AMQA%E4%B8%8EGQA.md) [KV Cache](KV%20Cache.md) [Attention](Attention.md) 位置编码： RoPE [Transformer](Transformer.md)
+- 用于：大模型推理实验
 
 ## 相关概念
 
-- [[MHA变体：MQA与GQA]]
-- [[KV Cache]]
-- [[位置编码： RoPE]]
+- [MHA变体：MQA与GQA](MHA%E5%8F%98%E4%BD%93%EF%BC%9AMQA%E4%B8%8EGQA.md)
+- [KV Cache](KV%20Cache.md)
+- 位置编码： RoPE

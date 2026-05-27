@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 1420 980" width="1600" height="1104">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="1420" height="980" fill="#fbfbf8" />
+<line x1="360" y1="330" x2="410" y2="330" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="560" y1="330" x2="610" y2="330" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="890" y1="330" x2="940" y2="330" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1090" y1="330" x2="1140" y2="330" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1280" y1="440" x2="1315" y2="560" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1315" y1="670" x2="1080" y2="720" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="930" y1="830" x2="860" y2="830" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="710" y1="830" x2="680" y2="830" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="460" height="100" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">Tool-use Agent 最小行为闭环</tspan>
+</text>
+<rect x="80" y="220" width="280" height="220" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">输入</tspan>
+<tspan x="98" dy="22">• 问题</tspan>
+<tspan x="98" dy="22">• 原图</tspan>
+<tspan x="98" dy="22">• bbox</tspan>
+</text>
+<rect x="410" y="280" width="150" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="428" y="310" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="428" dy="0">◇</tspan>
+<tspan x="428" dy="22">initial prompt</tspan>
+</text>
+<rect x="610" y="220" width="280" height="220" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="628" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="628" dy="0">planner 输出</tspan>
+<tspan x="628" dy="22">• THOUGHT</tspan>
+<tspan x="628" dy="22">• ACTION</tspan>
+</text>
+<rect x="940" y="280" width="150" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="958" y="310" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="958" dy="0">◇</tspan>
+<tspan x="958" dy="22">parser</tspan>
+<tspan x="958" dy="22">抽代码</tspan>
+</text>
+<rect x="1140" y="220" width="280" height="220" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1158" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1158" dy="0">executor</tspan>
+<tspan x="1158" dy="22">• 执行工具代码</tspan>
+<tspan x="1158" dy="22">• 操作图像</tspan>
+</text>
+<rect x="1230" y="560" width="170" height="110" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1248" y="590" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1248" dy="0">◇</tspan>
+<tspan x="1248" dy="22">observation</tspan>
+<tspan x="1248" dy="22">回流模型</tspan>
+</text>
+<rect x="930" y="720" width="300" height="220" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="948" y="750" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="948" dy="0">新上下文</tspan>
+<tspan x="948" dy="22">• 原图 + 编辑图</tspan>
+<tspan x="948" dy="22">• 执行反馈</tspan>
+</text>
+<rect x="710" y="780" width="150" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="728" y="810" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="728" dy="0">◇</tspan>
+<tspan x="728" dy="22">继续回答</tspan>
+</text>
+<rect x="460" y="720" width="220" height="220" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="478" y="750" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="478" dy="0">FINAL ANSWER</tspan>
+<tspan x="478" dy="22">• 最终可评分回答</tspan>
+</text>
+</svg>

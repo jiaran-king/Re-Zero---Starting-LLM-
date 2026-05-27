@@ -213,7 +213,7 @@ DPO 的本质是利用**可验证信号**（标准答案、执行结果、可验
 
 ## 关联
 
-- 相关：[[DPO]] [[GRPO]] [[RLHF]] [[KV Cache]] [[Scaling Law]]
+- 相关：[DPO](../../02-%E6%A6%82%E5%BF%B5%E7%AC%94%E8%AE%B0/DPO.md) [GRPO](../../02-%E6%A6%82%E5%BF%B5%E7%AC%94%E8%AE%B0/GRPO.md) [RLHF](../../02-%E6%A6%82%E5%BF%B5%E7%AC%94%E8%AE%B0/RLHF.md) [KV Cache](../../02-%E6%A6%82%E5%BF%B5%E7%AC%94%E8%AE%B0/KV%20Cache.md) [Scaling Law](../../02-%E6%A6%82%E5%BF%B5%E7%AC%94%E8%AE%B0/Scaling%20Law.md)
 - 用于：Qwen2.5 技术报告阅读、大模型训练方案设计
 
 > [!warning] 容易混淆的点

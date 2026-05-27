@@ -153,6 +153,6 @@ Scaling Law 把原本几十上百组暴力调参实验，缩成几个验证实�
 
 ## 关联
 
-- 属于：[[预训练]]
-- 相关：[[DPO]] [[GRPO]] [[RLHF]] [[KV Cache]]
+- 属于：[预训练](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E9%A2%84%E8%AE%AD%E7%BB%83.md)
+- 相关：[DPO](DPO.md) [GRPO](GRPO.md) [RLHF](RLHF.md) [KV Cache](KV%20Cache.md)
 - 用于：大模型训练方案设计、Qwen2.5 技术报告阅读、compute budget 规划

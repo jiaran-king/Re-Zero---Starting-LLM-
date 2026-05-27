@@ -110,12 +110,12 @@ QLoRA 不只是"量化底座"，而是配合了一整套数值设计：
 ---
 
 ## 关联
-- 属于：[[参数高效微调]]
-- 相关：[[QLoRA]] [[Adapter]] [[PEFT]] [[全量微调]] [[Prompt Tuning]]
-- 用于：[[SFT]] [[大模型微调项目]]
+- 属于：[参数高效微调](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%8F%82%E6%95%B0%E9%AB%98%E6%95%88%E5%BE%AE%E8%B0%83.md)
+- 相关：QLoRA Adapter PEFT 全量微调 Prompt Tuning
+- 用于：SFT 大模型微调项目
 
 ## 相关概念
-- [[QLoRA]]
-- [[PEFT]]
-- [[SFT]]
-- [[Transformer]]
+- QLoRA
+- PEFT
+- SFT
+- [Transformer](Transformer.md)

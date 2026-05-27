@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 2560 1110" width="1600" height="693">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="2560" height="1110" fill="#fbfbf8" />
+<line x1="510" y1="410" x2="540" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="720" y1="410" x2="760" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1190" y1="410" x2="1220" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1410" y1="410" x2="1450" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="510" y1="905" x2="540" y2="905" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="730" y1="905" x2="760" y2="905" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1190" y1="905" x2="1220" y2="905" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1420" y1="905" x2="1450" y2="905" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="620" height="110" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">Verl 数据流：DataProto vs</tspan>
+<tspan x="98" dy="22">TransferQueue</tspan>
+<tspan x="98" dy="22">经典路线与新路线对比</tspan>
+</text>
+<rect x="2130" y="50" width="430" height="210" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="2148" y="80" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2148" dy="0">读图方式</tspan>
+<tspan x="2148" dy="22">• 上排：经典 DataProto</tspan>
+<tspan x="2148" dy="22">• 下排：TransferQueue</tspan>
+<tspan x="2148" dy="22">• 关键差异：tensor 是否经过 controller</tspan>
+</text>
+<rect x="80" y="250" width="430" height="320" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="280" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">经典路线｜DataProto</tspan>
+<tspan x="98" dy="22">• batch: TensorDict</tspan>
+<tspan x="98" dy="22">• non_tensor_batch</tspan>
+<tspan x="98" dy="22">• meta_info</tspan>
+<tspan x="98" dy="22">• 大 tensor 跟 batch 走</tspan>
+</text>
+<rect x="540" y="350" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="558" y="380" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="558" dy="0">◇</tspan>
+<tspan x="558" dy="22">worker return</tspan>
+<tspan x="558" dy="22">返回字段</tspan>
+</text>
+<rect x="760" y="250" width="430" height="320" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="778" y="280" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="778" dy="0">Controller 搬运 Batch</tspan>
+<tspan x="778" dy="22">• rollout output</tspan>
+<tspan x="778" dy="22">• logprob / value</tspan>
+<tspan x="778" dy="22">• reward tensor</tspan>
+<tspan x="778" dy="22">• union 合并字段</tspan>
+</text>
+<rect x="1220" y="350" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1238" y="380" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1238" dy="0">◇</tspan>
+<tspan x="1238" dy="22">DataProto.union</tspan>
+<tspan x="1238" dy="22">字段补齐</tspan>
+</text>
+<rect x="1450" y="250" width="450" height="320" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1468" y="280" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1468" dy="0">训练 Batch 成型</tspan>
+<tspan x="1468" dy="22">• responses</tspan>
+<tspan x="1468" dy="22">• old_log_probs</tspan>
+<tspan x="1468" dy="22">• ref_log_prob / values</tspan>
+<tspan x="1468" dy="22">• rewards / advantages</tspan>
+<tspan x="1468" dy="22">• update_actor 消费</tspan>
+</text>
+<rect x="2130" y="290" width="430" height="180" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="2148" y="320" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2148" dy="0">适用理解</tspan>
+<tspan x="2148" dy="22">先用这条路线学习源码主流程：</tspan>
+<tspan x="2148" dy="22">一个 batch 在每一步新增字段。</tspan>
+</text>
+<rect x="80" y="740" width="430" height="330" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">新路线｜TransferQueue</tspan>
+<tspan x="98" dy="22">• controller 传 metadata</tspan>
+<tspan x="98" dy="22">• tensor 存数据平面</tspan>
+<tspan x="98" dy="22">• key / partition_id</tspan>
+<tspan x="98" dy="22">• 字段 readiness 可追踪</tspan>
+</text>
+<rect x="540" y="845" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="558" y="875" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="558" dy="0">◇</tspan>
+<tspan x="558" dy="22">kv_put / kv_get</tspan>
+<tspan x="558" dy="22">按 key 读写</tspan>
+</text>
+<rect x="760" y="740" width="430" height="330" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="778" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="778" dy="0">Data Plane</tspan>
+<tspan x="778" dy="22">• StorageManager</tspan>
+<tspan x="778" dy="22">• put_data / get_data</tspan>
+<tspan x="778" dy="22">• worker 直接读字段</tspan>
+<tspan x="778" dy="22">• 减少 controller 搬运</tspan>
+</text>
+<rect x="1220" y="845" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1238" y="875" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1238" dy="0">◇</tspan>
+<tspan x="1238" dy="22">ReplayBuffer</tspan>
+<tspan x="1238" dy="22">采样 ready keys</tspan>
+</text>
+<rect x="1450" y="740" width="450" height="330" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1468" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1468" dy="0">Metadata Scheduling</tspan>
+<tspan x="1468" dy="22">• KVBatchMeta</tspan>
+<tspan x="1468" dy="22">• sample ready 状态</tspan>
+<tspan x="1468" dy="22">• tags / keys</tspan>
+<tspan x="1468" dy="22">• controller 只调度任务</tspan>
+<tspan x="1468" dy="22">• tensor 留在数据平面</tspan>
+</text>
+<rect x="2130" y="790" width="430" height="210" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="2148" y="820" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2148" dy="0">适用理解</tspan>
+<tspan x="2148" dy="22">再看这条路线理解：</tspan>
+<tspan x="2148" dy="22">为什么 main_ppo_sync.py 要把数据传输从</tspan>
+<tspan x="2148" dy="22">controller 身上移走。</tspan>
+</text>
+</svg>

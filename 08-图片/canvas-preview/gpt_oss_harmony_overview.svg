@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -40 1630 1060" width="1600" height="1040">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="-40" y="-40" width="1630" height="1060" fill="#fbfbf8" />
+<line x1="330" y1="265" x2="380" y2="265" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="550" y1="265" x2="610" y2="265" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="940" y1="265" x2="990" y2="265" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1160" y1="265" x2="1220" y2="265" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1385" y1="350" x2="1315" y2="430" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1315" y1="540" x2="1385" y2="620" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1220" y1="705" x2="1160" y2="705" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="990" y1="705" x2="940" y2="705" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="610" y1="705" x2="500" y2="735" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="380" y1="735" x2="330" y2="705" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="165" y1="620" x2="775" y2="350" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="0" y="0" width="360" height="120" rx="10" fill="#fff7e6" stroke="#d46b08" stroke-width="2" filter="url(#shadow)" />
+<text x="18" y="30" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="18" dy="0">gpt-oss Harmony 总览</tspan>
+<tspan x="18" dy="22">messages → Harmony → tokens →</tspan>
+<tspan x="18" dy="22">output → parser</tspan>
+</text>
+<rect x="0" y="180" width="330" height="170" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="18" y="210" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="18" dy="0">阶段 1｜应用层 messages</tspan>
+<tspan x="18" dy="22">• system / user / history</tspan>
+<tspan x="18" dy="22">• Python dict / JSON</tspan>
+<tspan x="18" dy="22">• 还不是模型输入</tspan>
+</text>
+<rect x="380" y="210" width="170" height="110" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="398" y="240" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="398" dy="0">◇</tspan>
+<tspan x="398" dy="22">chat template</tspan>
+<tspan x="398" dy="22">协议化渲染</tspan>
+</text>
+<rect x="610" y="180" width="330" height="170" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="628" y="210" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="628" dy="0">阶段 2｜Harmony prompt</tspan>
+<tspan x="628" dy="22">• system / developer / user</tspan>
+<tspan x="628" dy="22">• header + content</tspan>
+<tspan x="628" dy="22">• generation prompt</tspan>
+</text>
+<rect x="990" y="210" width="170" height="110" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1008" y="240" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1008" dy="0">◇</tspan>
+<tspan x="1008" dy="22">tokenizer</tspan>
+<tspan x="1008" dy="22">转 token ids</tspan>
+</text>
+<rect x="1220" y="180" width="330" height="170" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="1238" y="210" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1238" dy="0">阶段 3｜input_ids</tspan>
+<tspan x="1238" dy="22">• 模型真实输入</tspan>
+<tspan x="1238" dy="22">• 特殊 token 已编码</tspan>
+<tspan x="1238" dy="22">• 可进入 generate</tspan>
+</text>
+<rect x="1220" y="430" width="190" height="110" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1238" y="460" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1238" dy="0">◇</tspan>
+<tspan x="1238" dy="22">model.generate</tspan>
+<tspan x="1238" dy="22">生成 Harmony output</tspan>
+</text>
+<rect x="1220" y="620" width="330" height="170" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="1238" y="650" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1238" dy="0">阶段 4｜Harmony output</tspan>
+<tspan x="1238" dy="22">• analysis / commentary /</tspan>
+<tspan x="1238" dy="22">final</tspan>
+<tspan x="1238" dy="22">• &lt;|return|&gt; 或 &lt;|call|&gt;</tspan>
+<tspan x="1238" dy="22">• 可能包含 tool call</tspan>
+</text>
+<rect x="990" y="650" width="170" height="110" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1008" y="680" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1008" dy="0">◇</tspan>
+<tspan x="1008" dy="22">parser</tspan>
+<tspan x="1008" dy="22">拆回结构化消息</tspan>
+</text>
+<rect x="610" y="620" width="330" height="170" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="628" y="650" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="628" dy="0">阶段 5｜应用层结果</tspan>
+<tspan x="628" dy="22">• final answer</tspan>
+<tspan x="628" dy="22">• tool call</tspan>
+<tspan x="628" dy="22">• structured message</tspan>
+</text>
+<rect x="380" y="650" width="120" height="170" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="398" y="680" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="398" dy="0">◇</tspan>
+<tspan x="398" dy="22">tool loop</tspan>
+<tspan x="398" dy="22">如有 &lt;|call|&gt;</tspan>
+</text>
+<rect x="0" y="620" width="330" height="170" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="18" y="650" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="18" dy="0">阶段 6｜工具返回</tspan>
+<tspan x="18" dy="22">• functions.xxx result</tspan>
+<tspan x="18" dy="22">• append to context</tspan>
+<tspan x="18" dy="22">• 再次生成 final</tspan>
+</text>
+<rect x="0" y="860" width="360" height="120" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="18" y="890" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="18" dy="0">图例</tspan>
+<tspan x="18" dy="22">主节点：阶段 / 产物</tspan>
+<tspan x="18" dy="22">◇：中间处理动作</tspan>
+<tspan x="18" dy="22">绿色：用户可见或应用层结果</tspan>
+</text>
+</svg>

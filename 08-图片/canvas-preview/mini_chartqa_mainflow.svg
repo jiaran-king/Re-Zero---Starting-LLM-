@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 2580 1130" width="1600" height="700">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="2580" height="1130" fill="#fbfbf8" />
+<line x1="500" y1="400" x2="525" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="695" y1="390" x2="740" y2="400" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1170" y1="400" x2="1185" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1365" y1="390" x2="1410" y2="395" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1880" y1="395" x2="1895" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2105" y1="390" x2="2140" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2350" y1="540" x2="2345" y2="575" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2345" y1="705" x2="2355" y2="740" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2140" y1="915" x2="2085" y2="870" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1885" y1="870" x2="1830" y2="900" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1410" y1="900" x2="1365" y2="870" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1180" y1="870" x2="1160" y2="900" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="760" y1="900" x2="715" y2="870" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="525" y1="870" x2="500" y2="900" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="540" height="100" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">Mini_ChartQA 单条样本全链路</tspan>
+<tspan x="98" dy="22">Canvas 总览</tspan>
+</text>
+<rect x="2230" y="50" width="350" height="180" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="2248" y="80" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2248" dy="0">读图方式</tspan>
+<tspan x="2248" dy="22">• 大卡片：阶段 + 关键记忆点</tspan>
+<tspan x="2248" dy="22">• 小卡片：处理动作</tspan>
+<tspan x="2248" dy="22">• 上排向右，下排折返</tspan>
+</text>
+<rect x="80" y="210" width="420" height="380" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="240" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 0｜原始样本</tspan>
+<tspan x="98" dy="22">• image / question / answer</tspan>
+<tspan x="98" dy="22">• x_values / y_values</tspan>
+<tspan x="98" dy="22">• x/y bbox + figure_bbox</tspan>
+<tspan x="98" dy="22">• source / chart type</tspan>
+<tspan x="98" dy="22">• 仍只是原材料</tspan>
+</text>
+<rect x="525" y="330" width="170" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="543" y="360" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="543" dy="0">◇</tspan>
+<tspan x="543" dy="22">preprocess.py</tspan>
+<tspan x="543" dy="22">协议化</tspan>
+</text>
+<rect x="740" y="210" width="430" height="380" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="758" y="240" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="758" dy="0">阶段 1｜parquet 字段</tspan>
+<tspan x="758" dy="22">• query + 基础 prompt</tspan>
+<tspan x="758" dy="22">• answer + figure_id</tspan>
+<tspan x="758" dy="22">• figure_path + images bytes</tspan>
+<tspan x="758" dy="22">• metadata(type + bbox)</tspan>
+<tspan x="758" dy="22">• 定型成统一样本协议</tspan>
+</text>
+<rect x="1185" y="330" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1203" y="360" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1203" dy="0">◇</tspan>
+<tspan x="1203" dy="22">dataset.py</tspan>
+<tspan x="1203" dy="22">模板 + 解码</tspan>
+</text>
+<rect x="1410" y="190" width="470" height="410" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1428" y="220" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1428" dy="0">阶段 2｜训练侧样本</tspan>
+<tspan x="1428" dy="22">• chartQA.jinja 渲染完整 prompt</tspan>
+<tspan x="1428" dy="22">• bytes -&gt; PIL -&gt; RGB</tspan>
+<tspan x="1428" dy="22">• input_ids / attention_mask</tspan>
+<tspan x="1428" dy="22">• raw_prompt_ids /</tspan>
+<tspan x="1428" dy="22">multi_modal_data</tspan>
+<tspan x="1428" dy="22">• ground_truth / position_ids</tspan>
+</text>
+<rect x="1895" y="330" width="210" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1913" y="360" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1913" dy="0">◇</tspan>
+<tspan x="1913" dy="22">vllm_rollout_spmd.py</tspan>
+<tspan x="1913" dy="22">first rollout</tspan>
+</text>
+<rect x="2140" y="220" width="420" height="320" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="2158" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2158" dy="0">阶段 3｜first rollout</tspan>
+<tspan x="2158" dy="22">• responses + response_mask</tspan>
+<tspan x="2158" dy="22">• 可能是 direct answer</tspan>
+<tspan x="2158" dy="22">• 也可能是 tool code / THOUGHT</tspan>
+<tspan x="2158" dy="22">• 本质上是第一次行为选择</tspan>
+</text>
+<rect x="2235" y="575" width="220" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="2253" y="605" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2253" dy="0">◇</tspan>
+<tspan x="2253" dy="22">ray_trainer.py</tspan>
+<tspan x="2253" dy="22">parser + tooluse</tspan>
+<tspan x="2253" dy="22">重组 second rollout</tspan>
+</text>
+<rect x="2140" y="740" width="430" height="350" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="2158" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2158" dy="0">阶段 4｜second rollout</tspan>
+<tspan x="2158" dy="22">• 判定 direct / fail / valid</tspan>
+<tspan x="2158" dy="22">tool</tspan>
+<tspan x="2158" dy="22">• 依赖 metadata[type] + bbox</tspan>
+<tspan x="2158" dy="22">• original_image +</tspan>
+<tspan x="2158" dy="22">edited_image</tspan>
+<tspan x="2158" dy="22">• observation 回流模型</tspan>
+<tspan x="2158" dy="22">• 产出最终 response</tspan>
+</text>
+<rect x="1885" y="810" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1903" y="840" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1903" dy="0">◇</tspan>
+<tspan x="1903" dy="22">refocus.py</tspan>
+<tspan x="1903" dy="22">抽 FINAL ANSWER</tspan>
+</text>
+<rect x="1410" y="740" width="420" height="320" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1428" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1428" dy="0">阶段 5｜序列级得分</tspan>
+<tspan x="1428" dy="22">• regex 抽 FINAL ANSWER</tspan>
+<tspan x="1428" dy="22">• pred / gt 切分后比较</tspan>
+<tspan x="1428" dy="22">• 数值近似 or 文本精确匹配</tspan>
+<tspan x="1428" dy="22">• 输出 overall score</tspan>
+</text>
+<rect x="1180" y="810" width="185" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1198" y="840" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1198" dy="0">◇</tspan>
+<tspan x="1198" dy="22">reward/function.py</tspan>
+<tspan x="1198" dy="22">挂到最后 token</tspan>
+</text>
+<rect x="760" y="740" width="400" height="320" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="778" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="778" dy="0">阶段 6｜reward 张量</tspan>
+<tspan x="778" dy="22">• response ids + response mask</tspan>
+<tspan x="778" dy="22">• ground_truth + reward score</tspan>
+<tspan x="778" dy="22">• 序列级分数 -&gt; token_level_scores</tspan>
+<tspan x="778" dy="22">• trainer 可消费的 reward tensor</tspan>
+</text>
+<rect x="525" y="810" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="543" y="840" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="543" dy="0">◇</tspan>
+<tspan x="543" dy="22">ray_trainer + core_algos</tspan>
+<tspan x="543" dy="22">组内标准化</tspan>
+</text>
+<rect x="80" y="740" width="420" height="320" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 7｜训练信号</tspan>
+<tspan x="98" dy="22">• 同题多 response 组成 group</tspan>
+<tspan x="98" dy="22">• 组内 reward 相对比较</tspan>
+<tspan x="98" dy="22">• advantages + returns</tspan>
+<tspan x="98" dy="22">• actor update 保留更优行为</tspan>
+</text>
+</svg>

@@ -76,12 +76,12 @@ BPE 本身不参与 Transformer 层内计算，但会影响模型看到的序列
 - 特殊 token 决定模型能否稳定识别对话边界；
 - 词表大小影响 embedding 和 lm head 的参数量。
 
-因此，BPE 应归入 [[基础架构]] 下的输入表示层，而不是归入 [[预训练]]。预训练使用 tokenizer 产出的 token 序列作为训练对象。
+因此，BPE 应归入 [基础架构](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.md) 下的输入表示层，而不是归入 [预训练](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E9%A2%84%E8%AE%AD%E7%BB%83.md)。预训练使用 tokenizer 产出的 token 序列作为训练对象。
 
 ## 6. 关联
 
-- 属于：[[基础架构]]
-- 相关：[[Transformer]] [[Attention]] [[位置编码]]
+- 属于：[基础架构](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.md)
+- 相关：[Transformer](Transformer.md) [Attention](Attention.md) [位置编码](%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81.md)
 - 用于：tokenizer 训练、SFT 数据协议、多轮对话模板、结构化输出协议
 
 ## 7. 待补充

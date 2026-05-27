@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 1720 690" width="1600" height="641">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="1720" height="690" fill="#fbfbf8" />
+<line x1="320" y1="290" x2="420" y2="290" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="530" y1="360" x2="530" y2="470" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="640" y1="290" x2="760" y2="290" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="870" y1="360" x2="890" y2="470" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="980" y1="290" x2="1110" y2="290" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1210" y1="360" x2="1240" y2="470" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1310" y1="290" x2="1460" y2="310" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="360" height="100" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">receive() 最小状态机</tspan>
+</text>
+<rect x="80" y="220" width="240" height="140" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">收到 planner 回复</tspan>
+</text>
+<rect x="420" y="220" width="220" height="140" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="438" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="438" dy="0">terminate 检查</tspan>
+</text>
+<rect x="420" y="470" width="220" height="150" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="438" y="500" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="438" dy="0">已终止</tspan>
+<tspan x="438" dy="22">• 停止本轮</tspan>
+</text>
+<rect x="760" y="220" width="220" height="140" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="778" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="778" dy="0">进入 parse</tspan>
+</text>
+<rect x="760" y="470" width="260" height="180" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="778" y="500" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="778" dy="0">parsing feedback</tspan>
+<tspan x="778" dy="22">• 解析失败</tspan>
+<tspan x="778" dy="22">• 继续回给 planner</tspan>
+</text>
+<rect x="1110" y="220" width="200" height="140" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1128" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1128" dy="0">execute</tspan>
+</text>
+<rect x="1110" y="470" width="260" height="180" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1128" y="500" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1128" dy="0">execution feedback</tspan>
+<tspan x="1128" dy="22">• 执行失败</tspan>
+<tspan x="1128" dy="22">• 继续回给 planner</tspan>
+</text>
+<rect x="1460" y="220" width="260" height="180" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1478" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1478" dy="0">success observation</tspan>
+<tspan x="1478" dy="22">• 执行成功</tspan>
+<tspan x="1478" dy="22">• observation 回流</tspan>
+</text>
+</svg>

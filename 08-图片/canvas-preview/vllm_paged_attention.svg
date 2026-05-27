@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 2250 1110" width="1600" height="789">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="2250" height="1110" fill="#fbfbf8" />
+<line x1="490" y1="390" x2="525" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="725" y1="390" x2="760" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1170" y1="390" x2="1205" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1405" y1="390" x2="1440" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1645" y1="535" x2="1655" y2="600" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1655" y1="720" x2="1645" y2="780" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1440" y1="925" x2="1405" y2="925" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1205" y1="925" x2="1170" y2="925" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="760" y1="925" x2="725" y2="925" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="525" y1="925" x2="490" y2="925" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="965" y1="780" x2="1645" y2="535" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="650" height="105" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">PagedAttention</tspan>
+<tspan x="98" dy="22">logical block 到 physical block</tspan>
+<tspan x="98" dy="22">的映射</tspan>
+</text>
+<rect x="1820" y="40" width="430" height="230" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="1838" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1838" dy="0">读图方式</tspan>
+<tspan x="1838" dy="22">• 上排：sequence 视角</tspan>
+<tspan x="1838" dy="22">• 中间：block table</tspan>
+<tspan x="1838" dy="22">• 下排：GPU KV memory</tspan>
+<tspan x="1838" dy="22">• 重点看物理块不必连续</tspan>
+</text>
+<rect x="80" y="245" width="410" height="290" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="275" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">Sequence Tokens</tspan>
+<tspan x="98" dy="22">• token 0 ... 15</tspan>
+<tspan x="98" dy="22">• token 16 ... 31</tspan>
+<tspan x="98" dy="22">• token 32 ... 47</tspan>
+<tspan x="98" dy="22">• 逻辑上连续增长</tspan>
+</text>
+<rect x="525" y="330" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="543" y="360" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="543" dy="0">◇</tspan>
+<tspan x="543" dy="22">split</tspan>
+<tspan x="543" dy="22">固定大小分块</tspan>
+</text>
+<rect x="760" y="245" width="410" height="290" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="778" y="275" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="778" dy="0">Logical Blocks</tspan>
+<tspan x="778" dy="22">• logical block 0</tspan>
+<tspan x="778" dy="22">• logical block 1</tspan>
+<tspan x="778" dy="22">• logical block 2</tspan>
+<tspan x="778" dy="22">• request 视角连续</tspan>
+</text>
+<rect x="1205" y="330" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1223" y="360" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1223" dy="0">◇</tspan>
+<tspan x="1223" dy="22">map</tspan>
+<tspan x="1223" dy="22">查 block table</tspan>
+</text>
+<rect x="1440" y="245" width="410" height="290" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1458" y="275" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1458" dy="0">Block Table</tspan>
+<tspan x="1458" dy="22">• L0 -&gt; P103</tspan>
+<tspan x="1458" dy="22">• L1 -&gt; P27</tspan>
+<tspan x="1458" dy="22">• L2 -&gt; P501</tspan>
+<tspan x="1458" dy="22">• logical 到 physical</tspan>
+</text>
+<rect x="1550" y="600" width="210" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1568" y="630" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1568" dy="0">◇</tspan>
+<tspan x="1568" dy="22">read / write</tspan>
+<tspan x="1568" dy="22">kernel 访问 KV</tspan>
+</text>
+<rect x="1440" y="780" width="410" height="290" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1458" y="810" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1458" dy="0">Physical KV Blocks</tspan>
+<tspan x="1458" dy="22">• physical block 27</tspan>
+<tspan x="1458" dy="22">• physical block 103</tspan>
+<tspan x="1458" dy="22">• physical block 501</tspan>
+<tspan x="1458" dy="22">• 显存中可不连续</tspan>
+</text>
+<rect x="1205" y="865" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1223" y="895" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1223" dy="0">◇</tspan>
+<tspan x="1223" dy="22">allocate / free</tspan>
+<tspan x="1223" dy="22">按需复用</tspan>
+</text>
+<rect x="760" y="780" width="410" height="290" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="778" y="810" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="778" dy="0">KV Cache Manager</tspan>
+<tspan x="778" dy="22">• free block queue</tspan>
+<tspan x="778" dy="22">• ref count</tspan>
+<tspan x="778" dy="22">• prefix cache</tspan>
+<tspan x="778" dy="22">• eviction</tspan>
+</text>
+<rect x="525" y="865" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="543" y="895" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="543" dy="0">◇</tspan>
+<tspan x="543" dy="22">benefit</tspan>
+<tspan x="543" dy="22">减少碎片</tspan>
+</text>
+<rect x="80" y="780" width="410" height="290" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="810" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">Serving Gain</tspan>
+<tspan x="98" dy="22">• 少预留空洞</tspan>
+<tspan x="98" dy="22">• 支持共享前缀</tspan>
+<tspan x="98" dy="22">• 提高可并发 batch</tspan>
+<tspan x="98" dy="22">• 降低 OOM 风险</tspan>
+</text>
+</svg>

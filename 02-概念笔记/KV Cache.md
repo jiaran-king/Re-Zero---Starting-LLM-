@@ -128,13 +128,13 @@ for step in range(max_new_tokens):
 ---
 
 ## 关联
-- 属于：[[推理优化]]
-- 相关：[[Attention]] [[Transformer]] [[位置编码： RoPE]] [[Flash Attention]] [[Prefix Caching]]
-- 用于：[[vLLM]] [[大模型推理实验]] [[推理加速方案]]
+- 属于：[推理优化](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md)
+- 相关：[Attention](Attention.md) [Transformer](Transformer.md) 位置编码： RoPE [Flash Attention](Flash%20Attention.md) Prefix Caching
+- 用于：vLLM 大模型推理实验 推理加速方案
 
 ## 相关概念
-- [[Transformer]]
-- [[Attention]]
-- [[位置编码： RoPE]]
-- [[vLLM]]
-- [[推理优化]]
+- [Transformer](Transformer.md)
+- [Attention](Attention.md)
+- 位置编码： RoPE
+- vLLM
+- [推理优化](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md)

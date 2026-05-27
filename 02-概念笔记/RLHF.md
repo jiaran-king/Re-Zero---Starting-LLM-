@@ -63,7 +63,7 @@ InstructGPT 的做法是把同一个 prompt 衍生出的所有比较对作为一
 
 ## PPO 阶段
 
-更细的算法展开见 [[PPO]]。这里保留它在 RLHF 流水线中的角色和关键设计。
+更细的算法展开见 [PPO](PPO.md)。这里保留它在 RLHF 流水线中的角色和关键设计。
 
 ### 优化目标
 
@@ -160,14 +160,14 @@ $$\mathcal{L} = -\frac{1}{N} \sum_{t=1}^{N} \log Q_t(y_t)$$
 ---
 
 ## 关联
-- 属于：[[后训练与对齐]]
-- 相关：[[SFT]] [[DPO]] [[GRPO]] [[PPO]] [[Transformer]] [[Reward Model]] [[Bradley-Terry]]
-- 用于：[[InstructGPT 复现]] [[大模型对齐项目]]
+- 属于：[后训练与对齐](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%AF%B9%E9%BD%90.md)
+- 相关：SFT [DPO](DPO.md) [GRPO](GRPO.md) [PPO](PPO.md) [Transformer](Transformer.md) Reward Model Bradley-Terry
+- 用于：InstructGPT 复现 大模型对齐项目
 
 ## 相关概念
-- [[SFT]]
-- [[DPO]]
-- [[GRPO]]
-- [[PPO]]
-- [[Transformer]]
-- [[KV Cache]]
+- SFT
+- [DPO](DPO.md)
+- [GRPO](GRPO.md)
+- [PPO](PPO.md)
+- [Transformer](Transformer.md)
+- [KV Cache](KV%20Cache.md)

@@ -54,7 +54,9 @@ request 进入系统
 
 图示：先把 vLLM 看成一条 request 生命周期，而不是单个 `model.forward()`。
 
-![[08-图片/vllm_request_lifecycle.canvas]]
+![vllm_request_lifecycle](../../08-%E5%9B%BE%E7%89%87/canvas-preview/vllm_request_lifecycle.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/vllm_request_lifecycle.canvas)
 
 ---
 
@@ -892,7 +894,9 @@ GPU KV cache memory
 
 图示：PagedAttention 的关键不是改 attention 公式，而是通过 block table 让 logical block 映射到不连续的 physical block。
 
-![[08-图片/vllm_paged_attention.canvas]]
+![vllm_paged_attention](../../08-%E5%9B%BE%E7%89%87/canvas-preview/vllm_paged_attention.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/vllm_paged_attention.canvas)
 
 这带来的好处是：
 
@@ -1060,7 +1064,9 @@ continuous batching:
 
 图示：continuous batching 的核心是每个 engine step 都重新看 waiting / running / budget，而不是固定一批请求跑到底。
 
-![[08-图片/vllm_scheduler_loop.canvas]]
+![vllm_scheduler_loop](../../08-%E5%9B%BE%E7%89%87/canvas-preview/vllm_scheduler_loop.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/vllm_scheduler_loop.canvas)
 
 ### 6.3 Scheduler 关心什么
 
@@ -2055,7 +2061,9 @@ actor update
 
 图示：vLLM 在 veRL 中处在 rollout 侧，关键边界是训练 actor 更新后必须同步到 rollout engine。
 
-![[08-图片/vllm_verl_rollout_sync.canvas]]
+![vllm_verl_rollout_sync](../../08-%E5%9B%BE%E7%89%87/canvas-preview/vllm_verl_rollout_sync.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/vllm_verl_rollout_sync.canvas)
 
 需要检查：
 

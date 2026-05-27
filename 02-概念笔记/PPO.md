@@ -288,9 +288,9 @@ $$
 
 这也是为什么后续很多方法都把 PPO 当成参照系：
 
-- [[DPO]] 试图绕过 PPO 的在线 RL 复杂度
-- [[GRPO]] 试图去掉 PPO 中最吃显存、最难学的 Critic
-- [[RLHF]] 则把 PPO 作为经典完整路线的一部分
+- [DPO](DPO.md) 试图绕过 PPO 的在线 RL 复杂度
+- [GRPO](GRPO.md) 试图去掉 PPO 中最吃显存、最难学的 Critic
+- [RLHF](RLHF.md) 则把 PPO 作为经典完整路线的一部分
 
 
 
@@ -305,14 +305,14 @@ $$
 
 ## 关联
 
-- 属于：[[后训练与对齐]]
-- 相关：[[RLHF]] [[GRPO]] [[DPO]] [[SFT]] [[Reward Model]]
-- 用于：[[InstructGPT 复现]] [[大模型对齐项目]] [[DeepSeek-R1 复现]]
+- 属于：[后训练与对齐](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%AF%B9%E9%BD%90.md)
+- 相关：[RLHF](RLHF.md) [GRPO](GRPO.md) [DPO](DPO.md) SFT Reward Model
+- 用于：InstructGPT 复现 大模型对齐项目 DeepSeek-R1 复现
 
 ## 相关概念
 
-- [[RLHF]]
-- [[GRPO]]
-- [[DPO]]
-- [[SFT]]
-- [[Reward Model]]
+- [RLHF](RLHF.md)
+- [GRPO](GRPO.md)
+- [DPO](DPO.md)
+- SFT
+- Reward Model

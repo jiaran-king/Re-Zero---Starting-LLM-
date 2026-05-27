@@ -25,7 +25,9 @@ final answer / tool call / structured assistant message
 
 总览 Canvas：
 
-![[08-图片/gpt_oss_harmony_overview.canvas]]
+![gpt_oss_harmony_overview](../08-%E5%9B%BE%E7%89%87/canvas-preview/gpt_oss_harmony_overview.svg)
+
+[打开原始 Canvas](../08-%E5%9B%BE%E7%89%87/gpt_oss_harmony_overview.canvas)
 
 ### Message 结构
 

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 1750 1120" width="1600" height="1024">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="1750" height="1120" fill="#fbfbf8" />
+<line x1="420" y1="340" x2="455" y2="340" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="635" y1="340" x2="680" y2="340" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1070" y1="340" x2="1105" y2="340" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1315" y1="340" x2="1350" y2="340" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1550" y1="480" x2="1585" y2="565" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1585" y1="685" x2="1515" y2="760" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1300" y1="910" x2="1225" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1035" y1="910" x2="1110" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="720" y1="910" x2="655" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="455" y1="910" x2="420" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="600" height="100" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">训练入口与 Trainer 主循环</tspan>
+<tspan x="98" dy="22">入口装配 -&gt; rollout -&gt; reward -&gt;</tspan>
+<tspan x="98" dy="22">update</tspan>
+</text>
+<rect x="80" y="210" width="340" height="260" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="240" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 0｜main()</tspan>
+<tspan x="98" dy="22">• 读取 PPOConfig</tspan>
+<tspan x="98" dy="22">• deep_post_init</tspan>
+<tspan x="98" dy="22">• ray.init</tspan>
+<tspan x="98" dy="22">• 启动 Runner</tspan>
+</text>
+<rect x="455" y="280" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="473" y="310" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="473" dy="0">◇</tspan>
+<tspan x="473" dy="22">Runner.run()</tspan>
+<tspan x="473" dy="22">总装训练系统</tspan>
+</text>
+<rect x="680" y="200" width="390" height="280" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="698" y="230" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="698" dy="0">阶段 1｜系统装配</tspan>
+<tspan x="698" dy="22">• tokenizer / processor</tspan>
+<tspan x="698" dy="22">• reward manager</tspan>
+<tspan x="698" dy="22">• train / val dataloader</tspan>
+<tspan x="698" dy="22">• ResourcePoolManager</tspan>
+</text>
+<rect x="1105" y="275" width="210" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1123" y="305" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1123" dy="0">◇</tspan>
+<tspan x="1123" dy="22">RayPPOTrainer</tspan>
+<tspan x="1123" dy="22">初始化约束 + workers</tspan>
+</text>
+<rect x="1350" y="200" width="400" height="280" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1368" y="230" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1368" dy="0">阶段 2｜Trainer 与角色</tspan>
+<tspan x="1368" dy="22">• actor_rollout_wg</tspan>
+<tspan x="1368" dy="22">• critic_wg</tspan>
+<tspan x="1368" dy="22">• ref_policy_wg</tspan>
+<tspan x="1368" dy="22">• init_workers() /</tspan>
+<tspan x="1368" dy="22">init_model()</tspan>
+</text>
+<rect x="1495" y="565" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1513" y="595" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1513" dy="0">◇</tspan>
+<tspan x="1513" dy="22">fit()</tspan>
+<tspan x="1513" dy="22">取 batch + rollout</tspan>
+</text>
+<rect x="1300" y="760" width="430" height="300" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1318" y="790" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1318" dy="0">阶段 3｜生成链</tspan>
+<tspan x="1318" dy="22">• DataProto.from_single_dict</tspan>
+<tspan x="1318" dy="22">• pop rollout 输入</tspan>
+<tspan x="1318" dy="22">• first rollout</tspan>
+<tspan x="1318" dy="22">• get_second_rollout_batch</tspan>
+</text>
+<rect x="1035" y="850" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1053" y="880" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1053" dy="0">◇</tspan>
+<tspan x="1053" dy="22">reward + value</tspan>
+<tspan x="1053" dy="22">打分并补齐张量</tspan>
+</text>
+<rect x="720" y="740" width="390" height="340" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="738" y="770" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="738" dy="0">阶段 4｜训练信号</tspan>
+<tspan x="738" dy="22">• compute_reward</tspan>
+<tspan x="738" dy="22">• balance_batch</tspan>
+<tspan x="738" dy="22">• old / ref / values</tspan>
+<tspan x="738" dy="22">• token_level_rewards</tspan>
+<tspan x="738" dy="22">• advantages</tspan>
+</text>
+<rect x="455" y="850" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="473" y="880" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="473" dy="0">◇</tspan>
+<tspan x="473" dy="22">update + validate</tspan>
+<tspan x="473" dy="22">actor / critic / 记录</tspan>
+</text>
+<rect x="80" y="760" width="340" height="300" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="790" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 5｜输出层</tspan>
+<tspan x="98" dy="22">• actor update</tspan>
+<tspan x="98" dy="22">• critic update</tspan>
+<tspan x="98" dy="22">• validation</tspan>
+<tspan x="98" dy="22">• logging</tspan>
+<tspan x="98" dy="22">• checkpoint</tspan>
+</text>
+</svg>

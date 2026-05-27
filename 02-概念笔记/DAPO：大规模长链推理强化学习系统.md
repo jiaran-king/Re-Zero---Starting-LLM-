@@ -17,11 +17,11 @@ tags:
 > [DAPO: An Open-Source LLM Reinforcement Learning System at Scale](https://arxiv.org/abs/2503.14476)
 
 > [!note] 一句话
-> DAPO 不是推翻 [[GRPO]] 的新范式，而是把 naive GRPO 修成一套更适合 long-CoT reasoning RL 的训练配方：重点解决熵塌缩、全对/全错组零梯度、长回答 token 信号被 sample-level 平均稀释，以及超长截断带来的 reward noise。
+> DAPO 不是推翻 [GRPO](GRPO.md) 的新范式，而是把 naive GRPO 修成一套更适合 long-CoT reasoning RL 的训练配方：重点解决熵塌缩、全对/全错组零梯度、长回答 token 信号被 sample-level 平均稀释，以及超长截断带来的 reward noise。
 
 ## 1. DAPO这篇论文要解决什么问题
 
-这篇论文的出发点很直接：推理型 LLM 的能力提升越来越依赖大规模 RL，但社区对强推理模型的强化学习 recipe 了解得并不充分。即便知道 [[PPO]] 或 [[GRPO]] 的大框架，真正把训练稳定地跑起来依然很难。
+这篇论文的出发点很直接：推理型 LLM 的能力提升越来越依赖大规模 RL，但社区对强推理模型的强化学习 recipe 了解得并不充分。即便知道 [PPO](PPO.md) 或 [GRPO](GRPO.md) 的大框架，真正把训练稳定地跑起来依然很难。
 
 作者给出的对照也很明确：直接使用 naive GRPO 在 Qwen2.5-32B Base 上训练时，AIME 2024 只能做到约 30，明显低于对比对象 DeepSeek-R1-Zero-Qwen-32B 的 47。论文真正要回答的问题因此不是“能不能再发明一个新名字的 RL 算法”，而是：**为什么 naive GRPO 在 long-CoT 场景下不够强，以及怎样把它修成一套可扩展的工程系统。**
 
@@ -205,8 +205,8 @@ token-level loss 聚合  <------ Token-Level Policy Gradient Loss
 
 | 方法 | 核心特征 | 在这篇论文里的位置 |
 |------|---------|------------------|
-| [[PPO]] | 有 value function，用 clipped objective 稳定更新 | 参照系 |
-| [[GRPO]] | 去掉 value，用组内相对 reward 估计 advantage | DAPO 的基础骨架 |
+| [PPO](PPO.md) | 有 value function，用 clipped objective 稳定更新 | 参照系 |
+| [GRPO](GRPO.md) | 去掉 value，用组内相对 reward 估计 advantage | DAPO 的基础骨架 |
 | DAPO | 保留 GRPO 主干，再修补 long-CoT RL 的关键失稳点 | 工程化强化版 |
 
 所以最准确的理解不是“DAPO 替代 GRPO”，而是：**DAPO 把 GRPO 变成更适合 reasoning RL 的系统版本。**
@@ -300,7 +300,7 @@ token-level loss 聚合  <------ Token-Level Policy Gradient Loss
 
 ## 12. 复习时最该记住的五点
 
-1. DAPO 本质上仍然站在 [[GRPO]] 路线上，不是完全新范式。
+1. DAPO 本质上仍然站在 [GRPO](GRPO.md) 路线上，不是完全新范式。
 2. 四个技术分别对应四个很具体的训练失稳点。
 3. Clip-Higher 和 Token-Level Loss 更偏 actor 更新与 credit assignment。
 4. Dynamic Sampling 和 Overlong Reward Shaping 更偏训练信号质量控制。
@@ -318,10 +318,10 @@ token-level loss 聚合  <------ Token-Level Policy Gradient Loss
 
 ## 相关概念
 
-- [[GRPO]]
-- [[PPO]]
-- [[DPO]]
-- [[RLHF]]
-- [[Expert Iteration]]
-- [[Reward Model]]
-- [[Qwen2.5 技术报告阅读笔记]]
+- [GRPO](GRPO.md)
+- [PPO](PPO.md)
+- [DPO](DPO.md)
+- [RLHF](RLHF.md)
+- [Expert Iteration](Expert%20Iteration.md)
+- Reward Model
+- Qwen2

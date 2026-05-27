@@ -37,11 +37,13 @@ updated: '2026-05-10'
 
 下面这张 Canvas 是按学习顺序整理的主流程：
 
-![[qwen25_vl_fusion.canvas]]
+![qwen25_vl_fusion](../08-%E5%9B%BE%E7%89%87/canvas-preview/qwen25_vl_fusion.svg)
+
+[打开原始 Canvas](../08-%E5%9B%BE%E7%89%87/qwen25_vl_fusion.canvas)
 
 官方结构图如下，重点看三处：
 
-![[Pasted image 20260510192333.png]]
+![Pasted image 20260510192333](../08-%E5%9B%BE%E7%89%87/Pasted%20image%2020260510192333.png)
 
 这张图可以这样读：
 

@@ -75,10 +75,10 @@ Rollout 是采样阶段，不是更新阶段。PPO、GRPO 等算法真正更新�
 
 | 方法 | 是否依赖在线 rollout | rollout 的角色 | 关键记录 |
 |---|:---:|---|---|
-| [[PPO]] | 是 | 用旧策略采样 response，再用 RM + KL 构造 reward 和 GAE | old logprob、value、reward、ref logprob、mask |
-| [[GRPO]] | 是 | 对同一 prompt 采样一组 responses，用组内相对 reward 估计 advantage | group responses、old logprob、reward、ref logprob、mask |
-| [[DPO]] | 通常否 | 标准 DPO 使用离线偏好对，不在训练时重新 rollout | chosen / rejected logprob、ref logprob |
-| [[Expert Iteration]] | 是，但用途不同 | 用 rollout 生成候选答案，经 verifier 过滤后做 SFT | 候选 response、验证结果、过滤后的专家样本 |
+| [PPO](PPO.md) | 是 | 用旧策略采样 response，再用 RM + KL 构造 reward 和 GAE | old logprob、value、reward、ref logprob、mask |
+| [GRPO](GRPO.md) | 是 | 对同一 prompt 采样一组 responses，用组内相对 reward 估计 advantage | group responses、old logprob、reward、ref logprob、mask |
+| [DPO](DPO.md) | 通常否 | 标准 DPO 使用离线偏好对，不在训练时重新 rollout | chosen / rejected logprob、ref logprob |
+| [Expert Iteration](Expert%20Iteration.md) | 是，但用途不同 | 用 rollout 生成候选答案，经 verifier 过滤后做 SFT | 候选 response、验证结果、过滤后的专家样本 |
 
 PPO 和 GRPO 都需要 rollout，但目的不完全相同。PPO 侧重“采样后如何用 value / GAE 做逐 token 优势估计”；GRPO 侧重“同一 prompt 多采样，靠组内比较构造 critic-free advantage”。DPO 的标准形态则把 rollout 前置到数据集构建阶段，训练时更像离线分类目标。
 
@@ -110,7 +110,7 @@ Rollout 常常是 LLM RL 最贵的一段，因为它要真的跑生成，而且�
 - 异步 actor-learner，把采样和训练解耦
 - 动态调整 group size，在训练早期保留探索，后期提高吞吐
 
-这些问题的生命周期归属仍在后训练，但工程入口更适合从 [[训练系统工程]] 看。
+这些问题的生命周期归属仍在后训练，但工程入口更适合从 [训练系统工程](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E8%AE%AD%E7%BB%83%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B.md) 看。
 
 ## 7. 易错点
 
@@ -123,18 +123,18 @@ Rollout 常常是 LLM RL 最贵的一段，因为它要真的跑生成，而且�
 
 ## 关联
 
-- 属于：[[后训练与对齐]]
-- 相关：[[PPO]] [[GRPO]] [[RLHF]] [[DPO]] [[Expert Iteration]] [[Reward Model]] [[训练系统工程]]
-- 用于：[[大模型对齐项目]] [[DeepSeek-R1 复现]] [[推理能力提升项目]]
+- 属于：[后训练与对齐](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%AF%B9%E9%BD%90.md)
+- 相关：[PPO](PPO.md) [GRPO](GRPO.md) [RLHF](RLHF.md) [DPO](DPO.md) [Expert Iteration](Expert%20Iteration.md) Reward Model [训练系统工程](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E8%AE%AD%E7%BB%83%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B.md)
+- 用于：大模型对齐项目 DeepSeek-R1 复现 推理能力提升项目
 
 ## 相关概念
 
-- [[PPO]]
-- [[GRPO]]
-- [[RLHF]]
-- [[DPO]]
-- [[Expert Iteration]]
-- [[LLM_后训练 Reward Return Value Advantage]]
+- [PPO](PPO.md)
+- [GRPO](GRPO.md)
+- [RLHF](RLHF.md)
+- [DPO](DPO.md)
+- [Expert Iteration](Expert%20Iteration.md)
+- [LLM_后训练 Reward Return Value Advantage](LLM_%E5%90%8E%E8%AE%AD%E7%BB%83%20Reward%20Return%20Value%20Advantage.md)
 
 ## 来源
 

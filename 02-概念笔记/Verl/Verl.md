@@ -132,7 +132,9 @@ save_checkpoint          -> 保存 actor / critic / optimizer / scheduler / extr
 
 这张图把上面的角色关系压缩成一条系统链路：
 
-![[08-图片/verl_architecture.canvas]]
+![verl_architecture](../../08-%E5%9B%BE%E7%89%87/canvas-preview/verl_architecture.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/verl_architecture.canvas)
 
 ---
 
@@ -140,7 +142,9 @@ save_checkpoint          -> 保存 actor / critic / optimizer / scheduler / extr
 
 可以把一次训练 step 简化成下面这条链路。
 
-![[08-图片/verl_training_step.canvas]]
+![verl_training_step](../../08-%E5%9B%BE%E7%89%87/canvas-preview/verl_training_step.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/verl_training_step.canvas)
 
 ### 3.1 从 dataloader 取 prompt
 
@@ -563,7 +567,9 @@ Controller
 
 这张图对比了两条数据路径的关键差异：
 
-![[08-图片/verl_dataproto_vs_transferqueue.canvas]]
+![verl_dataproto_vs_transferqueue](../../08-%E5%9B%BE%E7%89%87/canvas-preview/verl_dataproto_vs_transferqueue.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/verl_dataproto_vs_transferqueue.canvas)
 
 ---
 

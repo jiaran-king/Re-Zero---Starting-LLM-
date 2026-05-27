@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -270 1920 1190" width="1600" height="991">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="-40" y="-270" width="1920" height="1190" fill="#fbfbf8" />
+<line x1="360" y1="105" x2="420" y2="110" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="630" y1="110" x2="690" y2="115" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1090" y1="115" x2="1150" y2="110" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1370" y1="110" x2="1430" y2="115" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1635" y1="230" x2="1635" y2="280" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1635" y1="410" x2="1635" y2="470" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1430" y1="580" x2="1370" y2="580" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1150" y1="580" x2="1090" y2="580" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="690" y1="580" x2="630" y2="580" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="420" y1="580" x2="360" y2="580" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="890" y1="690" x2="985" y2="760" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="0" y="-230" width="560" height="130" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="18" y="-200" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="18" dy="0">Qwen2.5-VL 模态融合主线</tspan>
+<tspan x="18" dy="22">visual token injection +</tspan>
+<tspan x="18" dy="22">decoder self-attention fusion</tspan>
+</text>
+<rect x="0" y="0" width="360" height="210" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="18" y="30" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="18" dy="0">阶段 1｜用户输入</tspan>
+<tspan x="18" dy="22">• 图像 / 视频</tspan>
+<tspan x="18" dy="22">• 文本问题</tspan>
+<tspan x="18" dy="22">• image_pad / video_pad</tspan>
+</text>
+<rect x="420" y="45" width="210" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="438" y="75" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="438" dy="0">◇</tspan>
+<tspan x="438" dy="22">Processor</tspan>
+<tspan x="438" dy="22">分词 + 视觉预处理</tspan>
+</text>
+<rect x="690" y="0" width="400" height="230" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="708" y="30" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="708" dy="0">阶段 2｜对齐后的输入</tspan>
+<tspan x="708" dy="22">• input_ids / attention_mask</tspan>
+<tspan x="708" dy="22">• pixel_values</tspan>
+<tspan x="708" dy="22">• image_grid_thw /</tspan>
+<tspan x="708" dy="22">video_grid_thw</tspan>
+<tspan x="708" dy="22">• placeholder 数量已展开</tspan>
+</text>
+<rect x="1150" y="45" width="220" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1168" y="75" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1168" dy="0">◇</tspan>
+<tspan x="1168" dy="22">Vision Encoder</tspan>
+<tspan x="1168" dy="22">patch + window attention</tspan>
+</text>
+<rect x="1430" y="0" width="410" height="230" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="1448" y="30" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1448" dy="0">阶段 3｜视觉 Embeddings</tspan>
+<tspan x="1448" dy="22">• image_embeds: [N_img, D]</tspan>
+<tspan x="1448" dy="22">• video_embeds: [N_vid, D]</tspan>
+<tspan x="1448" dy="22">• Merger 对齐到 LLM hidden size</tspan>
+</text>
+<rect x="1510" y="280" width="250" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1528" y="310" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1528" dy="0">◇</tspan>
+<tspan x="1528" dy="22">masked_scatter</tspan>
+<tspan x="1528" dy="22">替换 placeholder</tspan>
+</text>
+<rect x="1430" y="470" width="410" height="220" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="1448" y="500" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1448" dy="0">阶段 4｜混合 Embeddings</tspan>
+<tspan x="1448" dy="22">• text embeds + visual embeds</tspan>
+<tspan x="1448" dy="22">• 序列长度 S 不变</tspan>
+<tspan x="1448" dy="22">• placeholder 内容变成视觉特征</tspan>
+</text>
+<rect x="1150" y="515" width="220" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1168" y="545" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1168" dy="0">◇</tspan>
+<tspan x="1168" dy="22">MRoPE</tspan>
+<tspan x="1168" dy="22">生成 3D 位置索引</tspan>
+</text>
+<rect x="690" y="470" width="400" height="220" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="708" y="500" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="708" dy="0">阶段 5｜带位置的多模态序列</tspan>
+<tspan x="708" dy="22">• 文本：退化为 1D RoPE</tspan>
+<tspan x="708" dy="22">• 图像：height / width</tspan>
+<tspan x="708" dy="22">• 视频：time / height / width</tspan>
+</text>
+<rect x="420" y="515" width="210" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="438" y="545" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="438" dy="0">◇</tspan>
+<tspan x="438" dy="22">Qwen2.5 Decoder</tspan>
+<tspan x="438" dy="22">self-attention 融合</tspan>
+</text>
+<rect x="0" y="470" width="360" height="220" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="18" y="500" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="18" dy="0">阶段 6｜条件文本生成</tspan>
+<tspan x="18" dy="22">• 自然语言回答</tspan>
+<tspan x="18" dy="22">• OCR / JSON</tspan>
+<tspan x="18" dy="22">• bbox / point</tspan>
+<tspan x="18" dy="22">• 视频时间戳</tspan>
+</text>
+<rect x="690" y="760" width="590" height="120" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="708" y="790" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="708" dy="0">关键判断</tspan>
+<tspan x="708" dy="22">Vision Encoder 负责视觉内部编码；</tspan>
+<tspan x="708" dy="22">真正跨模态交互发生在 Decoder self-</tspan>
+<tspan x="708" dy="22">attention。</tspan>
+</text>
+</svg>

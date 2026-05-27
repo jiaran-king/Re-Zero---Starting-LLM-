@@ -219,12 +219,12 @@ Flash Attention:
 
 ## 关联
 
-- 属于：[[推理优化]]
-- 相关：[[Attention]] [[Transformer]] [[KV Cache]] [[MHA变体：MQA与GQA]] [[vLLM]]
-- 用于：[[大模型推理实验]]
+- 属于：[推理优化](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96.md)
+- 相关：[Attention](Attention.md) [Transformer](Transformer.md) [KV Cache](KV%20Cache.md) [MHA变体：MQA与GQA](MHA%E5%8F%98%E4%BD%93%EF%BC%9AMQA%E4%B8%8EGQA.md) vLLM
+- 用于：大模型推理实验
 
 ## 相关概念
 
-- [[Attention]]
-- [[KV Cache]]
-- [[Transformer]]
+- [Attention](Attention.md)
+- [KV Cache](KV%20Cache.md)
+- [Transformer](Transformer.md)

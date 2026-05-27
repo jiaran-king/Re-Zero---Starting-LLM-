@@ -204,9 +204,9 @@ G=64 意味着每个 question 要做 64 次完整推理。Prefix Caching 让 64 
 ---
 
 ## 关联
-- 属于：[[后训练与对齐]]
-- 相关：[[DPO]] [[PPO]] [[RLHF]] [[Expert Iteration]] [[REINFORCE]] [[Reward Model]]
-- 用于：[[DeepSeek-R1 复现]] [[数学推理训练]]
+- 属于：[后训练与对齐](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%AF%B9%E9%BD%90.md)
+- 相关：[DPO](DPO.md) [PPO](PPO.md) [RLHF](RLHF.md) [Expert Iteration](Expert%20Iteration.md) REINFORCE Reward Model
+- 用于：DeepSeek-R1 复现 数学推理训练
 
 ## Reward Hacking 与强 Verifier
 
@@ -259,8 +259,8 @@ Agentic RL 场景中的强 verifier 来源：数学（答案匹配/程序求值�
 ---
 
 ## 相关概念
-- [[RLHF]]
-- [[DPO]]
-- [[Expert Iteration]]
-- [[SFT]]
-- [[PPO]]
+- [RLHF](RLHF.md)
+- [DPO](DPO.md)
+- [Expert Iteration](Expert%20Iteration.md)
+- SFT
+- [PPO](PPO.md)

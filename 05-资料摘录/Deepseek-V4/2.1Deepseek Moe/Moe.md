@@ -36,9 +36,9 @@ flowchart TB
 
 | 问题                 | 对应章节                                              | 核心答案                                             |
 | ------------------ | ------------------------------------------------- | ------------------------------------------------ |
-| MoE 是什么？           | [[#1. 传统 MoE 基础：从 Dense FFN 到 Sparse Experts]]    | 把 Transformer 的 FFN 换成多个专家 FFN，每个 token 只激活少数专家。 |
-| DeepSeekMoE 改了什么？  | [[#2. DeepSeekMoE：从“有专家”到“专家专业化”]]                | 把大专家切成小专家，并隔离 shared experts，减少知识混杂和知识冗余。        |
-| DeepSeek-V4 如何规模化？ | [[#3. DeepSeek-V4 的规模化改造：让 DeepSeekMoE 在超大规模下可用]] | 继续使用 DeepSeekMoE，同时强化路由、负载均衡、专家并行、FP4 量化和稳定性治理。  |
+| MoE 是什么？           | [1. 传统 MoE 基础：从 Dense FFN 到 Sparse Experts](#1-%E4%BC%A0%E7%BB%9F-moe-%E5%9F%BA%E7%A1%80%E4%BB%8E-dense-ffn-%E5%88%B0-sparse-experts)    | 把 Transformer 的 FFN 换成多个专家 FFN，每个 token 只激活少数专家。 |
+| DeepSeekMoE 改了什么？  | [2. DeepSeekMoE：从“有专家”到“专家专业化”](#2-deepseekmoe%E4%BB%8E%E6%9C%89%E4%B8%93%E5%AE%B6%E5%88%B0%E4%B8%93%E5%AE%B6%E4%B8%93%E4%B8%9A%E5%8C%96)                | 把大专家切成小专家，并隔离 shared experts，减少知识混杂和知识冗余。        |
+| DeepSeek-V4 如何规模化？ | [3. DeepSeek-V4 的规模化改造：让 DeepSeekMoE 在超大规模下可用](#3-deepseek-v4-%E7%9A%84%E8%A7%84%E6%A8%A1%E5%8C%96%E6%94%B9%E9%80%A0%E8%AE%A9-deepseekmoe-%E5%9C%A8%E8%B6%85%E5%A4%A7%E8%A7%84%E6%A8%A1%E4%B8%8B%E5%8F%AF%E7%94%A8) | 继续使用 DeepSeekMoE，同时强化路由、负载均衡、专家并行、FP4 量化和稳定性治理。  |
 
 > [!tip] 阅读顺序
 > 先看 **0.1 演进图** 和 **4. 三阶段对比总结**，再回到第 1、2、3 节补机制细节。最后用 **5. 最终记忆版** 和 **6. 自测问题** 做复习。

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 1440 1150" width="1600" height="1277">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="1440" height="1150" fill="#fbfbf8" />
+<line x1="290" y1="295" x2="340" y2="295" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="540" y1="295" x2="590" y2="295" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="840" y1="295" x2="890" y2="295" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1100" y1="295" x2="1150" y2="300" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1295" y1="390" x2="1275" y2="560" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1200" y1="610" x2="1180" y2="810" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="860" y1="810" x2="790" y2="810" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="640" y1="810" x2="640" y2="800" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="390" y1="800" x2="350" y2="800" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="260" y1="850" x2="190" y2="960" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="360" height="100" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">从 response 到 update</tspan>
+</text>
+<rect x="80" y="220" width="210" height="150" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">response 文本</tspan>
+</text>
+<rect x="340" y="240" width="200" height="110" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="358" y="270" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="358" dy="0">◇</tspan>
+<tspan x="358" dy="22">reward function</tspan>
+<tspan x="358" dy="22">读 FINAL ANSWER</tspan>
+</text>
+<rect x="590" y="210" width="250" height="170" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="608" y="240" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="608" dy="0">sequence-level</tspan>
+<tspan x="608" dy="22">outcome reward</tspan>
+</text>
+<rect x="890" y="230" width="210" height="130" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="908" y="260" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="908" dy="0">◇</tspan>
+<tspan x="908" dy="22">reward manager</tspan>
+<tspan x="908" dy="22">生成 reward tensor</tspan>
+</text>
+<rect x="1150" y="210" width="290" height="180" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1168" y="240" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1168" dy="0">token_level_scores</tspan>
+<tspan x="1168" dy="22">• 最后有效 token 挂分</tspan>
+</text>
+<rect x="1200" y="560" width="150" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1218" y="590" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1218" dy="0">◇</tspan>
+<tspan x="1218" dy="22">KL 处理</tspan>
+</text>
+<rect x="860" y="720" width="320" height="180" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="878" y="750" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="878" dy="0">token_level_rewards</tspan>
+<tspan x="878" dy="22">• 进入 advantage 前的最终奖励</tspan>
+</text>
+<rect x="640" y="755" width="150" height="110" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="658" y="785" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="658" dy="0">◇</tspan>
+<tspan x="658" dy="22">GRPO</tspan>
+<tspan x="658" dy="22">组内标准化</tspan>
+</text>
+<rect x="390" y="720" width="250" height="160" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="408" y="750" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="408" dy="0">advantages / returns</tspan>
+</text>
+<rect x="170" y="750" width="180" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="188" y="780" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="188" dy="0">◇</tspan>
+<tspan x="188" dy="22">actor / critic loss</tspan>
+</text>
+<rect x="80" y="960" width="220" height="150" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="990" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">参数更新</tspan>
+</text>
+</svg>

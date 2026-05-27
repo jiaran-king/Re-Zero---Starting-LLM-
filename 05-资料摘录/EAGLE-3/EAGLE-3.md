@@ -27,7 +27,9 @@ canvas:
 
 ## 0 阅读地图
 
-![[08-图片/eagle3_mainflow.canvas]]
+![eagle3_mainflow](../../08-%E5%9B%BE%E7%89%87/canvas-preview/eagle3_mainflow.svg)
+
+[打开原始 Canvas](../../08-%E5%9B%BE%E7%89%87/eagle3_mainflow.canvas)
 
 这张 Canvas 只画一条主线：从自回归解码瓶颈，到 speculative sampling，再到 EAGLE 的 feature prediction constraint，最后落到 EAGLE-3 的 training-time test、multi-layer feature fusion 和加速结果。正文可以按这条链路顺序阅读。
 
@@ -659,19 +661,19 @@ $$
 
 后续可以从这篇笔记拆成以下独立概念页：
 
-- [[Speculative Decoding]]：draft-verify 框架、接受-拒绝规则、lossless 性质
-- [[EAGLE]]：feature-level autoregression、feature uncertainty、shifted token input
-- [[EAGLE-2]]：dynamic draft tree、tree attention
-- [[Training-Time Test]]：训练时模拟多步推理、解决 train-test mismatch
-- [[Feature Prediction Constraint]]：为什么 feature imitation 既稳定又限制表达能力
-- [[Draft Model]]：推理加速中的候选生成器
-- [[Multi-Layer Feature Fusion]]：低/中/高层 feature 融合
-- [[Acceptance Length]]：speculative decoding 的关键性能指标
+- Speculative Decoding：draft-verify 框架、接受-拒绝规则、lossless 性质
+- EAGLE：feature-level autoregression、feature uncertainty、shifted token input
+- EAGLE-2：dynamic draft tree、tree attention
+- Training-Time Test：训练时模拟多步推理、解决 train-test mismatch
+- Feature Prediction Constraint：为什么 feature imitation 既稳定又限制表达能力
+- Draft Model：推理加速中的候选生成器
+- Multi-Layer Feature Fusion：低/中/高层 feature 融合
+- Acceptance Length：speculative decoding 的关键性能指标
 
 ## 关联
 
-- 相关：[[Speculative Decoding]] [[MTP]] [[LLM推理加速]] [[KV Cache]] [[EAGLE]] [[EAGLE-2]]
-- 对比：[[Medusa]] [[HASS]] [[Lookahead Decoding]] [[Hydra]]
+- 相关：Speculative Decoding [MTP](../Deepseek-V4/2.1Deepseek%20Moe/MTP.md) LLM推理加速 [KV Cache](../../02-%E6%A6%82%E5%BF%B5%E7%AC%94%E8%AE%B0/KV%20Cache.md) EAGLE EAGLE-2
+- 对比：Medusa HASS Lookahead Decoding Hydra
 - 系统框架：SGLang、vLLM
 
 ## Handoff

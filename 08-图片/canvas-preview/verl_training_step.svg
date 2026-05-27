@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 2610 1190" width="1600" height="729">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="2610" height="1190" fill="#fbfbf8" />
+<line x1="510" y1="410" x2="535" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="735" y1="410" x2="770" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1210" y1="410" x2="1235" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1450" y1="410" x2="1485" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1915" y1="410" x2="1940" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2130" y1="410" x2="2170" y2="410" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2390" y1="585" x2="2300" y2="625" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2300" y1="745" x2="2390" y2="800" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2170" y1="975" x2="2140" y2="975" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1930" y1="975" x2="1915" y2="975" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1485" y1="975" x2="1435" y2="975" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1235" y1="975" x2="1210" y2="975" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="770" y1="975" x2="725" y2="975" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="535" y1="975" x2="510" y2="975" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="590" height="110" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">Verl 单次 PPO / GRPO 训练 Step</tspan>
+<tspan x="98" dy="22">字段如何一路补齐到 update</tspan>
+</text>
+<rect x="2180" y="50" width="400" height="230" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="2198" y="80" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2198" dy="0">读图方式</tspan>
+<tspan x="2198" dy="22">• 大卡片：batch 阶段 / 产物</tspan>
+<tspan x="2198" dy="22">• 小卡片：worker RPC / 算法动作</tspan>
+<tspan x="2198" dy="22">• 上排向右，下排折返</tspan>
+<tspan x="2198" dy="22">• 重点看字段变化</tspan>
+</text>
+<rect x="80" y="235" width="430" height="350" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="265" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 1｜Prompt Batch</tspan>
+<tspan x="98" dy="22">• input_ids</tspan>
+<tspan x="98" dy="22">• attention_mask</tspan>
+<tspan x="98" dy="22">• prompts</tspan>
+<tspan x="98" dy="22">• uid / data_source</tspan>
+<tspan x="98" dy="22">• ground_truth / extra_info</tspan>
+</text>
+<rect x="535" y="350" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="553" y="380" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="553" dy="0">◇</tspan>
+<tspan x="553" dy="22">generate_sequences</tspan>
+<tspan x="553" dy="22">rollout 采样</tspan>
+</text>
+<rect x="770" y="235" width="440" height="350" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="788" y="265" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="788" dy="0">阶段 2｜Rollout Output</tspan>
+<tspan x="788" dy="22">• responses</tspan>
+<tspan x="788" dy="22">• response_mask</tspan>
+<tspan x="788" dy="22">• position_ids</tspan>
+<tspan x="788" dy="22">• optional rollout logprobs</tspan>
+<tspan x="788" dy="22">• prompt + response 拼接</tspan>
+</text>
+<rect x="1235" y="350" width="215" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1253" y="380" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1253" dy="0">◇</tspan>
+<tspan x="1253" dy="22">actor / ref / critic</tspan>
+<tspan x="1253" dy="22">forward 补字段</tspan>
+</text>
+<rect x="1485" y="235" width="430" height="350" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1503" y="265" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1503" dy="0">阶段 3｜Model Fields</tspan>
+<tspan x="1503" dy="22">• old_log_probs</tspan>
+<tspan x="1503" dy="22">• ref_log_prob</tspan>
+<tspan x="1503" dy="22">• values</tspan>
+<tspan x="1503" dy="22">• response_mask 对齐</tspan>
+<tspan x="1503" dy="22">• loss 可消费字段</tspan>
+</text>
+<rect x="1940" y="350" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1958" y="380" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1958" dy="0">◇</tspan>
+<tspan x="1958" dy="22">reward_fn / RM</tspan>
+<tspan x="1958" dy="22">打分</tspan>
+</text>
+<rect x="2170" y="235" width="440" height="350" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="2188" y="265" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2188" dy="0">阶段 4｜Reward Tensor</tspan>
+<tspan x="2188" dy="22">• token_level_scores</tspan>
+<tspan x="2188" dy="22">• token_level_rewards</tspan>
+<tspan x="2188" dy="22">• KL penalty 可选</tspan>
+<tspan x="2188" dy="22">• sequence score 对齐 token</tspan>
+<tspan x="2188" dy="22">• policy gradient 信号</tspan>
+</text>
+<rect x="2200" y="625" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="2218" y="655" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2218" dy="0">◇</tspan>
+<tspan x="2218" dy="22">core_algos.py</tspan>
+<tspan x="2218" dy="22">算 advantage</tspan>
+</text>
+<rect x="2170" y="800" width="440" height="350" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="2188" y="830" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2188" dy="0">阶段 5｜Advantages / Returns</tspan>
+<tspan x="2188" dy="22">• PPO: GAE + values</tspan>
+<tspan x="2188" dy="22">• GRPO: group baseline</tspan>
+<tspan x="2188" dy="22">• RLOO / REINFORCE++</tspan>
+<tspan x="2188" dy="22">• advantages</tspan>
+<tspan x="2188" dy="22">• returns</tspan>
+</text>
+<rect x="1930" y="915" width="210" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1948" y="945" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1948" dy="0">◇</tspan>
+<tspan x="1948" dy="22">update_actor</tspan>
+<tspan x="1948" dy="22">PPO / GRPO loss</tspan>
+</text>
+<rect x="1485" y="800" width="430" height="350" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1503" y="830" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1503" dy="0">阶段 6｜Actor / Critic Update</tspan>
+<tspan x="1503" dy="22">• clipped policy loss</tspan>
+<tspan x="1503" dy="22">• value loss 可选</tspan>
+<tspan x="1503" dy="22">• backward</tspan>
+<tspan x="1503" dy="22">• optimizer.step</tspan>
+<tspan x="1503" dy="22">• metrics 返回 controller</tspan>
+</text>
+<rect x="1235" y="915" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1253" y="945" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1253" dy="0">◇</tspan>
+<tspan x="1253" dy="22">update_weights</tspan>
+<tspan x="1253" dy="22">同步 rollout</tspan>
+</text>
+<rect x="770" y="800" width="440" height="350" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="788" y="830" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="788" dy="0">阶段 7｜Next Rollout</tspan>
+<tspan x="788" dy="22">• rollout engine 新权重</tspan>
+<tspan x="788" dy="22">• save_checkpoint 可选</tspan>
+<tspan x="788" dy="22">• 下一批 prompt</tspan>
+<tspan x="788" dy="22">• 训练闭环继续</tspan>
+</text>
+<rect x="535" y="915" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="553" y="945" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="553" dy="0">◇</tspan>
+<tspan x="553" dy="22">checkpoint</tspan>
+<tspan x="553" dy="22">分片恢复点</tspan>
+</text>
+<rect x="80" y="800" width="430" height="350" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="830" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">旁路｜Fault Tolerance</tspan>
+<tspan x="98" dy="22">• actor / critic shard</tspan>
+<tspan x="98" dy="22">• optimizer / scheduler</tspan>
+<tspan x="98" dy="22">• extra state</tspan>
+<tspan x="98" dy="22">• model_merger 导出</tspan>
+</text>
+</svg>

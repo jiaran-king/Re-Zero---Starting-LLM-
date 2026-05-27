@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 -105 2500 1235" width="1600" height="790">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="-105" width="2500" height="1235" fill="#fbfbf8" />
+<line x1="500" y1="380" x2="525" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="695" y1="380" x2="730" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1140" y1="380" x2="1165" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1355" y1="380" x2="1390" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1820" y1="380" x2="1845" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2025" y1="380" x2="2070" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2285" y1="530" x2="2270" y2="585" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2270" y1="705" x2="2285" y2="760" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2070" y1="910" x2="2025" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1840" y1="910" x2="1820" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1390" y1="910" x2="1345" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1160" y1="910" x2="1160" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="730" y1="910" x2="705" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="515" y1="910" x2="500" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="470" height="110" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">DeepSeek-V4 Muon</tspan>
+<tspan x="98" dy="22">矩阵级优化主流程</tspan>
+</text>
+<rect x="80" y="230" width="420" height="300" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="260" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 1｜权重矩阵</tspan>
+<tspan x="98" dy="22">• W 属于线性层</tspan>
+<tspan x="98" dy="22">• 逻辑矩阵不可切碎</tspan>
+<tspan x="98" dy="22">• embedding / head 等保留 AdamW</tspan>
+</text>
+<rect x="525" y="320" width="170" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="543" y="350" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="543" dy="0">◇</tspan>
+<tspan x="543" dy="22">反向传播</tspan>
+<tspan x="543" dy="22">得到梯度</tspan>
+</text>
+<rect x="730" y="230" width="410" height="300" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="748" y="260" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="748" dy="0">阶段 2｜当前梯度</tspan>
+<tspan x="748" dy="22">• G_t = grad(W)</tspan>
+<tspan x="748" dy="22">• 仍含奇异值尺度差异</tspan>
+<tspan x="748" dy="22">• 大方向可能垄断更新</tspan>
+</text>
+<rect x="1165" y="320" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1183" y="350" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1183" dy="0">◇</tspan>
+<tspan x="1183" dy="22">classical momentum</tspan>
+<tspan x="1183" dy="22">平滑方向</tspan>
+</text>
+<rect x="1390" y="230" width="430" height="300" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1408" y="260" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1408" dy="0">阶段 3｜动量方向</tspan>
+<tspan x="1408" dy="22">• M_t = mu M_{t-1} + G_t</tspan>
+<tspan x="1408" dy="22">• 不乘 1-mu</tspan>
+<tspan x="1408" dy="22">• 重点是方向平滑</tspan>
+</text>
+<rect x="1845" y="320" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1863" y="350" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1863" dy="0">◇</tspan>
+<tspan x="1863" dy="22">Nesterov</tspan>
+<tspan x="1863" dy="22">构造更新矩阵</tspan>
+</text>
+<rect x="2070" y="230" width="430" height="300" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="2088" y="260" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2088" dy="0">阶段 4｜待正交矩阵</tspan>
+<tspan x="2088" dy="22">• M = mu M_t + G_t</tspan>
+<tspan x="2088" dy="22">• 保留左右奇异向量</tspan>
+<tspan x="2088" dy="22">• 准备削弱奇异值支配</tspan>
+</text>
+<rect x="2180" y="585" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="2198" y="615" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2198" dy="0">◇</tspan>
+<tspan x="2198" dy="22">Hybrid NS</tspan>
+<tspan x="2198" dy="22">近似 UV^T</tspan>
+</text>
+<rect x="2070" y="760" width="430" height="300" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="2088" y="790" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2088" dy="0">阶段 5｜正交化更新</tspan>
+<tspan x="2088" dy="22">• O&#x27;_t 约等于 UV^T</tspan>
+<tspan x="2088" dy="22">• 奇异方向更均衡</tspan>
+<tspan x="2088" dy="22">• 使用 BF16 matmul 可实现</tspan>
+</text>
+<rect x="1840" y="850" width="185" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1858" y="880" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1858" dy="0">◇</tspan>
+<tspan x="1858" dy="22">RMS rescale</tspan>
+<tspan x="1858" dy="22">统一尺度</tspan>
+</text>
+<rect x="1390" y="750" width="430" height="320" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1408" y="780" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1408" dy="0">阶段 6｜可控更新</tspan>
+<tspan x="1408" dy="22">• O_t = O&#x27;_t sqrt(max(n,m))</tspan>
+<tspan x="1408" dy="22">gamma</tspan>
+<tspan x="1408" dy="22">• RMS 约等于 gamma</tspan>
+<tspan x="1408" dy="22">• DeepSeek-V4 约设为 0.18</tspan>
+</text>
+<rect x="1160" y="850" width="185" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1178" y="880" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1178" dy="0">◇</tspan>
+<tspan x="1178" dy="22">decoupled WD</tspan>
+<tspan x="1178" dy="22">参数更新</tspan>
+</text>
+<rect x="730" y="750" width="430" height="320" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="748" y="780" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="748" dy="0">阶段 7｜新参数</tspan>
+<tspan x="748" dy="22">• W_t = W_{t-1}(1-eta lambda)</tspan>
+<tspan x="748" dy="22">- eta O_t</tspan>
+<tspan x="748" dy="22">• 复用 AdamW 学习率</tspan>
+<tspan x="748" dy="22">• 收敛更稳更快</tspan>
+</text>
+<rect x="515" y="850" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="533" y="880" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="533" dy="0">◇</tspan>
+<tspan x="533" dy="22">hybrid ZeRO</tspan>
+<tspan x="533" dy="22">完整矩阵分配</tspan>
+</text>
+<rect x="80" y="730" width="420" height="360" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="760" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">工程约束｜完整矩阵</tspan>
+<tspan x="98" dy="22">• Newton-Schulz 需要 MM^T</tspan>
+<tspan x="98" dy="22">• dense 参数按 bucket 分配</tspan>
+<tspan x="98" dy="22">• MoE expert 独立优化</tspan>
+<tspan x="98" dy="22">• 同 shape 可合并批处理</tspan>
+</text>
+<rect x="1935" y="-65" width="360" height="210" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="1953" y="-35" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1953" dy="0">读图方式</tspan>
+<tspan x="1953" dy="22">• 大卡片：状态 / 产物</tspan>
+<tspan x="1953" dy="22">• 小卡片：处理动作</tspan>
+<tspan x="1953" dy="22">• 上排向右，下排折返</tspan>
+<tspan x="1953" dy="22">• 核心：先改方向，再控尺度</tspan>
+</text>
+</svg>

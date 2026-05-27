@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 1860 1370" width="1600" height="1178">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="1860" height="1370" fill="#fbfbf8" />
+<line x1="500" y1="360" x2="530" y2="365" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="710" y1="365" x2="750" y2="360" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1170" y1="360" x2="1200" y2="365" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1380" y1="365" x2="1420" y2="360" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1640" y1="500" x2="1650" y2="575" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1650" y1="695" x2="1640" y2="760" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1420" y1="905" x2="1380" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1200" y1="910" x2="1170" y2="900" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="750" y1="900" x2="710" y2="910" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="530" y1="910" x2="500" y2="900" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="500" height="110" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">MMSearch-R1 主流程</tspan>
+<tspan x="98" dy="22">按需搜索的多模态 RL 训练链</tspan>
+</text>
+<rect x="80" y="230" width="420" height="260" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="260" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 1｜输入样本</tspan>
+<tspan x="98" dy="22">• image + question</tspan>
+<tspan x="98" dy="22">• ground_truth</tspan>
+<tspan x="98" dy="22">• search-free / required</tspan>
+</text>
+<rect x="530" y="305" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="548" y="335" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="548" dy="0">◇</tspan>
+<tspan x="548" dy="22">action format</tspan>
+<tspan x="548" dy="22">约束输出标签</tspan>
+</text>
+<rect x="750" y="220" width="420" height="280" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="768" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="768" dy="0">阶段 2｜动作选择</tspan>
+<tspan x="768" dy="22">• answer</tspan>
+<tspan x="768" dy="22">• image search</tspan>
+<tspan x="768" dy="22">• text search</tspan>
+<tspan x="768" dy="22">• 每轮先 reason</tspan>
+</text>
+<rect x="1200" y="305" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1218" y="335" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1218" dy="0">◇</tspan>
+<tspan x="1218" dy="22">rollout parser</tspan>
+<tspan x="1218" dy="22">解析搜索动作</tspan>
+</text>
+<rect x="1420" y="220" width="440" height="280" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1438" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1438" dy="0">阶段 3｜搜索环境</tspan>
+<tspan x="1438" dy="22">• image search 识别实体</tspan>
+<tspan x="1438" dy="22">• text search 查事实</tspan>
+<tspan x="1438" dy="22">• 返回 information</tspan>
+</text>
+<rect x="1560" y="575" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1578" y="605" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1578" dy="0">◇</tspan>
+<tspan x="1578" dy="22">observation</tspan>
+<tspan x="1578" dy="22">回灌上下文</tspan>
+</text>
+<rect x="1420" y="760" width="440" height="290" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1438" y="790" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1438" dy="0">阶段 4｜多轮轨迹</tspan>
+<tspan x="1438" dy="22">• 搜索后继续生成</tspan>
+<tspan x="1438" dy="22">• 直到 answer 或上限</tspan>
+<tspan x="1438" dy="22">• 环境 token 不算 loss</tspan>
+</text>
+<rect x="1200" y="850" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1218" y="880" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1218" dy="0">◇</tspan>
+<tspan x="1218" dy="22">reward</tspan>
+<tspan x="1218" dy="22">答案 + 格式 + 成本</tspan>
+</text>
+<rect x="750" y="760" width="420" height="280" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="768" y="790" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="768" dy="0">阶段 5｜轨迹评分</tspan>
+<tspan x="768" dy="22">• EM / SubEM</tspan>
+<tspan x="768" dy="22">• format score</tspan>
+<tspan x="768" dy="22">• search penalty</tspan>
+</text>
+<rect x="530" y="850" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="548" y="880" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="548" dy="0">◇</tspan>
+<tspan x="548" dy="22">GRPO</tspan>
+<tspan x="548" dy="22">组内比较优势</tspan>
+</text>
+<rect x="80" y="750" width="420" height="300" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="780" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 6｜策略更新</tspan>
+<tspan x="98" dy="22">• 高分轨迹概率升高</tspan>
+<tspan x="98" dy="22">• 低分轨迹概率降低</tspan>
+<tspan x="98" dy="22">• 学会按需搜索</tspan>
+</text>
+<rect x="80" y="1120" width="460" height="210" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="1150" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">读图方式</tspan>
+<tspan x="98" dy="22">• 大卡片：阶段 / 产物</tspan>
+<tspan x="98" dy="22">• 小卡片：处理动作</tspan>
+<tspan x="98" dy="22">• 上排生成和搜索</tspan>
+<tspan x="98" dy="22">• 下排评分和更新</tspan>
+</text>
+</svg>

@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 2550 1170" width="1600" height="734">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="2550" height="1170" fill="#fbfbf8" />
+<line x1="510" y1="390" x2="535" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="725" y1="380" x2="750" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1180" y1="390" x2="1205" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1385" y1="380" x2="1410" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1870" y1="390" x2="1895" y2="380" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2075" y1="380" x2="2100" y2="390" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2325" y1="560" x2="2325" y2="610" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2325" y1="730" x2="2325" y2="780" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2100" y1="950" x2="2080" y2="950" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1880" y1="950" x2="1870" y2="950" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1410" y1="950" x2="1380" y2="950" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1190" y1="950" x2="1180" y2="950" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="750" y1="950" x2="725" y2="950" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="535" y1="950" x2="510" y2="950" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="560" height="110" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">EAGLE-3 主线</tspan>
+<tspan x="98" dy="22">从 feature prediction 到</tspan>
+<tspan x="98" dy="22">training-time test</tspan>
+</text>
+<rect x="2050" y="40" width="410" height="210" rx="10" fill="#f0f5ff" stroke="#1d39c4" stroke-width="2" filter="url(#shadow)" />
+<text x="2068" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2068" dy="0">读图方式</tspan>
+<tspan x="2068" dy="22">• 大卡片：阶段 / 状态</tspan>
+<tspan x="2068" dy="22">• 小卡片：处理动作</tspan>
+<tspan x="2068" dy="22">• 上排向右，下排折返</tspan>
+<tspan x="2068" dy="22">• 重点：释放表达空间后重新获得多步稳定性</tspan>
+</text>
+<rect x="80" y="220" width="430" height="340" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 0｜自回归瓶颈</tspan>
+<tspan x="98" dy="22">• 每 token 一次 target forward</tspan>
+<tspan x="98" dy="22">• decode 频繁访问大模型参数</tspan>
+<tspan x="98" dy="22">• KV cache 不能消除串行性</tspan>
+<tspan x="98" dy="22">• 推理延迟和成本高</tspan>
+</text>
+<rect x="535" y="320" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="553" y="350" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="553" dy="0">◇</tspan>
+<tspan x="553" dy="22">speculative sampling</tspan>
+<tspan x="553" dy="22">draft + verify</tspan>
+</text>
+<rect x="750" y="220" width="430" height="340" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="768" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="768" dy="0">阶段 1｜并行验证</tspan>
+<tspan x="768" dy="22">• draft model 先猜多 token</tspan>
+<tspan x="768" dy="22">• target model 一次验证</tspan>
+<tspan x="768" dy="22">• 接受-拒绝保证 lossless</tspan>
+<tspan x="768" dy="22">• 加速取决于接受长度 tau</tspan>
+</text>
+<rect x="1205" y="320" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1223" y="350" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1223" dy="0">◇</tspan>
+<tspan x="1223" dy="22">EAGLE</tspan>
+<tspan x="1223" dy="22">复用 top feature</tspan>
+</text>
+<rect x="1410" y="220" width="460" height="340" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1428" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1428" dy="0">阶段 2｜Feature Draft</tspan>
+<tspan x="1428" dy="22">• 输入 target top-layer feature</tspan>
+<tspan x="1428" dy="22">f</tspan>
+<tspan x="1428" dy="22">• 预测下一步 feature f_hat</tspan>
+<tspan x="1428" dy="22">• 接 LM head 得到 draft token</tspan>
+<tspan x="1428" dy="22">• feature loss 提供多步稳定性</tspan>
+</text>
+<rect x="1895" y="320" width="180" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1913" y="350" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1913" dy="0">◇</tspan>
+<tspan x="1913" dy="22">scaling data</tspan>
+<tspan x="1913" dy="22">收益受限</tspan>
+</text>
+<rect x="2100" y="220" width="450" height="340" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="2118" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2118" dy="0">阶段 3｜表达受限</tspan>
+<tspan x="2118" dy="22">• token acceptance 才是最终目标</tspan>
+<tspan x="2118" dy="22">• feature reconstruction 是额外约束</tspan>
+<tspan x="2118" dy="22">• 扩数据难继续提升</tspan>
+<tspan x="2118" dy="22">• 简单移除会导致 Step 2 崩</tspan>
+</text>
+<rect x="2225" y="610" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="2243" y="640" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2243" dy="0">◇</tspan>
+<tspan x="2243" dy="22">remove l_fea</tspan>
+<tspan x="2243" dy="22">改直接预测 token</tspan>
+</text>
+<rect x="2100" y="780" width="450" height="340" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="2118" y="810" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2118" dy="0">阶段 4｜Unconstrained a</tspan>
+<tspan x="2118" dy="22">• draft model 输出自由向量 a</tspan>
+<tspan x="2118" dy="22">• 不再拟合真实 feature f</tspan>
+<tspan x="2118" dy="22">• LM head 直接产 token 分布</tspan>
+<tspan x="2118" dy="22">• 第一步接受率上升</tspan>
+</text>
+<rect x="1880" y="890" width="200" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1898" y="920" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1898" dy="0">◇</tspan>
+<tspan x="1898" dy="22">training-time test</tspan>
+<tspan x="1898" dy="22">把 a 喂回训练</tspan>
+</text>
+<rect x="1410" y="770" width="460" height="360" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1428" y="800" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1428" dy="0">阶段 5｜多步稳定</tspan>
+<tspan x="1428" dy="22">• 训练时模拟测试 draft</tspan>
+<tspan x="1428" dy="22">• 输入混合 g 与自身输出 a</tspan>
+<tspan x="1428" dy="22">• 解决 train-test mismatch</tspan>
+<tspan x="1428" dy="22">• attention mask 遵守 draft tree</tspan>
+</text>
+<rect x="1190" y="890" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1208" y="920" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1208" dy="0">◇</tspan>
+<tspan x="1208" dy="22">feature fusion</tspan>
+<tspan x="1208" dy="22">low / mid / high</tspan>
+</text>
+<rect x="750" y="770" width="430" height="360" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="768" y="800" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="768" dy="0">阶段 6｜融合输入 g</tspan>
+<tspan x="768" dy="22">• g = FC([l; m; h])</tspan>
+<tspan x="768" dy="22">• 低层保留形式信息</tspan>
+<tspan x="768" dy="22">• 中层承载结构语义</tspan>
+<tspan x="768" dy="22">• 高层贴近 next-token logits</tspan>
+</text>
+<rect x="535" y="890" width="190" height="120" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="553" y="920" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="553" dy="0">◇</tspan>
+<tspan x="553" dy="22">verify + tree</tspan>
+<tspan x="553" dy="22">EAGLE-2 动态树</tspan>
+</text>
+<rect x="80" y="770" width="430" height="360" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="800" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">阶段 7｜加速结果</tspan>
+<tspan x="98" dy="22">• 更高 acceptance length</tspan>
+<tspan x="98" dy="22">• speedup 约 3.0x 到 6.5x</tspan>
+<tspan x="98" dy="22">• 相比 EAGLE-2 提升 20%-40%</tspan>
+<tspan x="98" dy="22">• 扩训练数据继续受益</tspan>
+</text>
+</svg>

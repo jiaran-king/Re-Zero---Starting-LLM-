@@ -115,12 +115,12 @@ $\hat{A}_i > 0$（答对）时增大该回答的概率（拉力），$\hat{A}_i 
 ---
 
 ## 关联
-- 属于：[[后训练与对齐]]
-- 相关：[[GRPO]] [[DPO]] [[RLHF]] [[SFT]] [[自我蒸馏]] [[课程学习]]
-- 用于：[[推理能力提升项目]]
+- 属于：[后训练与对齐](../01-%E4%B8%BB%E9%A2%98%E5%9C%B0%E5%9B%BE/%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%AF%B9%E9%BD%90.md)
+- 相关：[GRPO](GRPO.md) [DPO](DPO.md) [RLHF](RLHF.md) SFT 自我蒸馏 课程学习
+- 用于：推理能力提升项目
 
 ## 相关概念
-- [[GRPO]]
-- [[RLHF]]
-- [[SFT]]
-- [[DPO]]
+- [GRPO](GRPO.md)
+- [RLHF](RLHF.md)
+- SFT
+- [DPO](DPO.md)

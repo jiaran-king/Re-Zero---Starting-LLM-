@@ -53,4 +53,5 @@ LLM-start.git-history-backup-*/
 # Source papers and screenshot-like attachments
 *.pdf
 08-图片/Pasted image *
+!08-图片/Pasted image 20260510192333.png
 08-图片/Cache_*

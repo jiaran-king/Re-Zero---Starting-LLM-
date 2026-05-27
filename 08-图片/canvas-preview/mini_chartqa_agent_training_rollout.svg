@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 0 2540 1100" width="1600" height="692">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#566070" />
+</marker>
+<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+<feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#162033" flood-opacity="0.12" />
+</filter>
+</defs>
+<rect x="40" y="0" width="2540" height="1100" fill="#fbfbf8" />
+<line x1="380" y1="310" x2="430" y2="310" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="610" y1="310" x2="660" y2="310" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="900" y1="310" x2="950" y2="310" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1130" y1="310" x2="1180" y2="205" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1130" y1="310" x2="1190" y2="400" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1040" y1="360" x2="1130" y2="750" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1370" y1="750" x2="1470" y2="655" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1640" y1="655" x2="1690" y2="655" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1555" y1="705" x2="1690" y2="970" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1980" y1="970" x2="2030" y2="800" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1440" y1="205" x2="2390" y2="500" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1470" y1="400" x2="2240" y2="615" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="1910" y1="655" x2="2240" y2="615" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<line x1="2200" y1="800" x2="2390" y2="730" stroke="#566070" stroke-width="3" marker-end="url(#arrow)" />
+<rect x="80" y="40" width="420" height="100" rx="10" fill="#fff1f0" stroke="#d4380d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="70" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">训练侧 rollout 行为链</tspan>
+</text>
+<rect x="80" y="220" width="300" height="180" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="98" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="98" dy="0">parquet 样本</tspan>
+<tspan x="98" dy="22">• prompt / 图像 / metadata</tspan>
+</text>
+<rect x="430" y="260" width="180" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="448" y="290" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="448" dy="0">◇</tspan>
+<tspan x="448" dy="22">dataset / processor</tspan>
+</text>
+<rect x="660" y="220" width="240" height="180" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="678" y="250" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="678" dy="0">first rollout</tspan>
+</text>
+<rect x="950" y="260" width="180" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="968" y="290" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="968" dy="0">◇</tspan>
+<tspan x="968" dy="22">parse + classify</tspan>
+</text>
+<rect x="1180" y="120" width="260" height="170" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="1198" y="150" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1198" dy="0">直接回答</tspan>
+<tspan x="1198" dy="22">• 不进 second rollout</tspan>
+</text>
+<rect x="1470" y="605" width="170" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="1488" y="635" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1488" dy="0">◇</tspan>
+<tspan x="1488" dy="22">tool execution</tspan>
+</text>
+<rect x="2030" y="750" width="170" height="100" rx="10" fill="#e6f4ff" stroke="#0958d9" stroke-width="2" filter="url(#shadow)" />
+<text x="2048" y="780" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2048" dy="0">◇</tspan>
+<tspan x="2048" dy="22">second rollout</tspan>
+</text>
+<rect x="1190" y="305" width="280" height="190" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1208" y="335" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1208" dy="0">解析失败 / 无效工具</tspan>
+<tspan x="1208" dy="22">• penalty</tspan>
+<tspan x="1208" dy="22">• 直接进 reward</tspan>
+</text>
+<rect x="1690" y="880" width="290" height="180" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1708" y="910" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1708" dy="0">observation + 双图输入</tspan>
+<tspan x="1708" dy="22">• original / edited image</tspan>
+</text>
+<rect x="1130" y="675" width="240" height="150" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1148" y="705" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1148" dy="0">合法工具调用</tspan>
+</text>
+<rect x="1690" y="580" width="220" height="150" rx="10" fill="#f6ffed" stroke="#389e0d" stroke-width="2" filter="url(#shadow)" />
+<text x="1708" y="610" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="1708" dy="0">执行失败</tspan>
+<tspan x="1708" dy="22">• penalty</tspan>
+</text>
+<rect x="2240" y="500" width="300" height="230" rx="10" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" filter="url(#shadow)" />
+<text x="2258" y="530" fill="#1f2933" font-family="Arial, sans-serif" font-size="17">
+<tspan x="2258" dy="0">reward</tspan>
+<tspan x="2258" dy="22">• 用 first 或 second rollout</tspan>
+<tspan x="2258" dy="22">的最终回答进入评分</tspan>
+</text>
+</svg>
