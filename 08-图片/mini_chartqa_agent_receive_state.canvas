@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# receive() 最小状态机","x":80,"y":40,"width":360,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## 收到 planner 回复","x":80,"y":220,"width":240,"height":140,"color":"2"},
+		{"id":"b","type":"text","text":"## terminate 检查","x":420,"y":220,"width":220,"height":140,"color":"3"},
+		{"id":"c","type":"text","text":"## 已终止\n- 停止本轮","x":420,"y":470,"width":220,"height":150,"color":"4"},
+		{"id":"d","type":"text","text":"## 进入 parse","x":760,"y":220,"width":220,"height":140,"color":"3"},
+		{"id":"e","type":"text","text":"## parsing feedback\n- 解析失败\n- 继续回给 planner","x":760,"y":470,"width":260,"height":180,"color":"2"},
+		{"id":"f","type":"text","text":"## execute","x":1110,"y":220,"width":200,"height":140,"color":"3"},
+		{"id":"g","type":"text","text":"## execution feedback\n- 执行失败\n- 继续回给 planner","x":1110,"y":470,"width":260,"height":180,"color":"2"},
+		{"id":"h","type":"text","text":"## success observation\n- 执行成功\n- observation 回流","x":1460,"y":220,"width":260,"height":180,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"b","toNode":"c","fromSide":"bottom","toSide":"top"},
+		{"id":"e3","fromNode":"b","toNode":"d","fromSide":"right","toSide":"left"},
+		{"id":"e4","fromNode":"d","toNode":"e","fromSide":"bottom","toSide":"top"},
+		{"id":"e5","fromNode":"d","toNode":"f","fromSide":"right","toSide":"left"},
+		{"id":"e6","fromNode":"f","toNode":"g","fromSide":"bottom","toSide":"top"},
+		{"id":"e7","fromNode":"f","toNode":"h","fromSide":"right","toSide":"left"}
+	]
+}

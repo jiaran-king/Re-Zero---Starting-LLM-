@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# EAGLE-3 主线\n从 feature prediction 到 training-time test","x":80,"y":40,"width":560,"height":110,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：阶段 / 状态\n- 小卡片：处理动作\n- 上排向右，下排折返\n- 重点：释放表达空间后重新获得多步稳定性","x":2050,"y":40,"width":410,"height":210,"color":"6"},
+		{"id":"a","type":"text","text":"## 阶段 0｜自回归瓶颈\n- 每 token 一次 target forward\n- decode 频繁访问大模型参数\n- KV cache 不能消除串行性\n- 推理延迟和成本高","x":80,"y":220,"width":430,"height":340,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**speculative sampling**\ndraft + verify","x":535,"y":320,"width":190,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 1｜并行验证\n- draft model 先猜多 token\n- target model 一次验证\n- 接受-拒绝保证 lossless\n- 加速取决于接受长度 tau","x":750,"y":220,"width":430,"height":340,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**EAGLE**\n复用 top feature","x":1205,"y":320,"width":180,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 2｜Feature Draft\n- 输入 target top-layer feature f\n- 预测下一步 feature f_hat\n- 接 LM head 得到 draft token\n- feature loss 提供多步稳定性","x":1410,"y":220,"width":460,"height":340,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**scaling data**\n收益受限","x":1895,"y":320,"width":180,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 3｜表达受限\n- token acceptance 才是最终目标\n- feature reconstruction 是额外约束\n- 扩数据难继续提升\n- 简单移除会导致 Step 2 崩","x":2100,"y":220,"width":450,"height":340,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**remove l_fea**\n改直接预测 token","x":2225,"y":610,"width":200,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 4｜Unconstrained a\n- draft model 输出自由向量 a\n- 不再拟合真实 feature f\n- LM head 直接产 token 分布\n- 第一步接受率上升","x":2100,"y":780,"width":450,"height":340,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**training-time test**\n把 a 喂回训练","x":1880,"y":890,"width":200,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 5｜多步稳定\n- 训练时模拟测试 draft\n- 输入混合 g 与自身输出 a\n- 解决 train-test mismatch\n- attention mask 遵守 draft tree","x":1410,"y":770,"width":460,"height":360,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**feature fusion**\nlow / mid / high","x":1190,"y":890,"width":190,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## 阶段 6｜融合输入 g\n- g = FC([l; m; h])\n- 低层保留形式信息\n- 中层承载结构语义\n- 高层贴近 next-token logits","x":750,"y":770,"width":430,"height":360,"color":"2"},
+		{"id":"p7","type":"text","text":"◇\n**verify + tree**\nEAGLE-2 动态树","x":535,"y":890,"width":190,"height":120,"color":"3"},
+		{"id":"h","type":"text","text":"## 阶段 7｜加速结果\n- 更高 acceptance length\n- speedup 约 3.0x 到 6.5x\n- 相比 EAGLE-2 提升 20%-40%\n- 扩训练数据继续受益","x":80,"y":770,"width":430,"height":360,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"bottom","toNode":"e","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"},
+		{"id":"e13","fromNode":"g","fromSide":"left","toNode":"p7","toSide":"right"},
+		{"id":"e14","fromNode":"p7","fromSide":"left","toNode":"h","toSide":"right"}
+	]
+}

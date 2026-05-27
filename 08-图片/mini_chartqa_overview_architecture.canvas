@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 项目整体架构\n总览版","x":80,"y":40,"width":420,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## 原始 ChartQA 数据\n- 图像 + 问题 + 答案\n- bbox / 图类型","x":80,"y":220,"width":340,"height":250,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**preprocess.py**\n样本定型","x":470,"y":285,"width":170,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## parquet 训练数据\n- prompt / answer\n- images / metadata","x":690,"y":210,"width":350,"height":270,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**Jinja + processor**\n准备输入","x":1090,"y":285,"width":180,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## vLLM rollout\n- first rollout\n- second rollout 可选","x":1320,"y":220,"width":340,"height":250,"color":"2"},
+		{"id":"side","type":"text","text":"## Tool-use Agent 系统\n- 行为原型层\n- 提供 THOUGHT / ACTION /\n  OBSERVATION 范式","x":1320,"y":600,"width":360,"height":250,"color":"6"},
+		{"id":"p3","type":"text","text":"◇\n**refocus + GRPO**\n评分与更新","x":1260,"y":900,"width":180,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 更新后的 actor\n- 更稳定的 tool use\n- 进入下一轮训练","x":850,"y":1080,"width":350,"height":250,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"b","toNode":"p2","fromSide":"right","toSide":"left"},
+		{"id":"e4","fromNode":"p2","toNode":"c","fromSide":"right","toSide":"left"},
+		{"id":"e5","fromNode":"c","toNode":"p3","fromSide":"bottom","toSide":"top"},
+		{"id":"e6","fromNode":"p3","toNode":"d","fromSide":"left","toSide":"right"},
+		{"id":"e7","fromNode":"side","toNode":"c","fromSide":"top","toSide":"bottom"}
+	]
+}

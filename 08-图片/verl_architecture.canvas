@@ -1,0 +1,33 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Verl 系统架构总览\nSingle Controller + Distributed Workers","x":80,"y":40,"width":560,"height":110,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：系统角色 / 计算层\n- 小卡片：调度或适配动作\n- 上排看控制到 worker\n- 下排看 backend 与 checkpoint","x":2170,"y":50,"width":410,"height":220,"color":"6"},
+		{"id":"a","type":"text","text":"## 阶段 1｜Controller / Trainer\n- 写 RL 主循环\n- 调度 rollout / reward / update\n- 记录 metrics\n- 不直接做重计算","x":80,"y":240,"width":430,"height":330,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**WorkerGroup RPC**\n远程调用","x":540,"y":345,"width":190,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 2｜Role Workers\n- ActorRolloutRefWorker\n- Critic Worker\n- Reward Worker / Manager\n- 按角色执行任务","x":770,"y":240,"width":450,"height":330,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**dispatch_mode**\n分发 / 收集","x":1250,"y":345,"width":190,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 3｜Training Worker\n- infer_batch\n- train_mini_batch\n- train_batch\n- 绑定 loss_fn","x":1480,"y":240,"width":430,"height":330,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**EngineRegistry**\n选择 backend","x":1940,"y":345,"width":190,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 4｜Model Engine\n- FSDP / FSDP2\n- Megatron / Automodel\n- forward / backward\n- optimizer / sharding","x":2170,"y":240,"width":430,"height":330,"color":"4"},
+		{"id":"p4","type":"text","text":"◇\n**BaseRollout**\n生成 response","x":1990,"y":710,"width":190,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 5｜Rollout Engine\n- vLLM / SGLang / HF\n- 高吞吐采样\n- responses / masks\n- rollout logprobs","x":1480,"y":650,"width":430,"height":330,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**update_weights**\n同步策略","x":1250,"y":755,"width":190,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 6｜Latest Policy\n- actor 已更新\n- rollout 拿到新权重\n- 下一批采样使用新策略\n- 闭环继续训练","x":770,"y":650,"width":450,"height":330,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**save_checkpoint**\n分片保存","x":540,"y":755,"width":190,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## 阶段 7｜Checkpoint\n- actor / critic shard\n- optimizer / scheduler\n- extra state / RNG\n- merge 导出 HF 模型","x":80,"y":650,"width":430,"height":330,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"left","toNode":"e","toSide":"right"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"}
+	]
+}

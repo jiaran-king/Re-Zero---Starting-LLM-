@@ -1,0 +1,196 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "text": "# 训练入口与 Trainer 主循环\n入口装配 -> rollout -> reward -> update",
+      "x": 80,
+      "y": 40,
+      "width": 600,
+      "height": 100,
+      "color": "1"
+    },
+    {
+      "id": "a",
+      "type": "text",
+      "text": "## 阶段 0｜main()\n- 读取 PPOConfig\n- deep_post_init\n- ray.init\n- 启动 Runner",
+      "x": 80,
+      "y": 210,
+      "width": 340,
+      "height": 260,
+      "color": "2"
+    },
+    {
+      "id": "p1",
+      "type": "text",
+      "text": "◇\n**Runner.run()**\n总装训练系统",
+      "x": 455,
+      "y": 280,
+      "width": 180,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "b",
+      "type": "text",
+      "text": "## 阶段 1｜系统装配\n- tokenizer / processor\n- reward manager\n- train / val dataloader\n- ResourcePoolManager",
+      "x": 680,
+      "y": 200,
+      "width": 390,
+      "height": 280,
+      "color": "2"
+    },
+    {
+      "id": "p2",
+      "type": "text",
+      "text": "◇\n**RayPPOTrainer**\n初始化约束 + workers",
+      "x": 1105,
+      "y": 275,
+      "width": 210,
+      "height": 130,
+      "color": "3"
+    },
+    {
+      "id": "c",
+      "type": "text",
+      "text": "## 阶段 2｜Trainer 与角色\n- actor_rollout_wg\n- critic_wg\n- ref_policy_wg\n- init_workers() / init_model()",
+      "x": 1350,
+      "y": 200,
+      "width": 400,
+      "height": 280,
+      "color": "2"
+    },
+    {
+      "id": "p3",
+      "type": "text",
+      "text": "◇\n**fit()**\n取 batch + rollout",
+      "x": 1495,
+      "y": 565,
+      "width": 180,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "d",
+      "type": "text",
+      "text": "## 阶段 3｜生成链\n- DataProto.from_single_dict\n- pop rollout 输入\n- first rollout\n- get_second_rollout_batch",
+      "x": 1300,
+      "y": 760,
+      "width": 430,
+      "height": 300,
+      "color": "2"
+    },
+    {
+      "id": "p4",
+      "type": "text",
+      "text": "◇\n**reward + value**\n打分并补齐张量",
+      "x": 1035,
+      "y": 850,
+      "width": 190,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "e",
+      "type": "text",
+      "text": "## 阶段 4｜训练信号\n- compute_reward\n- balance_batch\n- old / ref / values\n- token_level_rewards\n- advantages",
+      "x": 720,
+      "y": 740,
+      "width": 390,
+      "height": 340,
+      "color": "2"
+    },
+    {
+      "id": "p5",
+      "type": "text",
+      "text": "◇\n**update + validate**\nactor / critic / 记录",
+      "x": 455,
+      "y": 850,
+      "width": 200,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "f",
+      "type": "text",
+      "text": "## 阶段 5｜输出层\n- actor update\n- critic update\n- validation\n- logging\n- checkpoint",
+      "x": 80,
+      "y": 760,
+      "width": 340,
+      "height": 300,
+      "color": "4"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "a",
+      "fromSide": "right",
+      "toNode": "p1",
+      "toSide": "left"
+    },
+    {
+      "id": "e2",
+      "fromNode": "p1",
+      "fromSide": "right",
+      "toNode": "b",
+      "toSide": "left"
+    },
+    {
+      "id": "e3",
+      "fromNode": "b",
+      "fromSide": "right",
+      "toNode": "p2",
+      "toSide": "left"
+    },
+    {
+      "id": "e4",
+      "fromNode": "p2",
+      "fromSide": "right",
+      "toNode": "c",
+      "toSide": "left"
+    },
+    {
+      "id": "e5",
+      "fromNode": "c",
+      "fromSide": "bottom",
+      "toNode": "p3",
+      "toSide": "top"
+    },
+    {
+      "id": "e6",
+      "fromNode": "p3",
+      "fromSide": "bottom",
+      "toNode": "d",
+      "toSide": "top"
+    },
+    {
+      "id": "e7",
+      "fromNode": "d",
+      "fromSide": "left",
+      "toNode": "p4",
+      "toSide": "right"
+    },
+    {
+      "id": "e8",
+      "fromNode": "p4",
+      "fromSide": "left",
+      "toNode": "e",
+      "toSide": "right"
+    },
+    {
+      "id": "e9",
+      "fromNode": "e",
+      "fromSide": "left",
+      "toNode": "p5",
+      "toSide": "right"
+    },
+    {
+      "id": "e10",
+      "fromNode": "p5",
+      "fromSide": "left",
+      "toNode": "f",
+      "toSide": "right"
+    }
+  ]
+}

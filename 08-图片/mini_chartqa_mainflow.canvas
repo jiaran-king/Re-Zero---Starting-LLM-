@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Mini_ChartQA 单条样本全链路\nCanvas 总览","x":80,"y":40,"width":540,"height":100,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：阶段 + 关键记忆点\n- 小卡片：处理动作\n- 上排向右，下排折返","x":2230,"y":50,"width":350,"height":180,"color":"6"},
+		{"id":"a","type":"text","text":"## 阶段 0｜原始样本\n- image / question / answer\n- x_values / y_values\n- x/y bbox + figure_bbox\n- source / chart type\n- 仍只是原材料","x":80,"y":210,"width":420,"height":380,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**preprocess.py**\n协议化","x":525,"y":330,"width":170,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 1｜parquet 字段\n- query + 基础 prompt\n- answer + figure_id\n- figure_path + images bytes\n- metadata(type + bbox)\n- 定型成统一样本协议","x":740,"y":210,"width":430,"height":380,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**dataset.py**\n模板 + 解码","x":1185,"y":330,"width":180,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 2｜训练侧样本\n- chartQA.jinja 渲染完整 prompt\n- bytes -> PIL -> RGB\n- input_ids / attention_mask\n- raw_prompt_ids / multi_modal_data\n- ground_truth / position_ids","x":1410,"y":190,"width":470,"height":410,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**vllm_rollout_spmd.py**\nfirst rollout","x":1895,"y":330,"width":210,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 3｜first rollout\n- responses + response_mask\n- 可能是 direct answer\n- 也可能是 tool code / THOUGHT\n- 本质上是第一次行为选择","x":2140,"y":220,"width":420,"height":320,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**ray_trainer.py**\nparser + tooluse\n重组 second rollout","x":2235,"y":575,"width":220,"height":130,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 4｜second rollout\n- 判定 direct / fail / valid tool\n- 依赖 metadata[type] + bbox\n- original_image + edited_image\n- observation 回流模型\n- 产出最终 response","x":2140,"y":740,"width":430,"height":350,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**refocus.py**\n抽 FINAL ANSWER","x":1885,"y":810,"width":200,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 5｜序列级得分\n- regex 抽 FINAL ANSWER\n- pred / gt 切分后比较\n- 数值近似 or 文本精确匹配\n- 输出 overall score","x":1410,"y":740,"width":420,"height":320,"color":"2"},
+		{"id":"p6","type":"text","text":"◇\n**reward/function.py**\n挂到最后 token","x":1180,"y":810,"width":185,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## 阶段 6｜reward 张量\n- response ids + response mask\n- ground_truth + reward score\n- 序列级分数 -> token_level_scores\n- trainer 可消费的 reward tensor","x":760,"y":740,"width":400,"height":320,"color":"2"},
+		{"id":"p7","type":"text","text":"◇\n**ray_trainer + core_algos**\n组内标准化","x":525,"y":810,"width":190,"height":120,"color":"3"},
+		{"id":"h","type":"text","text":"## 阶段 7｜训练信号\n- 同题多 response 组成 group\n- 组内 reward 相对比较\n- advantages + returns\n- actor update 保留更优行为","x":80,"y":740,"width":420,"height":320,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"bottom","toNode":"e","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"},
+		{"id":"e13","fromNode":"g","fromSide":"left","toNode":"p7","toSide":"right"},
+		{"id":"e14","fromNode":"p7","fromSide":"left","toNode":"h","toSide":"right"}
+	]
+}

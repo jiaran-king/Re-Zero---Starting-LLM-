@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Agent 系统在项目中的位置","x":80,"y":40,"width":460,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## 样本输入\n- 图像 + bbox\n- 问题 / 约束","x":80,"y":220,"width":320,"height":230,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**Tool-use Agent 系统**\n行为闭环","x":450,"y":275,"width":190,"height":130,"color":"3"},
+		{"id":"b","type":"text","text":"## 行为范式\n- THOUGHT\n- ACTION\n- OBSERVATION\n- ANSWER / FINAL ANSWER","x":690,"y":210,"width":360,"height":260,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**训练侧复用**\n裁剪关键机制","x":760,"y":570,"width":200,"height":130,"color":"3"},
+		{"id":"c","type":"text","text":"## RL 主链路\n- first rollout\n- tool execution\n- second rollout\n- reward / update","x":410,"y":760,"width":360,"height":290,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"b","toNode":"p2","fromSide":"bottom","toSide":"top"},
+		{"id":"e4","fromNode":"p2","toNode":"c","fromSide":"left","toSide":"right"}
+	]
+}

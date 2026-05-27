@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 常见故障定位地图\n先分层，再回跳对应篇章","x":80,"y":40,"width":540,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## 阶段 0｜看到异常现象\n- second rollout 没进\n- reward 异常\n- GRPO 没信号\n- concat / resume / 拓扑问题","x":80,"y":240,"width":390,"height":290,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**先分层**\n判断问题落点","x":520,"y":325,"width":170,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 层 1｜数据与容器\n- preprocess / dataset\n- DataProto / non_tensor_batch\n- prompt / metadata / image_1_pil","x":760,"y":80,"width":360,"height":290,"color":"2"},
+		{"id":"c","type":"text","text":"## 层 2｜rollout 分支\n- first rollout\n- second rollout\n- parser / tool exec\n- rollout_round / tool_code","x":1180,"y":80,"width":360,"height":290,"color":"2"},
+		{"id":"d","type":"text","text":"## 层 3｜reward 与更新\n- FINAL ANSWER\n- token_level_scores\n- uid / rollout.n\n- advantages / returns","x":760,"y":480,"width":360,"height":290,"color":"2"},
+		{"id":"e","type":"text","text":"## 层 4｜工程恢复层\n- worker / tp 拓扑\n- checkpoint / resume\n- latest_global_step\n- dataloader state","x":1180,"y":480,"width":360,"height":290,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**回跳篇章**\n对应文档","x":1590,"y":325,"width":170,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 对应回跳\n- 01 / 02 / 03\n- 04 / 05 / 06\n- 07 / 08\n- 09 / 10 / 11","x":1800,"y":240,"width":300,"height":290,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e4","fromNode":"a","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e5","fromNode":"d","fromSide":"right","toNode":"e","toSide":"left"},
+		{"id":"e6","fromNode":"c","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e7","fromNode":"e","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e8","fromNode":"p2","fromSide":"right","toNode":"f","toSide":"left"}
+	]
+}

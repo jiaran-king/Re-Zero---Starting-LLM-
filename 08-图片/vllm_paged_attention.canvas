@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# PagedAttention\nlogical block 到 physical block 的映射","x":80,"y":40,"width":650,"height":105,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 上排：sequence 视角\n- 中间：block table\n- 下排：GPU KV memory\n- 重点看物理块不必连续","x":1820,"y":40,"width":430,"height":230,"color":"6"},
+		{"id":"a","type":"text","text":"## Sequence Tokens\n- token 0 ... 15\n- token 16 ... 31\n- token 32 ... 47\n- 逻辑上连续增长","x":80,"y":245,"width":410,"height":290,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**split**\n固定大小分块","x":525,"y":330,"width":200,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## Logical Blocks\n- logical block 0\n- logical block 1\n- logical block 2\n- request 视角连续","x":760,"y":245,"width":410,"height":290,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**map**\n查 block table","x":1205,"y":330,"width":200,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## Block Table\n- L0 -> P103\n- L1 -> P27\n- L2 -> P501\n- logical 到 physical","x":1440,"y":245,"width":410,"height":290,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**read / write**\nkernel 访问 KV","x":1550,"y":600,"width":210,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## Physical KV Blocks\n- physical block 27\n- physical block 103\n- physical block 501\n- 显存中可不连续","x":1440,"y":780,"width":410,"height":290,"color":"4"},
+		{"id":"p4","type":"text","text":"◇\n**allocate / free**\n按需复用","x":1205,"y":865,"width":200,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## KV Cache Manager\n- free block queue\n- ref count\n- prefix cache\n- eviction","x":760,"y":780,"width":410,"height":290,"color":"4"},
+		{"id":"p5","type":"text","text":"◇\n**benefit**\n减少碎片","x":525,"y":865,"width":200,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## Serving Gain\n- 少预留空洞\n- 支持共享前缀\n- 提高可并发 batch\n- 降低 OOM 风险","x":80,"y":780,"width":410,"height":290,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"bottom","toNode":"p3","toSide":"top"},
+		{"id":"e6","fromNode":"p3","fromSide":"bottom","toNode":"d","toSide":"top"},
+		{"id":"e7","fromNode":"d","fromSide":"left","toNode":"p4","toSide":"right"},
+		{"id":"e8","fromNode":"p4","fromSide":"left","toNode":"e","toSide":"right"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"e","fromSide":"top","toNode":"c","toSide":"bottom"}
+	]
+}

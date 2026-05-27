@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    {"id":"title","type":"text","text":"# Mini_ChartQA 首页主线\n从样本到训练闭环","x":80,"y":40,"width":520,"height":100,"color":"1"},
+    {"id":"a","type":"text","text":"## 原始 ChartQA 样本\n- 图表图像\n- question\n- answer\n- bbox / 图类型","x":80,"y":220,"width":360,"height":280,"color":"2"},
+    {"id":"p1","type":"text","text":"◇\n**preprocess.py**\n样本定型","x":500,"y":300,"width":170,"height":120,"color":"3"},
+    {"id":"b","type":"text","text":"## parquet 训练数据\n- prompt / answer\n- images bytes\n- metadata\n- figure_path","x":730,"y":210,"width":380,"height":300,"color":"2"},
+    {"id":"p2","type":"text","text":"◇\n**chartQA.jinja + processor**\n组织多模态输入","x":1170,"y":290,"width":210,"height":140,"color":"3"},
+    {"id":"c","type":"text","text":"## rollout 与评分\n- vLLM 生成回答\n- 必要时 second rollout\n- refocus 读取 FINAL ANSWER","x":1430,"y":220,"width":400,"height":300,"color":"2"},
+    {"id":"p3","type":"text","text":"◇\n**GRPO**\n形成更新信号","x":1510,"y":590,"width":170,"height":120,"color":"3"},
+    {"id":"d","type":"text","text":"## 训练结果与复盘\n- actor update\n- validation 指标\n- checkpoint / 日志","x":1070,"y":760,"width":390,"height":290,"color":"4"}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+    {"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+    {"id":"e3","fromNode":"b","toNode":"p2","fromSide":"right","toSide":"left"},
+    {"id":"e4","fromNode":"p2","toNode":"c","fromSide":"right","toSide":"left"},
+    {"id":"e5","fromNode":"c","toNode":"p3","fromSide":"bottom","toSide":"top"},
+    {"id":"e6","fromNode":"p3","toNode":"d","fromSide":"left","toSide":"right"}
+  ]
+}

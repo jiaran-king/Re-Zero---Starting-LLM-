@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Agent 侧 vs 训练侧\n两条相关但不同的数据流","x":540,"y":40,"width":520,"height":100,"color":"1"},
+		{"id":"left_h","type":"text","text":"## Agent 侧\n交互式行为流","x":80,"y":200,"width":260,"height":140,"color":"6"},
+		{"id":"l1","type":"text","text":"## 样本输入\n- ex + 图像 + bbox","x":80,"y":390,"width":290,"height":180,"color":"2"},
+		{"id":"lp1","type":"text","text":"◇\n**planner / parser / executor**","x":410,"y":430,"width":210,"height":100,"color":"3"},
+		{"id":"l2","type":"text","text":"## observation 回流\n- 继续多轮行为","x":660,"y":390,"width":290,"height":180,"color":"2"},
+		{"id":"lp2","type":"text","text":"◇\n**落盘结果**","x":990,"y":430,"width":150,"height":100,"color":"3"},
+		{"id":"l3","type":"text","text":"## output.json / answer.json","x":1180,"y":400,"width":280,"height":160,"color":"4"},
+		{"id":"bridge","type":"text","text":"## 共享桥梁\n- bbox 语义\n- 工具机制\n- THOUGHT / ACTION /\n  OBSERVATION 范式","x":560,"y":670,"width":430,"height":240,"color":"1"},
+		{"id":"right_h","type":"text","text":"## 训练侧\nparquet 样本流","x":80,"y":1010,"width":260,"height":140,"color":"6"},
+		{"id":"r1","type":"text","text":"## train_full / val_full\n- 静态 parquet 样本","x":80,"y":1200,"width":300,"height":180,"color":"2"},
+		{"id":"rp1","type":"text","text":"◇\n**dataset + processor**","x":420,"y":1240,"width":180,"height":100,"color":"3"},
+		{"id":"r2","type":"text","text":"## first rollout\n- 当前策略现场生成","x":640,"y":1200,"width":300,"height":180,"color":"2"},
+		{"id":"rp2","type":"text","text":"◇\n**工具执行 + second rollout**","x":980,"y":1240,"width":230,"height":100,"color":"3"},
+		{"id":"r3","type":"text","text":"## reward + update\n- 训练主链路","x":1250,"y":1200,"width":280,"height":180,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"l1","toNode":"lp1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"lp1","toNode":"l2","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"l2","toNode":"lp2","fromSide":"right","toSide":"left"},
+		{"id":"e4","fromNode":"lp2","toNode":"l3","fromSide":"right","toSide":"left"},
+		{"id":"e5","fromNode":"l2","toNode":"bridge","fromSide":"bottom","toSide":"top"},
+		{"id":"e6","fromNode":"bridge","toNode":"r2","fromSide":"bottom","toSide":"top"},
+		{"id":"e7","fromNode":"r1","toNode":"rp1","fromSide":"right","toSide":"left"},
+		{"id":"e8","fromNode":"rp1","toNode":"r2","fromSide":"right","toSide":"left"},
+		{"id":"e9","fromNode":"r2","toNode":"rp2","fromSide":"right","toSide":"left"},
+		{"id":"e10","fromNode":"rp2","toNode":"r3","fromSide":"right","toSide":"left"}
+	]
+}

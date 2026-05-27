@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 数据协议层\n预处理不是转格式","x":80,"y":40,"width":460,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## 原始图表问答样本\n- image / question / answer\n- x/y values\n- bbox / source","x":80,"y":220,"width":360,"height":290,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**补齐信息**\n路径 / bbox / 图类型 / 图像内容","x":490,"y":285,"width":220,"height":140,"color":"3"},
+		{"id":"b","type":"text","text":"## parquet 中的一行\n- prompt / answer\n- images bytes\n- metadata / figure_path\n- 统一样本协议","x":760,"y":210,"width":390,"height":320,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**dataset + processor**\n实例化训练输入","x":840,"y":600,"width":210,"height":140,"color":"3"},
+		{"id":"c","type":"text","text":"## 训练侧样本上下文\n- 模型输入\n- trainer 上下文\n- reward 参照物","x":480,"y":800,"width":370,"height":290,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"b","toNode":"p2","fromSide":"bottom","toSide":"top"},
+		{"id":"e4","fromNode":"p2","toNode":"c","fromSide":"left","toSide":"right"}
+	]
+}

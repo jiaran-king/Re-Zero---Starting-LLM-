@@ -1,0 +1,38 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Scheduler 与 Continuous Batching\n每个 engine step 重新组 batch","x":80,"y":40,"width":650,"height":105,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：队列 / 资源 / 结果\n- 小卡片：调度动作\n- 上排收集状态\n- 下排执行并回写","x":2040,"y":40,"width":430,"height":230,"color":"6"},
+		{"id":"a","type":"text","text":"## Waiting Requests\n- 新请求\n- prompt tokens\n- sampling params\n- arrival time","x":80,"y":230,"width":390,"height":300,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**admit**\n选择 prefill","x":500,"y":325,"width":190,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## Running Requests\n- decode 中\n- 已持有 KV blocks\n- generated tokens\n- stop 状态","x":720,"y":230,"width":390,"height":300,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**budget**\n检查资源","x":1140,"y":325,"width":190,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## Step Budgets\n- token budget\n- KV cache blocks\n- max_num_seqs\n- priority","x":1360,"y":230,"width":390,"height":300,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**schedule**\n形成本轮 batch","x":1780,"y":325,"width":200,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## Scheduled Batch\n- prefill chunks\n- decode tokens\n- block table\n- worker inputs","x":2010,"y":230,"width":400,"height":300,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**execute**\nGPU forward","x":2120,"y":585,"width":200,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## Worker Outputs\n- logits\n- sampled token\n- logprobs optional\n- updated KV","x":2010,"y":760,"width":400,"height":300,"color":"4"},
+		{"id":"p5","type":"text","text":"◇\n**postprocess**\n停止与流式返回","x":1780,"y":855,"width":200,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## State Update\n- finished 离开\n- running 继续\n- new request 可加入\n- metrics 更新","x":1360,"y":760,"width":390,"height":300,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**next step**\n重新调度","x":1140,"y":855,"width":190,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## Continuous Batch\n- batch 每步变化\n- 短请求不空等\n- 长 prompt 可切块\n- GPU 保持有活","x":720,"y":760,"width":390,"height":300,"color":"4"},
+		{"id":"p7","type":"text","text":"◇\n**preempt**\n资源不足取舍","x":500,"y":855,"width":190,"height":120,"color":"3"},
+		{"id":"h","type":"text","text":"## Resource Pressure\n- KV block 不足\n- prefill 太长\n- active seq 太多\n- tail latency 上升","x":80,"y":760,"width":390,"height":300,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"bottom","toNode":"e","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"},
+		{"id":"e13","fromNode":"g","fromSide":"left","toNode":"p7","toSide":"right"},
+		{"id":"e14","fromNode":"p7","fromSide":"left","toNode":"h","toSide":"right"},
+		{"id":"e15","fromNode":"f","fromSide":"top","toNode":"b","toSide":"bottom"}
+	]
+}

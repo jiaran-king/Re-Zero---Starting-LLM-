@@ -1,0 +1,29 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# MMSearch-R1 主流程\n按需搜索的多模态 RL 训练链","x":80,"y":40,"width":500,"height":110,"color":"1"},
+		{"id":"a","type":"text","text":"## 阶段 1｜输入样本\n- image + question\n- ground_truth\n- search-free / required","x":80,"y":230,"width":420,"height":260,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**action format**\n约束输出标签","x":530,"y":305,"width":180,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 2｜动作选择\n- answer\n- image search\n- text search\n- 每轮先 reason","x":750,"y":220,"width":420,"height":280,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**rollout parser**\n解析搜索动作","x":1200,"y":305,"width":180,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 3｜搜索环境\n- image search 识别实体\n- text search 查事实\n- 返回 information","x":1420,"y":220,"width":440,"height":280,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**observation**\n回灌上下文","x":1560,"y":575,"width":180,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 4｜多轮轨迹\n- 搜索后继续生成\n- 直到 answer 或上限\n- 环境 token 不算 loss","x":1420,"y":760,"width":440,"height":290,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**reward**\n答案 + 格式 + 成本","x":1200,"y":850,"width":180,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 5｜轨迹评分\n- EM / SubEM\n- format score\n- search penalty","x":750,"y":760,"width":420,"height":280,"color":"4"},
+		{"id":"p5","type":"text","text":"◇\n**GRPO**\n组内比较优势","x":530,"y":850,"width":180,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 6｜策略更新\n- 高分轨迹概率升高\n- 低分轨迹概率降低\n- 学会按需搜索","x":80,"y":750,"width":420,"height":300,"color":"4"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：阶段 / 产物\n- 小卡片：处理动作\n- 上排生成和搜索\n- 下排评分和更新","x":80,"y":1120,"width":460,"height":210,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"bottom","toNode":"p3","toSide":"top"},
+		{"id":"e6","fromNode":"p3","fromSide":"bottom","toNode":"d","toSide":"top"},
+		{"id":"e7","fromNode":"d","fromSide":"left","toNode":"p4","toSide":"right"},
+		{"id":"e8","fromNode":"p4","fromSide":"left","toNode":"e","toSide":"right"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"}
+	]
+}

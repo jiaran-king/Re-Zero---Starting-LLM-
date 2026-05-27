@@ -1,0 +1,27 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# RL 训练主链路\n分布式两阶段 rollout 系统","x":80,"y":40,"width":520,"height":100,"color":"1"},
+		{"id":"b","type":"text","text":"## Ray + FSDP workers\n- actor / ref / critic\n- rollout worker","x":700,"y":210,"width":340,"height":250,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**actor**\nfirst rollout","x":1090,"y":270,"width":170,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 行为生成\n- 直接回答\n- 或进入 tool use","x":1310,"y":220,"width":320,"height":230,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**tool execution**\n+ second rollout","x":1390,"y":560,"width":190,"height":140,"color":"3"},
+		{"id":"d","type":"text","text":"## reward manager\n- 计算 reward\n- 汇总打分结果","x":1030,"y":720,"width":320,"height":230,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**old / ref / value**\n相关计算","x":780,"y":760,"width":190,"height":140,"color":"3"},
+		{"id":"e","type":"text","text":"## actor / critic update\n- 优势计算\n- 参数更新","x":430,"y":720,"width":320,"height":230,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**validation / logging**","x":200,"y":790,"width":180,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## checkpoint 与实验记录","x":80,"y":720,"width":300,"height":210,"color":"4"},
+		{"id":"a","type":"text","text":"## main.py\n- 训练入口\n- 总装运行环境","x":40,"y":220,"width":300,"height":220,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**初始化**\n tokenizer / processor /\n dataloader / reward manager","x":420,"y":255,"width":220,"height":160,"color":"3"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"bottom","toNode":"p3","toSide":"top"},
+		{"id":"e6","fromNode":"p3","fromSide":"left","toNode":"d","toSide":"right"},
+		{"id":"e7","fromNode":"d","fromSide":"left","toNode":"p4","toSide":"right"},
+		{"id":"e8","fromNode":"p4","fromSide":"left","toNode":"e","toSide":"right"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"}
+	]
+}

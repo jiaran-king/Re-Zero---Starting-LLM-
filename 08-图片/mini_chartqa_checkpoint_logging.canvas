@@ -1,0 +1,196 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "text": "# checkpoint 与日志记录层\nmetrics / generations / trace / checkpoint",
+      "x": 80,
+      "y": 40,
+      "width": 600,
+      "height": 100,
+      "color": "1"
+    },
+    {
+      "id": "a",
+      "type": "text",
+      "text": "## 阶段 0｜fit() / _validate()\n- train step 结束\n- validation step 结束\n- 进入记录与保存分支",
+      "x": 80,
+      "y": 220,
+      "width": 350,
+      "height": 260,
+      "color": "2"
+    },
+    {
+      "id": "p1",
+      "type": "text",
+      "text": "◇\n**metrics.py**\n汇总指标",
+      "x": 470,
+      "y": 290,
+      "width": 170,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "b",
+      "type": "text",
+      "text": "## 阶段 1｜常规 metrics\n- data metrics\n- timing metrics\n- throughput metrics\n- actor / critic 指标",
+      "x": 690,
+      "y": 210,
+      "width": 370,
+      "height": 280,
+      "color": "2"
+    },
+    {
+      "id": "p2",
+      "type": "text",
+      "text": "◇\n**Tracker.log()**\n分发 scalar",
+      "x": 1090,
+      "y": 290,
+      "width": 170,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "c",
+      "type": "text",
+      "text": "## 阶段 2｜日志后端\n- console\n- tensorboard\n- wandb\n- mlflow / swanlab",
+      "x": 1300,
+      "y": 210,
+      "width": 350,
+      "height": 280,
+      "color": "4"
+    },
+    {
+      "id": "p3",
+      "type": "text",
+      "text": "◇\n**_maybe_log_val_generations()**\n记录样本输出",
+      "x": 1090,
+      "y": 625,
+      "width": 190,
+      "height": 130,
+      "color": "3"
+    },
+    {
+      "id": "d",
+      "type": "text",
+      "text": "## 阶段 3｜validation generations\n- input / output\n- label / score\n- Tracker.log_generation()",
+      "x": 1300,
+      "y": 820,
+      "width": 350,
+      "height": 270,
+      "color": "2"
+    },
+    {
+      "id": "p4",
+      "type": "text",
+      "text": "◇\n**_maybe_trace_step()**\n写 trace",
+      "x": 760,
+      "y": 635,
+      "width": 170,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "e",
+      "type": "text",
+      "text": "## 阶段 4｜trace 证据层\n- trace.jsonl\n- tool_code / parse status\n- original / edited image path",
+      "x": 560,
+      "y": 820,
+      "width": 360,
+      "height": 270,
+      "color": "2"
+    },
+    {
+      "id": "p5",
+      "type": "text",
+      "text": "◇\n**_save_checkpoint()**\n保存训练状态",
+      "x": 260,
+      "y": 635,
+      "width": 180,
+      "height": 120,
+      "color": "3"
+    },
+    {
+      "id": "f",
+      "type": "text",
+      "text": "## 阶段 5｜checkpoint\n- actor /\n- critic /\n- dataloader.pt\n- latest_global_step.txt\n- _load_checkpoint() 恢复",
+      "x": 80,
+      "y": 810,
+      "width": 400,
+      "height": 290,
+      "color": "4"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "a",
+      "fromSide": "right",
+      "toNode": "p1",
+      "toSide": "left"
+    },
+    {
+      "id": "e2",
+      "fromNode": "p1",
+      "fromSide": "right",
+      "toNode": "b",
+      "toSide": "left"
+    },
+    {
+      "id": "e3",
+      "fromNode": "b",
+      "fromSide": "right",
+      "toNode": "p2",
+      "toSide": "left"
+    },
+    {
+      "id": "e4",
+      "fromNode": "p2",
+      "fromSide": "right",
+      "toNode": "c",
+      "toSide": "left"
+    },
+    {
+      "id": "e5",
+      "fromNode": "a",
+      "fromSide": "bottom",
+      "toNode": "p3",
+      "toSide": "top"
+    },
+    {
+      "id": "e6",
+      "fromNode": "p3",
+      "fromSide": "bottom",
+      "toNode": "d",
+      "toSide": "top"
+    },
+    {
+      "id": "e7",
+      "fromNode": "a",
+      "fromSide": "bottom",
+      "toNode": "p4",
+      "toSide": "top"
+    },
+    {
+      "id": "e8",
+      "fromNode": "p4",
+      "fromSide": "bottom",
+      "toNode": "e",
+      "toSide": "top"
+    },
+    {
+      "id": "e9",
+      "fromNode": "a",
+      "fromSide": "bottom",
+      "toNode": "p5",
+      "toSide": "top"
+    },
+    {
+      "id": "e10",
+      "fromNode": "p5",
+      "fromSide": "bottom",
+      "toNode": "f",
+      "toSide": "top"
+    }
+  ]
+}

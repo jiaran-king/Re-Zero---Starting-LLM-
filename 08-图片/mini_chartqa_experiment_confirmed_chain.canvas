@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 已确认成立的系统级主链路","x":80,"y":40,"width":460,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## parquet 样本","x":80,"y":220,"width":220,"height":150,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**prompt / processor**","x":350,"y":245,"width":180,"height":100,"color":"3"},
+		{"id":"b","type":"text","text":"## first rollout","x":580,"y":220,"width":220,"height":150,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**必要时**\ntool execution +\nsecond rollout","x":640,"y":560,"width":180,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## reward\n- reward function\n- reward manager","x":360,"y":730,"width":260,"height":170,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**GRPO 风格更新**","x":140,"y":765,"width":180,"height":100,"color":"3"},
+		{"id":"d","type":"text","text":"## validation 指标变化\n- reward 提升\n- tool_call_ratio 上升","x":80,"y":980,"width":320,"height":180,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"b","toNode":"p2","fromSide":"bottom","toSide":"top"},
+		{"id":"e4","fromNode":"p2","toNode":"c","fromSide":"left","toSide":"right"},
+		{"id":"e5","fromNode":"c","toNode":"p3","fromSide":"left","toSide":"right"},
+		{"id":"e6","fromNode":"p3","toNode":"d","fromSide":"bottom","toSide":"top"}
+	]
+}

@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# preprocess.py 样本定型链\n原始记录 -> 中间产物 -> parquet","x":80,"y":40,"width":560,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## 阶段 0｜原始 JSONL\n- id / image\n- question / answer\n- x_values / y_values\n- x/y bbox + figure_bbox\n- source","x":80,"y":220,"width":370,"height":300,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**_process_split()**\n读取并组织样本","x":500,"y":305,"width":190,"height":130,"color":"3"},
+		{"id":"p2","type":"text","text":"◇\n**bbox + type**\n映射与归一化","x":760,"y":155,"width":190,"height":130,"color":"3"},
+		{"id":"b","type":"text","text":"## 中间产物 1｜metadata\n- type\n- figure_bbox\n- x_values_bbox\n- y_values_bbox","x":1000,"y":90,"width":360,"height":260,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**_resolve_image_path()**\n定位并读取原图","x":760,"y":405,"width":190,"height":130,"color":"3"},
+		{"id":"c","type":"text","text":"## 中间产物 2｜images\n- PIL.Image.open()\n- BytesIO\n- images: list<binary>","x":1000,"y":340,"width":360,"height":260,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**基础字段**\n拼 prompt / answer","x":760,"y":655,"width":190,"height":130,"color":"3"},
+		{"id":"d","type":"text","text":"## 中间产物 3｜文本与标识\n- query / prompt\n- answer\n- figure_id\n- figure_path","x":1000,"y":590,"width":360,"height":260,"color":"2"},
+		{"id":"e","type":"text","text":"## 阶段 1｜{split}_full.parquet\n- metadata\n- figure_id / figure_path\n- query / prompt / answer\n- images\n- 统一样本协议","x":1450,"y":340,"width":390,"height":300,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e3","fromNode":"p2","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e4","fromNode":"p1","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e5","fromNode":"p3","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e6","fromNode":"p1","fromSide":"right","toNode":"p4","toSide":"left"},
+		{"id":"e7","fromNode":"p4","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e8","fromNode":"b","fromSide":"right","toNode":"e","toSide":"left"},
+		{"id":"e9","fromNode":"c","fromSide":"right","toNode":"e","toSide":"left"},
+		{"id":"e10","fromNode":"d","fromSide":"right","toNode":"e","toSide":"left"}
+	]
+}

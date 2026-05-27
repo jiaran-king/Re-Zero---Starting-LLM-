@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# DeepSeek-V4 Muon\n矩阵级优化主流程","x":80,"y":40,"width":470,"height":110,"color":"1"},
+		{"id":"a","type":"text","text":"## 阶段 1｜权重矩阵\n- W 属于线性层\n- 逻辑矩阵不可切碎\n- embedding / head 等保留 AdamW","x":80,"y":230,"width":420,"height":300,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**反向传播**\n得到梯度","x":525,"y":320,"width":170,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 2｜当前梯度\n- G_t = grad(W)\n- 仍含奇异值尺度差异\n- 大方向可能垄断更新","x":730,"y":230,"width":410,"height":300,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**classical momentum**\n平滑方向","x":1165,"y":320,"width":190,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 3｜动量方向\n- M_t = mu M_{t-1} + G_t\n- 不乘 1-mu\n- 重点是方向平滑","x":1390,"y":230,"width":430,"height":300,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**Nesterov**\n构造更新矩阵","x":1845,"y":320,"width":180,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 4｜待正交矩阵\n- M = mu M_t + G_t\n- 保留左右奇异向量\n- 准备削弱奇异值支配","x":2070,"y":230,"width":430,"height":300,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**Hybrid NS**\n近似 UV^T","x":2180,"y":585,"width":180,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 5｜正交化更新\n- O'_t 约等于 UV^T\n- 奇异方向更均衡\n- 使用 BF16 matmul 可实现","x":2070,"y":760,"width":430,"height":300,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**RMS rescale**\n统一尺度","x":1840,"y":850,"width":185,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 6｜可控更新\n- O_t = O'_t sqrt(max(n,m)) gamma\n- RMS 约等于 gamma\n- DeepSeek-V4 约设为 0.18","x":1390,"y":750,"width":430,"height":320,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**decoupled WD**\n参数更新","x":1160,"y":850,"width":185,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## 阶段 7｜新参数\n- W_t = W_{t-1}(1-eta lambda) - eta O_t\n- 复用 AdamW 学习率\n- 收敛更稳更快","x":730,"y":750,"width":430,"height":320,"color":"4"},
+		{"id":"p7","type":"text","text":"◇\n**hybrid ZeRO**\n完整矩阵分配","x":515,"y":850,"width":190,"height":120,"color":"3"},
+		{"id":"h","type":"text","text":"## 工程约束｜完整矩阵\n- Newton-Schulz 需要 MM^T\n- dense 参数按 bucket 分配\n- MoE expert 独立优化\n- 同 shape 可合并批处理","x":80,"y":730,"width":420,"height":360,"color":"2"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：状态 / 产物\n- 小卡片：处理动作\n- 上排向右，下排折返\n- 核心：先改方向，再控尺度","x":1935,"y":-65,"width":360,"height":210,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"bottom","toNode":"e","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"},
+		{"id":"e13","fromNode":"g","fromSide":"left","toNode":"p7","toSide":"right"},
+		{"id":"e14","fromNode":"p7","fromSide":"left","toNode":"h","toSide":"right"}
+	]
+}

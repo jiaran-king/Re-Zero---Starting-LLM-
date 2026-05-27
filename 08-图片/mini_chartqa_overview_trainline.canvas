@@ -1,0 +1,24 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 当前真实训练主线\n总览压缩版","x":80,"y":40,"width":460,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## parquet 数据\n- prompt / answer\n- images / metadata","x":80,"y":220,"width":330,"height":250,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**dataset / dataloader**\n实例化 batch","x":460,"y":285,"width":190,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## prompt 与输入\n- chartQA.jinja\n- Qwen2.5-VL processor","x":700,"y":210,"width":350,"height":270,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**vLLM**\nfirst rollout","x":1100,"y":285,"width":170,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 行为采样\n- 直接回答\n- 或进入 tool use","x":1320,"y":220,"width":340,"height":250,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**second rollout / reward**\n闭环评分","x":1390,"y":570,"width":210,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## GRPO update\n- advantage / returns\n- actor update","x":1030,"y":740,"width":340,"height":250,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**validation / logging**\n实验记录","x":770,"y":805,"width":200,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 曲线与复盘\n- val/reward_score\n- tool_call_ratio\n- overall_reward","x":350,"y":720,"width":360,"height":270,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"b","toNode":"p2","fromSide":"right","toSide":"left"},
+		{"id":"e4","fromNode":"p2","toNode":"c","fromSide":"right","toSide":"left"},
+		{"id":"e5","fromNode":"c","toNode":"p3","fromSide":"bottom","toSide":"top"},
+		{"id":"e6","fromNode":"p3","toNode":"d","fromSide":"left","toSide":"right"},
+		{"id":"e7","fromNode":"d","toNode":"p4","fromSide":"left","toSide":"right"},
+		{"id":"e8","fromNode":"p4","toNode":"e","fromSide":"left","toSide":"right"}
+	]
+}

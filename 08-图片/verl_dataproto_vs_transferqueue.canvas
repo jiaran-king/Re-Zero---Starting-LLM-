@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Verl 数据流：DataProto vs TransferQueue\n经典路线与新路线对比","x":80,"y":40,"width":620,"height":110,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 上排：经典 DataProto\n- 下排：TransferQueue\n- 关键差异：tensor 是否经过 controller","x":2130,"y":50,"width":430,"height":210,"color":"6"},
+		{"id":"a","type":"text","text":"## 经典路线｜DataProto\n- batch: TensorDict\n- non_tensor_batch\n- meta_info\n- 大 tensor 跟 batch 走","x":80,"y":250,"width":430,"height":320,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**worker return**\n返回字段","x":540,"y":350,"width":180,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## Controller 搬运 Batch\n- rollout output\n- logprob / value\n- reward tensor\n- union 合并字段","x":760,"y":250,"width":430,"height":320,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**DataProto.union**\n字段补齐","x":1220,"y":350,"width":190,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 训练 Batch 成型\n- responses\n- old_log_probs\n- ref_log_prob / values\n- rewards / advantages\n- update_actor 消费","x":1450,"y":250,"width":450,"height":320,"color":"4"},
+		{"id":"note1","type":"text","text":"## 适用理解\n先用这条路线学习源码主流程：\n一个 batch 在每一步新增字段。","x":2130,"y":290,"width":430,"height":180,"color":"6"},
+		{"id":"d","type":"text","text":"## 新路线｜TransferQueue\n- controller 传 metadata\n- tensor 存数据平面\n- key / partition_id\n- 字段 readiness 可追踪","x":80,"y":740,"width":430,"height":330,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**kv_put / kv_get**\n按 key 读写","x":540,"y":845,"width":190,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## Data Plane\n- StorageManager\n- put_data / get_data\n- worker 直接读字段\n- 减少 controller 搬运","x":760,"y":740,"width":430,"height":330,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**ReplayBuffer**\n采样 ready keys","x":1220,"y":845,"width":200,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## Metadata Scheduling\n- KVBatchMeta\n- sample ready 状态\n- tags / keys\n- controller 只调度任务\n- tensor 留在数据平面","x":1450,"y":740,"width":450,"height":330,"color":"4"},
+		{"id":"note2","type":"text","text":"## 适用理解\n再看这条路线理解：\n为什么 main_ppo_sync.py 要把数据传输从 controller 身上移走。","x":2130,"y":790,"width":430,"height":210,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"d","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"e","toSide":"left"},
+		{"id":"e7","fromNode":"e","fromSide":"right","toNode":"p4","toSide":"left"},
+		{"id":"e8","fromNode":"p4","fromSide":"right","toNode":"f","toSide":"left"}
+	]
+}

@@ -1,0 +1,33 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 训练侧 rollout 行为链","x":80,"y":40,"width":420,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## parquet 样本\n- prompt / 图像 / metadata","x":80,"y":220,"width":300,"height":180,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**dataset / processor**","x":430,"y":260,"width":180,"height":100,"color":"3"},
+		{"id":"b","type":"text","text":"## first rollout","x":660,"y":220,"width":240,"height":180,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**parse + classify**","x":950,"y":260,"width":180,"height":100,"color":"3"},
+		{"id":"c1","type":"text","text":"## 直接回答\n- 不进 second rollout","x":1180,"y":120,"width":260,"height":170,"color":"4"},
+		{"id":"p3","type":"text","text":"◇\n**tool execution**","x":1470,"y":605,"width":170,"height":100,"color":"3"},
+		{"id":"p4","type":"text","text":"◇\n**second rollout**","x":2030,"y":750,"width":170,"height":100,"color":"3"},
+		{"id":"c2","type":"text","text":"## 解析失败 / 无效工具\n- penalty\n- 直接进 reward","x":1190,"y":305,"width":280,"height":190,"color":"2"},
+		{"id":"d2","type":"text","text":"## observation + 双图输入\n- original / edited image","x":1690,"y":880,"width":290,"height":180,"color":"2"},
+		{"id":"c3","type":"text","text":"## 合法工具调用","x":1130,"y":675,"width":240,"height":150,"color":"2"},
+		{"id":"d1","type":"text","text":"## 执行失败\n- penalty","x":1690,"y":580,"width":220,"height":150,"color":"2"},
+		{"id":"e","type":"text","text":"## reward\n- 用 first 或 second rollout\n  的最终回答进入评分","x":2240,"y":500,"width":300,"height":230,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c1","toSide":"left"},
+		{"id":"e5","fromNode":"p2","fromSide":"right","toNode":"c2","toSide":"left"},
+		{"id":"e6","fromNode":"p2","fromSide":"bottom","toNode":"c3","toSide":"left"},
+		{"id":"e7","fromNode":"c3","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e8","fromNode":"p3","fromSide":"right","toNode":"d1","toSide":"left"},
+		{"id":"e9","fromNode":"p3","fromSide":"bottom","toNode":"d2","toSide":"left"},
+		{"id":"e10","fromNode":"d2","fromSide":"right","toNode":"p4","toSide":"left"},
+		{"id":"e11","fromNode":"c1","fromSide":"right","toNode":"e","toSide":"top"},
+		{"id":"e12","fromNode":"c2","fromSide":"right","toNode":"e","toSide":"left"},
+		{"id":"e13","fromNode":"d1","fromSide":"right","toNode":"e","toSide":"left"},
+		{"id":"e14","fromNode":"p4","fromSide":"right","toNode":"e","toSide":"bottom"}
+	]
+}

@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# gpt-oss Harmony 总览\nmessages → Harmony → tokens → output → parser","x":0,"y":0,"width":360,"height":120,"color":"5"},
+		{"id":"n1","type":"text","text":"## 阶段 1｜应用层 messages\n- system / user / history\n- Python dict / JSON\n- 还不是模型输入","x":0,"y":180,"width":330,"height":170,"color":"1"},
+		{"id":"p1","type":"text","text":"◇\n**chat template**\n协议化渲染","x":380,"y":210,"width":170,"height":110,"color":"4"},
+		{"id":"n2","type":"text","text":"## 阶段 2｜Harmony prompt\n- system / developer / user\n- header + content\n- generation prompt","x":610,"y":180,"width":330,"height":170,"color":"1"},
+		{"id":"p2","type":"text","text":"◇\n**tokenizer**\n转 token ids","x":990,"y":210,"width":170,"height":110,"color":"4"},
+		{"id":"n3","type":"text","text":"## 阶段 3｜input_ids\n- 模型真实输入\n- 特殊 token 已编码\n- 可进入 generate","x":1220,"y":180,"width":330,"height":170,"color":"1"},
+		{"id":"p3","type":"text","text":"◇\n**model.generate**\n生成 Harmony output","x":1220,"y":430,"width":190,"height":110,"color":"4"},
+		{"id":"n4","type":"text","text":"## 阶段 4｜Harmony output\n- analysis / commentary / final\n- <|return|> 或 <|call|>\n- 可能包含 tool call","x":1220,"y":620,"width":330,"height":170,"color":"1"},
+		{"id":"p4","type":"text","text":"◇\n**parser**\n拆回结构化消息","x":990,"y":650,"width":170,"height":110,"color":"4"},
+		{"id":"n5","type":"text","text":"## 阶段 5｜应用层结果\n- final answer\n- tool call\n- structured message","x":610,"y":620,"width":330,"height":170,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**tool loop**\n如有 <|call|>","x":380,"y":650,"width":120,"height":170,"color":"4"},
+		{"id":"n6","type":"text","text":"## 阶段 6｜工具返回\n- functions.xxx result\n- append to context\n- 再次生成 final","x":0,"y":620,"width":330,"height":170,"color":"1"},
+		{"id":"legend","type":"text","text":"## 图例\n主节点：阶段 / 产物\n◇：中间处理动作\n绿色：用户可见或应用层结果","x":0,"y":860,"width":360,"height":120,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"n1","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"n2","toSide":"left"},
+		{"id":"e3","fromNode":"n2","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"n3","toSide":"left"},
+		{"id":"e5","fromNode":"n3","fromSide":"bottom","toNode":"p3","toSide":"top"},
+		{"id":"e6","fromNode":"p3","fromSide":"bottom","toNode":"n4","toSide":"top"},
+		{"id":"e7","fromNode":"n4","fromSide":"left","toNode":"p4","toSide":"right"},
+		{"id":"e8","fromNode":"p4","fromSide":"left","toNode":"n5","toSide":"right"},
+		{"id":"e9","fromNode":"n5","fromSide":"left","toNode":"p5","toSide":"right","label":"if tool call"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"n6","toSide":"right"},
+		{"id":"e11","fromNode":"n6","fromSide":"top","toNode":"n2","toSide":"bottom","label":"append result"}
+	]
+}

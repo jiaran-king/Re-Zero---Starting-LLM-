@@ -1,0 +1,33 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# fvqa_train_6 单样本形态跟踪\n从 parquet 行到 GRPO 更新信号","x":80,"y":40,"width":520,"height":120,"color":"1"},
+		{"id":"a","type":"text","text":"## 阶段 1｜原始样本\n- data_id: fvqa_train_6\n- image bytes + question\n- answer: Rubjerg Knude\n- image_urls: fvqa_train_6","x":80,"y":230,"width":430,"height":310,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**RLHFDataset**\n样本协议化","x":540,"y":325,"width":180,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 2｜模型输入样本\n- input_ids / attention_mask\n- position_ids\n- raw_prompt_ids\n- multi_modal_data.image","x":760,"y":230,"width":430,"height":310,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**collate + DataProto**\ntensor / object 分流","x":1220,"y":325,"width":210,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 3｜rollout 初始态\n- vllm_inputs\n- prompt_token_ids\n- 原始图片\n- mask 初始全 0","x":1470,"y":230,"width":430,"height":310,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**Round 1 generate**\n解析 search 动作","x":1600,"y":610,"width":200,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 4｜image search\n- assistant 生成 <search>\n- call_image_search\n- 返回网页标题 / 缩略图\n- observation 进入 information","x":1470,"y":800,"width":430,"height":330,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**append user message**\n回灌 observation","x":1220,"y":900,"width":210,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 5｜继续搜索或回答\n- 可能生成 <text_search>\n- text evidence 回灌\n- 最终输出 <answer>\n- Rubjerg Knude","x":760,"y":800,"width":430,"height":330,"color":"4"},
+		{"id":"p5","type":"text","text":"◇\n**mask + reward**\n切 assistant 轨迹","x":540,"y":900,"width":180,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 6｜训练信号\n- response list\n- format_score = 1\n- answer_score 扣搜索成本\n- reward 约 0.91","x":80,"y":800,"width":430,"height":330,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**GRPO**\n组内比较","x":80,"y":610,"width":160,"height":110,"color":"3"},
+		{"id":"g","type":"text","text":"## 学到的策略\n- 少直接猜\n- 先识别视觉实体\n- 必要时查事实\n- 搜够就回答","x":300,"y":560,"width":360,"height":200,"color":"4"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 上排：样本进入模型\n- 右侧：模型触发搜索\n- 下排：observation、reward、GRPO\n- 重点看每一步数据形态变化","x":760,"y":1210,"width":470,"height":210,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"bottom","toNode":"p3","toSide":"top"},
+		{"id":"e6","fromNode":"p3","fromSide":"bottom","toNode":"d","toSide":"top"},
+		{"id":"e7","fromNode":"d","fromSide":"left","toNode":"p4","toSide":"right"},
+		{"id":"e8","fromNode":"p4","fromSide":"left","toNode":"e","toSide":"right"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"top","toNode":"p6","toSide":"bottom"},
+		{"id":"e12","fromNode":"p6","fromSide":"right","toNode":"g","toSide":"left"}
+	]
+}

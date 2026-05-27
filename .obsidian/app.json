@@ -1,0 +1,18 @@
+{
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "promptDelete": false,
+  "autoPairBrackets": false,
+  "spellcheck": false,
+  "autoPairMarkdown": false,
+  "smartIndentList": false,
+  "useTab": false,
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "08-图片",
+  "readableLineLength": true
+}

@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Verl 单次 PPO / GRPO 训练 Step\n字段如何一路补齐到 update","x":80,"y":40,"width":590,"height":110,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：batch 阶段 / 产物\n- 小卡片：worker RPC / 算法动作\n- 上排向右，下排折返\n- 重点看字段变化","x":2180,"y":50,"width":400,"height":230,"color":"6"},
+		{"id":"a","type":"text","text":"## 阶段 1｜Prompt Batch\n- input_ids\n- attention_mask\n- prompts\n- uid / data_source\n- ground_truth / extra_info","x":80,"y":235,"width":430,"height":350,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**generate_sequences**\nrollout 采样","x":535,"y":350,"width":200,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 2｜Rollout Output\n- responses\n- response_mask\n- position_ids\n- optional rollout logprobs\n- prompt + response 拼接","x":770,"y":235,"width":440,"height":350,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**actor / ref / critic**\nforward 补字段","x":1235,"y":350,"width":215,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 3｜Model Fields\n- old_log_probs\n- ref_log_prob\n- values\n- response_mask 对齐\n- loss 可消费字段","x":1485,"y":235,"width":430,"height":350,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**reward_fn / RM**\n打分","x":1940,"y":350,"width":190,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 4｜Reward Tensor\n- token_level_scores\n- token_level_rewards\n- KL penalty 可选\n- sequence score 对齐 token\n- policy gradient 信号","x":2170,"y":235,"width":440,"height":350,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**core_algos.py**\n算 advantage","x":2200,"y":625,"width":200,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 5｜Advantages / Returns\n- PPO: GAE + values\n- GRPO: group baseline\n- RLOO / REINFORCE++\n- advantages\n- returns","x":2170,"y":800,"width":440,"height":350,"color":"4"},
+		{"id":"p5","type":"text","text":"◇\n**update_actor**\nPPO / GRPO loss","x":1930,"y":915,"width":210,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 6｜Actor / Critic Update\n- clipped policy loss\n- value loss 可选\n- backward\n- optimizer.step\n- metrics 返回 controller","x":1485,"y":800,"width":430,"height":350,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**update_weights**\n同步 rollout","x":1235,"y":915,"width":200,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## 阶段 7｜Next Rollout\n- rollout engine 新权重\n- save_checkpoint 可选\n- 下一批 prompt\n- 训练闭环继续","x":770,"y":800,"width":440,"height":350,"color":"4"},
+		{"id":"p7","type":"text","text":"◇\n**checkpoint**\n分片恢复点","x":535,"y":915,"width":190,"height":120,"color":"3"},
+		{"id":"h","type":"text","text":"## 旁路｜Fault Tolerance\n- actor / critic shard\n- optimizer / scheduler\n- extra state\n- model_merger 导出","x":80,"y":800,"width":430,"height":350,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"bottom","toNode":"e","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"},
+		{"id":"e13","fromNode":"g","fromSide":"left","toNode":"p7","toSide":"right"},
+		{"id":"e14","fromNode":"p7","fromSide":"left","toNode":"h","toSide":"right"}
+	]
+}

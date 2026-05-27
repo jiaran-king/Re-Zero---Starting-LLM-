@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Qwen2.5-VL 模态融合主线\nvisual token injection + decoder self-attention fusion","x":0,"y":-230,"width":560,"height":130,"color":"6"},
+		{"id":"s1_input","type":"text","text":"## 阶段 1｜用户输入\n- 图像 / 视频\n- 文本问题\n- image_pad / video_pad","x":0,"y":0,"width":360,"height":210,"color":"1"},
+		{"id":"p1_processor","type":"text","text":"◇\n**Processor**\n分词 + 视觉预处理","x":420,"y":45,"width":210,"height":130,"color":"3"},
+		{"id":"s2_aligned_inputs","type":"text","text":"## 阶段 2｜对齐后的输入\n- input_ids / attention_mask\n- pixel_values\n- image_grid_thw / video_grid_thw\n- placeholder 数量已展开","x":690,"y":0,"width":400,"height":230,"color":"1"},
+		{"id":"p2_vision_encoder","type":"text","text":"◇\n**Vision Encoder**\npatch + window attention","x":1150,"y":45,"width":220,"height":130,"color":"3"},
+		{"id":"s3_visual_embeds","type":"text","text":"## 阶段 3｜视觉 Embeddings\n- image_embeds: [N_img, D]\n- video_embeds: [N_vid, D]\n- Merger 对齐到 LLM hidden size","x":1430,"y":0,"width":410,"height":230,"color":"1"},
+		{"id":"p3_injection","type":"text","text":"◇\n**masked_scatter**\n替换 placeholder","x":1510,"y":280,"width":250,"height":130,"color":"3"},
+		{"id":"s4_mixed_embeds","type":"text","text":"## 阶段 4｜混合 Embeddings\n- text embeds + visual embeds\n- 序列长度 S 不变\n- placeholder 内容变成视觉特征","x":1430,"y":470,"width":410,"height":220,"color":"1"},
+		{"id":"p4_mrope","type":"text","text":"◇\n**MRoPE**\n生成 3D 位置索引","x":1150,"y":515,"width":220,"height":130,"color":"3"},
+		{"id":"s5_positioned_seq","type":"text","text":"## 阶段 5｜带位置的多模态序列\n- 文本：退化为 1D RoPE\n- 图像：height / width\n- 视频：time / height / width","x":690,"y":470,"width":400,"height":220,"color":"1"},
+		{"id":"p5_decoder","type":"text","text":"◇\n**Qwen2.5 Decoder**\nself-attention 融合","x":420,"y":515,"width":210,"height":130,"color":"3"},
+		{"id":"s6_output","type":"text","text":"## 阶段 6｜条件文本生成\n- 自然语言回答\n- OCR / JSON\n- bbox / point\n- 视频时间戳","x":0,"y":470,"width":360,"height":220,"color":"2"},
+		{"id":"note","type":"text","text":"关键判断\nVision Encoder 负责视觉内部编码；\n真正跨模态交互发生在 Decoder self-attention。","x":690,"y":760,"width":590,"height":120,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"s1_input","fromSide":"right","toNode":"p1_processor","toSide":"left"},
+		{"id":"e2","fromNode":"p1_processor","fromSide":"right","toNode":"s2_aligned_inputs","toSide":"left"},
+		{"id":"e3","fromNode":"s2_aligned_inputs","fromSide":"right","toNode":"p2_vision_encoder","toSide":"left"},
+		{"id":"e4","fromNode":"p2_vision_encoder","fromSide":"right","toNode":"s3_visual_embeds","toSide":"left"},
+		{"id":"e5","fromNode":"s3_visual_embeds","fromSide":"bottom","toNode":"p3_injection","toSide":"top"},
+		{"id":"e6","fromNode":"p3_injection","fromSide":"bottom","toNode":"s4_mixed_embeds","toSide":"top"},
+		{"id":"e7","fromNode":"s4_mixed_embeds","fromSide":"left","toNode":"p4_mrope","toSide":"right"},
+		{"id":"e8","fromNode":"p4_mrope","fromSide":"left","toNode":"s5_positioned_seq","toSide":"right"},
+		{"id":"e9","fromNode":"s5_positioned_seq","fromSide":"left","toNode":"p5_decoder","toSide":"right"},
+		{"id":"e10","fromNode":"p5_decoder","fromSide":"left","toNode":"s6_output","toSide":"right"},
+		{"id":"e11","fromNode":"s5_positioned_seq","fromSide":"bottom","toNode":"note","toSide":"top"}
+	]
+}

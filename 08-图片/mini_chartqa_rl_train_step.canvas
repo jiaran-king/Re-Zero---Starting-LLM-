@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 一次训练 step 的工程顺序","x":80,"y":40,"width":420,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## train batch","x":80,"y":220,"width":220,"height":150,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**DataProto**\n拆生成字段","x":350,"y":245,"width":170,"height":100,"color":"3"},
+		{"id":"b","type":"text","text":"## actor first rollout","x":570,"y":220,"width":250,"height":150,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**可能进入**\n工具执行 / second rollout","x":870,"y":235,"width":190,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## reward manager\n- 给最终回答打分","x":1110,"y":220,"width":280,"height":160,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**balance batch**","x":1180,"y":560,"width":170,"height":100,"color":"3"},
+		{"id":"d","type":"text","text":"## old / ref / value\n相关计算","x":840,"y":720,"width":280,"height":170,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**advantages**","x":620,"y":755,"width":150,"height":100,"color":"3"},
+		{"id":"e","type":"text","text":"## update critic","x":370,"y":720,"width":220,"height":150,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**update actor**","x":150,"y":745,"width":160,"height":100,"color":"3"},
+		{"id":"f","type":"text","text":"## metrics / validation /\ncheckpoint","x":80,"y":960,"width":290,"height":170,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"b","toNode":"p2","fromSide":"right","toSide":"left"},
+		{"id":"e4","fromNode":"p2","toNode":"c","fromSide":"right","toSide":"left"},
+		{"id":"e5","fromNode":"c","toNode":"p3","fromSide":"bottom","toSide":"top"},
+		{"id":"e6","fromNode":"p3","toNode":"d","fromSide":"left","toSide":"right"},
+		{"id":"e7","fromNode":"d","toNode":"p4","fromSide":"left","toSide":"right"},
+		{"id":"e8","fromNode":"p4","toNode":"e","fromSide":"left","toSide":"right"},
+		{"id":"e9","fromNode":"e","toNode":"p5","fromSide":"left","toSide":"right"},
+		{"id":"e10","fromNode":"p5","toNode":"f","fromSide":"bottom","toSide":"top"}
+	]
+}

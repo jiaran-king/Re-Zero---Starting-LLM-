@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# trainer 复用的不是完整 Agent\n而是最关键的一小段闭环","x":80,"y":40,"width":620,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## first rollout","x":80,"y":220,"width":240,"height":170,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**parse 当前输出**","x":370,"y":255,"width":170,"height":100,"color":"3"},
+		{"id":"b","type":"text","text":"## 执行合法工具代码","x":590,"y":220,"width":260,"height":170,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**重组输入**","x":900,"y":560,"width":160,"height":100,"color":"3"},
+		{"id":"c","type":"text","text":"## observation + 两张图\n- 原图\n- edited image\n- 截断后的旧回答","x":560,"y":720,"width":320,"height":190,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**继续生成**","x":290,"y":775,"width":160,"height":100,"color":"3"},
+		{"id":"d","type":"text","text":"## second rollout","x":-40,"y":720,"width":240,"height":170,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"bottom","toNode":"p2","toSide":"top"},
+		{"id":"e4","fromNode":"p2","fromSide":"left","toNode":"c","toSide":"right"},
+		{"id":"e5","fromNode":"c","fromSide":"left","toNode":"p3","toSide":"right"},
+		{"id":"e6","fromNode":"p3","fromSide":"left","toNode":"d","toSide":"right"}
+	]
+}

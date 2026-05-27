@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# vLLM Request 生命周期\n从请求进入到 KV 释放","x":80,"y":40,"width":520,"height":105,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 大卡片：阶段 / 状态\n- 小卡片：处理动作\n- 上排向右，下排折返\n- 重点看 request 状态变化","x":2000,"y":40,"width":430,"height":230,"color":"6"},
+		{"id":"a","type":"text","text":"## 阶段 1｜Client Request\n- OpenAI API\n- Python LLM.generate\n- prompt / messages\n- sampling params","x":80,"y":225,"width":390,"height":300,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**API Server**\n解析与模板化","x":500,"y":320,"width":190,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 2｜Input Tokens\n- chat template\n- tokenizer\n- input_ids\n- multi-modal placeholders","x":720,"y":225,"width":400,"height":300,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**enqueue**\n进入等待队列","x":1150,"y":320,"width":190,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 3｜Engine Core\n- waiting requests\n- running requests\n- scheduler\n- request state","x":1370,"y":225,"width":400,"height":300,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**schedule**\n分配本 step","x":1800,"y":320,"width":190,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 4｜GPU Worker\n- model runner\n- model forward\n- attention kernel\n- sampler","x":2020,"y":225,"width":400,"height":300,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**forward**\n生成 token","x":2130,"y":575,"width":190,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 5｜Output Processor\n- token ids\n- detokenize\n- stop check\n- streaming chunks","x":2020,"y":750,"width":400,"height":300,"color":"4"},
+		{"id":"p5","type":"text","text":"◇\n**update**\n刷新状态","x":1800,"y":845,"width":190,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 6｜KV Cache\n- allocate blocks\n- write K / V\n- prefix cache\n- free / eviction","x":1370,"y":750,"width":400,"height":300,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**finish**\n结束或继续","x":1150,"y":845,"width":190,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## 阶段 7｜Response\n- stream partial text\n- final response\n- finish_reason\n- metrics","x":720,"y":750,"width":400,"height":300,"color":"4"},
+		{"id":"p7","type":"text","text":"◇\n**observe**\n日志与指标","x":500,"y":845,"width":190,"height":120,"color":"3"},
+		{"id":"h","type":"text","text":"## 旁路｜Serving Metrics\n- TTFT\n- ITL / TPOT\n- tokens/s\n- KV usage","x":80,"y":750,"width":390,"height":300,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"bottom","toNode":"e","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"},
+		{"id":"e13","fromNode":"g","fromSide":"left","toNode":"p7","toSide":"right"},
+		{"id":"e14","fromNode":"p7","fromSide":"left","toNode":"h","toSide":"right"}
+	]
+}

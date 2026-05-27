@@ -1,0 +1,28 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 从 response 到 update","x":80,"y":40,"width":360,"height":100,"color":"1"},
+		{"id":"a","type":"text","text":"## response 文本","x":80,"y":220,"width":210,"height":150,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**reward function**\n读 FINAL ANSWER","x":340,"y":240,"width":200,"height":110,"color":"3"},
+		{"id":"b","type":"text","text":"## sequence-level\noutcome reward","x":590,"y":210,"width":250,"height":170,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**reward manager**\n生成 reward tensor","x":890,"y":230,"width":210,"height":130,"color":"3"},
+		{"id":"c","type":"text","text":"## token_level_scores\n- 最后有效 token 挂分","x":1150,"y":210,"width":290,"height":180,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**KL 处理**","x":1200,"y":560,"width":150,"height":100,"color":"3"},
+		{"id":"d","type":"text","text":"## token_level_rewards\n- 进入 advantage 前的最终奖励","x":860,"y":720,"width":320,"height":180,"color":"2"},
+		{"id":"p4","type":"text","text":"◇\n**GRPO**\n组内标准化","x":640,"y":755,"width":150,"height":110,"color":"3"},
+		{"id":"e","type":"text","text":"## advantages / returns","x":390,"y":720,"width":250,"height":160,"color":"2"},
+		{"id":"p5","type":"text","text":"◇\n**actor / critic loss**","x":170,"y":750,"width":180,"height":100,"color":"3"},
+		{"id":"f","type":"text","text":"## 参数更新","x":80,"y":960,"width":220,"height":150,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","toNode":"p1","fromSide":"right","toSide":"left"},
+		{"id":"e2","fromNode":"p1","toNode":"b","fromSide":"right","toSide":"left"},
+		{"id":"e3","fromNode":"b","toNode":"p2","fromSide":"right","toSide":"left"},
+		{"id":"e4","fromNode":"p2","toNode":"c","fromSide":"right","toSide":"left"},
+		{"id":"e5","fromNode":"c","toNode":"p3","fromSide":"bottom","toSide":"top"},
+		{"id":"e6","fromNode":"p3","toNode":"d","fromSide":"left","toSide":"right"},
+		{"id":"e7","fromNode":"d","toNode":"p4","fromSide":"left","toSide":"right"},
+		{"id":"e8","fromNode":"p4","toNode":"e","fromSide":"left","toSide":"right"},
+		{"id":"e9","fromNode":"e","toNode":"p5","fromSide":"left","toSide":"right"},
+		{"id":"e10","fromNode":"p5","toNode":"f","fromSide":"bottom","toSide":"top"}
+	]
+}

@@ -1,0 +1,56 @@
+.DS_Store
+Thumbs.db
+
+# Obsidian local cache/state
+.obsidian/cache/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/
+.obsidian/themes/
+.obsidian/snippets/
+
+# Local trash
+.trash/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.kdbx
+
+# Runtime outputs and logs
+*.log
+logs/
+run*/
+runs/
+outputs/
+checkpoints/
+wandb/
+mlruns/
+tensorboard/
+
+# Archives and local backups
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.bak
+*.backup
+*.tmp
+*.swp
+*.swo
+LLM-start.git-history-backup-*/
+
+# Source papers and screenshot-like attachments
+*.pdf
+08-图片/Pasted image *
+08-图片/Cache_*

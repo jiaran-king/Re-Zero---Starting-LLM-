@@ -1,0 +1,38 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# vLLM 在 veRL 中的位置\nrollout 生成与 actor 权重同步","x":80,"y":40,"width":660,"height":105,"color":"1"},
+		{"id":"legend","type":"text","text":"## 读图方式\n- 上排：训练闭环\n- 下排：rollout engine\n- 重点看 update_weights\n- 避免 stale policy","x":2020,"y":40,"width":430,"height":230,"color":"6"},
+		{"id":"a","type":"text","text":"## 阶段 1｜Prompt Batch\n- prompts\n- uid / group id\n- sampling config\n- n responses","x":80,"y":230,"width":390,"height":300,"color":"2"},
+		{"id":"p1","type":"text","text":"◇\n**generate**\nvLLM rollout","x":500,"y":325,"width":190,"height":120,"color":"3"},
+		{"id":"b","type":"text","text":"## 阶段 2｜Responses\n- generated tokens\n- response mask\n- rollout logprobs optional\n- metadata","x":720,"y":230,"width":390,"height":300,"color":"2"},
+		{"id":"p2","type":"text","text":"◇\n**score**\nRM / rule reward","x":1140,"y":325,"width":190,"height":120,"color":"3"},
+		{"id":"c","type":"text","text":"## 阶段 3｜Training Fields\n- rewards\n- old_log_probs\n- ref_log_prob\n- advantages","x":1360,"y":230,"width":390,"height":300,"color":"2"},
+		{"id":"p3","type":"text","text":"◇\n**update_actor**\nPPO / GRPO loss","x":1780,"y":325,"width":200,"height":120,"color":"3"},
+		{"id":"d","type":"text","text":"## 阶段 4｜Actor Trainer\n- backward\n- optimizer.step\n- latest weights\n- global step","x":2010,"y":230,"width":400,"height":300,"color":"4"},
+		{"id":"p4","type":"text","text":"◇\n**export**\n传递新权重","x":2120,"y":585,"width":200,"height":120,"color":"3"},
+		{"id":"e","type":"text","text":"## 阶段 5｜Weight Sync\n- update_weights\n- sync_rollout_weights\n- wait until ready\n- step 对齐","x":2010,"y":760,"width":400,"height":300,"color":"4"},
+		{"id":"p5","type":"text","text":"◇\n**wake_up**\n恢复生成","x":1780,"y":855,"width":200,"height":120,"color":"3"},
+		{"id":"f","type":"text","text":"## 阶段 6｜vLLM Engine\n- actor current weights\n- KV cache manager\n- sampler\n- TP / PP optional","x":1360,"y":760,"width":390,"height":300,"color":"4"},
+		{"id":"p6","type":"text","text":"◇\n**next rollout**\n新 policy 采样","x":1140,"y":855,"width":190,"height":120,"color":"3"},
+		{"id":"g","type":"text","text":"## 阶段 7｜On-policy Data\n- 下一批 responses\n- stale risk 降低\n- group 关系保留\n- 训练闭环继续","x":720,"y":760,"width":390,"height":300,"color":"4"},
+		{"id":"p7","type":"text","text":"◇\n**sleep**\n让出资源","x":500,"y":855,"width":190,"height":120,"color":"3"},
+		{"id":"h","type":"text","text":"## 旁路｜GPU Resource\n- colocate 场景\n- sleep / wake_up\n- memory pressure\n- rollout throughput","x":80,"y":760,"width":390,"height":300,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"a","fromSide":"right","toNode":"p1","toSide":"left"},
+		{"id":"e2","fromNode":"p1","fromSide":"right","toNode":"b","toSide":"left"},
+		{"id":"e3","fromNode":"b","fromSide":"right","toNode":"p2","toSide":"left"},
+		{"id":"e4","fromNode":"p2","fromSide":"right","toNode":"c","toSide":"left"},
+		{"id":"e5","fromNode":"c","fromSide":"right","toNode":"p3","toSide":"left"},
+		{"id":"e6","fromNode":"p3","fromSide":"right","toNode":"d","toSide":"left"},
+		{"id":"e7","fromNode":"d","fromSide":"bottom","toNode":"p4","toSide":"top"},
+		{"id":"e8","fromNode":"p4","fromSide":"bottom","toNode":"e","toSide":"top"},
+		{"id":"e9","fromNode":"e","fromSide":"left","toNode":"p5","toSide":"right"},
+		{"id":"e10","fromNode":"p5","fromSide":"left","toNode":"f","toSide":"right"},
+		{"id":"e11","fromNode":"f","fromSide":"left","toNode":"p6","toSide":"right"},
+		{"id":"e12","fromNode":"p6","fromSide":"left","toNode":"g","toSide":"right"},
+		{"id":"e13","fromNode":"g","fromSide":"left","toNode":"p7","toSide":"right"},
+		{"id":"e14","fromNode":"p7","fromSide":"left","toNode":"h","toSide":"right"},
+		{"id":"e15","fromNode":"f","fromSide":"top","toNode":"p1","toSide":"bottom"}
+	]
+}
