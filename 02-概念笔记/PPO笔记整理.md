@@ -80,13 +80,13 @@ Actor（策略损失）和 Critic（价值回归损失）的优化目标不同�
 
 - **Environment**（环境）：智能体交互的外部系统
 - **Agent**（智能体）：根据观测选择动作
-- **State / Observation**：$s_t$（环境状态）/ $o_t$（实际可见的观测）
-- **Action**：$a_t$（时刻 $t$ 的行为）
-- **Reward**：$r_t$（即时反馈信号）
+- **State / Observation**：$`s_t`$（环境状态）/ $o_t$（实际可见的观测）
+- **Action**：$`a_t`$（时刻 $t$ 的行为）
+- **Reward**：$`r_t`$（即时反馈信号）
 
 ### 2.2 轨迹与回报
 
-一条轨迹：$\tau = (s_0, a_0, r_0, s_1, a_1, r_1, \dots)$
+一条轨迹：$`\tau = (s_0, a_0, r_0, s_1, a_1, r_1, \dots)`$
 
 折扣回报（从时刻 $t$ 开始）：
 
@@ -94,14 +94,16 @@ $$G_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k}, \quad \gamma \in (0,1]$$
 
 优化目标：
 
-$$J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[G_0]$$
+```math
+J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[G_0]
+```
 $\gamma$ 越小越重视短期收益，越大越重视长期收益。
 
 $\theta$ 是**策略网络（Actor）的参数**，也就是 Transformer 所有可学习权重的集合。
 
-具体来说，$\pi_\theta(a_t \mid s_t)$ 表示"参数为 $\theta$ 的网络，在状态 $s_t$ 下选择动作 $a_t$ 的概率"。在 LLM 场景中，$s_t$ 是当前已有的 token 序列，$a_t$ 是下一个要生成的 token，$\pi_\theta$ 就是模型输出的词表概率分布。
+具体来说，$`\pi_\theta(a_t \mid s_t)`$ 表示"参数为 $\theta$ 的网络，在状态 $s_t$ 下选择动作 $a_t$ 的概率"。在 LLM 场景中，$`s_t`$ 是当前已有的 token 序列，$`a_t`$ 是下一个要生成的 token，$`\pi_\theta`$ 就是模型输出的词表概率分布。
 
-$J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[G_0]$ 的含义就是：在当前这组参数 $\theta$ 下，策略所能获得的期望回报。PPO 的整个训练过程，就是不断调整 $\theta$，使 $J(\theta)$ 最大化。
+$`J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[G_0]`$ 的含义就是：在当前这组参数 $\theta$ 下，策略所能获得的期望回报。PPO 的整个训练过程，就是不断调整 $\theta$，使 $J(\theta)$ 最大化。
 
 ---
 
@@ -138,7 +140,9 @@ $$\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[\nabla_\theta
 
 由于轨迹概率中环境转移项与 $\theta$ 无关，最终得到：
 
-$$\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta}\left[\sum_t \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, G_t\right]$$
+```math
+\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta}\left[\sum_t \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, G_t\right]
+```
 (这里是把π θ​(τ)对应的那一条轨迹展开成了从t=0到t时刻的概率乘积，然后经过log变成了和)
 
 实际用采样均值近似：
@@ -173,13 +177,13 @@ $$\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta}\left[\nabla_\theta \log \pi_
 
 #### 核心区别：为什么 $b(s_t)$ 可以消零而 $G_t$ 不行
 
-**$b(s_t)$ 能提出来使结果为零：** $b(s_t)$ 只依赖状态 $s_t$，不依赖动作 $a_t$。所以在对 $a_t$ 求期望时，$b(s_t)$ 是常数，可以提到期望外面：
+**$b(s_t)$ 能提出来使结果为零：** $b(s_t)$ 只依赖状态 $s_t$，不依赖动作 $a_t$。所以在对 $a_t$ 求期望时，$`b(s_t)`$ 是常数，可以提到期望外面：
 
 $$\mathbb{E}_{a_t}\left[\nabla_\theta \log \pi_\theta(a_t \mid s_t) \cdot b(s_t)\right] = b(s_t) \cdot \underbrace{\sum_{a_t} \nabla_\theta \pi_\theta(a_t \mid s_t)}_{= \nabla_\theta 1 = 0}$$
 
 **$G_t$ 不能提出来：** $G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots$，其中 $r_t$ 取决于 $(s_t, a_t)$，所以 $G_t$ **依赖于 $a_t$**。它和 $a_t$ 绑定在一起，无法从对 $a_t$ 的求和中提出来，自然也就不会消为零。
 
-**一句话概括：** $b(s_t)$ 与 $a_t$ 无关所以可提出、可消零；$G_t$ 与 $a_t$ 有关所以不可提出、不可消零。
+**一句话概括：** $b(s_t)$ 与 $a_t$ 无关所以可提出、可消零；$`G_t`$ 与 $a_t$ 有关所以不可提出、不可消零。
 
 #### 为什么选 $V^\pi(s_t)$ 作为基线
 
@@ -248,11 +252,11 @@ $$\hat{A}_t = \delta_t + \gamma\lambda \cdot \hat{A}_{t+1}$$
 
 ### 5.4 GAE 在 $\lambda=1$ 时退化为 MC 的证明
 
-展开 $\hat{A}_t = \delta_t + \gamma\delta_{t+1} + \gamma^2\delta_{t+2} + \cdots$ 后，相邻项中的 $V$ 逐项对消：
+展开 $`\hat{A}_t = \delta_t + \gamma\delta_{t+1} + \gamma^2\delta_{t+2} + \cdots`$ 后，相邻项中的 $V$ 逐项对消：
 
 $$+\gamma V_{t+1} \text{ 与 } -\gamma V_{t+1}, \quad +\gamma^2 V_{t+2} \text{ 与 } -\gamma^2 V_{t+2}, \quad \cdots$$
 
-最终剩下 $\hat{A}_t = \sum_{l=0}^{\infty}\gamma^l r_{t+l} - V(s_t) = G_t - V(s_t)$。
+最终剩下 $`\hat{A}_t = \sum_{l=0}^{\infty}\gamma^l r_{t+l} - V(s_t) = G_t - V(s_t)`$。
 
 ### 5.5 GAE 代码实现
 
@@ -294,7 +298,7 @@ $$Loss^{pen}(\theta) = \mathbb{E}_t\left[r_t(\theta)\hat{A}_t - \beta\,\mathrm{K
 
 **PPO-Clip（裁剪版，更常用）**：
 
-$$Loss^{clip}(\theta) = \mathbb{E}_t\left[\min\left(r_t(\theta)\hat{A}_t,\; \operatorname{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t\right)\right]$$
+$$Loss^{clip}(\theta) = \mathbb{E}_t\left[\min\left(r_t(\theta)\hat{A}_t,\; \mathrm{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t\right)\right]$$
 
 $\epsilon$ 常取 $0.1 \sim 0.2$。
 
@@ -341,13 +345,13 @@ $$L^{clip} = \mathbb{E}_t\left[\min\left(r_t\hat{A}_t,\; \text{clip}(r_t, 1-\eps
 
 | 情况 | 越界方向 | min 的选择 | 效果 |
 |---|---|---|---|
-| $\hat{A}_t > 0$，$r_t > 1+\epsilon$ | 步子太大（过度增加好动作） | 选 clip 项 | **截断收益，刹车** |
-| $\hat{A}_t > 0$，$r_t < 1-\epsilon$ | 好动作反而减少了 | 选未 clip 项 | 保留梯度，允许修正 |
-| $\hat{A}_t < 0$，$r_t < 1-\epsilon$ | 步子太大（过度惩罚坏动作） | 选 clip 项 | **截断惩罚，刹车** |
-| $\hat{A}_t < 0$，$r_t > 1+\epsilon$ | 坏动作反而增加了 | 选未 clip 项 | 保留梯度，允许修正 |
+| $\hat{A}_t > 0$，$`r_t > 1+\epsilon`$ | 步子太大（过度增加好动作） | 选 clip 项 | **截断收益，刹车** |
+| $\hat{A}_t > 0$，$`r_t < 1-\epsilon`$ | 好动作反而减少了 | 选未 clip 项 | 保留梯度，允许修正 |
+| $\hat{A}_t < 0$，$`r_t < 1-\epsilon`$ | 步子太大（过度惩罚坏动作） | 选 clip 项 | **截断惩罚，刹车** |
+| $\hat{A}_t < 0$，$`r_t > 1+\epsilon`$ | 坏动作反而增加了 | 选未 clip 项 | 保留梯度，允许修正 |
 ---
 
-### Q2：$L^{clip}(\theta)$ 中的 $L$ 是什么含义？
+### Q2：$`L^{clip}(\theta)`$ 中的 $L$ 是什么含义？
 
 $L$ 是 **Loss（损失函数）** 的缩写，但 $L^{clip}$ 实际上更像一个**目标函数（Objective）**，PPO 的目标是**最大化**它。
 
@@ -357,13 +361,13 @@ $$L = -L^{clip} + c_1 L^{value} - c_2 L^{entropy}$$
 
 $L^{clip}$ 前面带了**负号**。交给优化器最小化 $L$ 时，等价于最大化 $L^{clip}$。
 
-本质上，$L^{clip}(\theta)$ 衡量的是"在 clip 约束下，当前策略能获得多少期望收益"。它越大，策略越好。加负号只是为了适配深度学习框架统一的"最小化"接口。
+本质上，$`L^{clip}(\theta)`$ 衡量的是"在 clip 约束下，当前策略能获得多少期望收益"。它越大，策略越好。加负号只是为了适配深度学习框架统一的"最小化"接口。
 
 ---
 
 ### Q3：我们是通过更新 $r_t(\theta)$ 来降低损失吗？
 
-不完全是。$r_t(\theta)$ 本身不是直接更新的对象，它只是一个**中间量**。
+不完全是。$`r_t(\theta)`$ 本身不是直接更新的对象，它只是一个**中间量**。
 
 我们真正更新的是 **$\theta$**（Actor 网络的参数）。更新链条如下：
 
@@ -374,7 +378,7 @@ $L^{clip}$ 前面带了**负号**。交给优化器最小化 $L$ 时，等价于
 
 $r_t(\theta)$ 是 $\theta$ 的函数，是梯度传播链条上的一个环节，不是直接操控的变量。
 
-**比喻**：想调整一道菜的味道（$L^{clip}$），你能动的是火候和调料用量（$\theta$），咸度（$r_t$）会随调料改变而改变，但你不是直接去"设定咸度"，而是通过调调料间接影响它。
+**比喻**：想调整一道菜的味道（$`L^{clip}`$），你能动的是火候和调料用量（$`\theta`$），咸度（$`r_t`$）会随调料改变而改变，但你不是直接去"设定咸度"，而是通过调调料间接影响它。
 
 ## 第七部分：PPO 中的 Reward Shaping
 
@@ -389,8 +393,8 @@ $$Reward_t = Score_t - \beta \times KL_t$$
 | $\beta$（如 0.2） | 超参数 | KL 惩罚系数 |
 
 **示例计算**：
-- 中间 token：$Score=0, KL=1.2 \Rightarrow Reward = 0 - 0.2 \times 1.2 = -0.24$
-- 最后 token：$Score=3.8, KL=2.1 \Rightarrow Reward = 3.8 - 0.2 \times 2.1 = 3.38$
+- 中间 token：$`Score=0, KL=1.2 \Rightarrow Reward = 0 - 0.2 \times 1.2 = -0.24`$
+- 最后 token：$`Score=3.8, KL=2.1 \Rightarrow Reward = 3.8 - 0.2 \times 2.1 = 3.38`$
 
 这就是「带着镣铐跳舞」——既要拿高分（高 Score），又不能跑出舞台边界（低 KL）。
 
@@ -414,7 +418,7 @@ Critic 对每个位置输出 $V(s_t)$——"从这个位置往后，预期还能
 
 $$\delta_t = \underbrace{r_t}_{\text{Reward}} + \gamma \underbrace{V(s_{t+1})}_{\text{Critic}} - \underbrace{V(s_t)}_{\text{Critic}}$$
 
-这一步是 Reward 和 Critic **唯一交汇的地方**。$\delta_t$ 的含义是"这一步实际发生的，比 Critic 预期的好了多少"。
+这一步是 Reward 和 Critic **唯一交汇的地方**。$`\delta_t`$ 的含义是"这一步实际发生的，比 Critic 预期的好了多少"。
 
 **第四步：GAE 把所有 $\delta_t$ 加权求和**
 
@@ -432,7 +436,9 @@ $$\hat{A}_t^{GAE} = \sum_{l=0}^{\infty} (\gamma\lambda)^l \, \delta_{t+l}$$
 2. **用 Reward Model 对每条轨迹打分，结合 KL 惩罚得到每个位置的 $r_t$**
 3. 用 Critic 计算采样阶段的价值估计 $V_{\text{old}}(s_t)$，结合 $r_t$ 计算 TD 误差 $\delta_t = r_t + \gamma V_{\text{old}}(s_{t+1}) - V_{\text{old}}(s_t)$，再计算 GAE 优势 $\hat{A}_t$
 4. 计算 Critic 的回报目标 / value target：
-   $$R_t = \hat{A}_t + V_{\text{old}}(s_t)$$
+   ```math
+   R_t = \hat{A}_t + V_{\text{old}}(s_t)
+   ```
    这里的 $V_{\text{old}}(s_t)$ 是采样阶段用于计算 GAE 的价值估计，构造出 $R_t$ 后通常会固定下来，供后续多轮 mini-batch 更新使用。
 5. 固定这批数据，进行 $K$ 轮 mini-batch 更新
 6. 同时优化三部分损失：
@@ -489,7 +495,7 @@ $$
 
 > 原预测 + 预测误差修正 = 新的训练目标。
 
-这里特意写成 $V_{\text{old}}(s_t)$，是为了和 value loss 里的 $V_\phi(s_t)$ 区分开：$R_t$ 通常在采样阶段构造好并固定复用，而 $V_\phi(s_t)$ 是 Critic 在后续 mini-batch 更新中重新前向计算出来、并随着参数更新不断变化的当前预测。
+这里特意写成 $V_{\text{old}}(s_t)$，是为了和 value loss 里的 $V_\phi(s_t)$ 区分开：$`R_t`$ 通常在采样阶段构造好并固定复用，而 $V_\phi(s_t)$ 是 Critic 在后续 mini-batch 更新中重新前向计算出来、并随着参数更新不断变化的当前预测。
 
 ---
 
@@ -521,11 +527,11 @@ Critic 训练会让 $V_\phi(s_t)$ 接近 $R_t$，但这并不意味着 PPO 的�
 
 一句话总结：
 
-> $R_t = \hat{A}_t + V_{\text{old}}(s_t)$ 是构造 Critic 监督目标的方法；$L_{value}$ 是训练 Critic 预测状态价值的回归损失；PPO 的最终目标仍然是提升 Actor 的长期期望回报，而不是让所有优势函数都变成 0。
+> $`R_t = \hat{A}_t + V_{\text{old}}(s_t)`$ 是构造 Critic 监督目标的方法；$`L_{value}`$ 是训练 Critic 预测状态价值的回归损失；PPO 的最终目标仍然是提升 Actor 的长期期望回报，而不是让所有优势函数都变成 0。
 
 ---
 
-### Q6：$R_t$ 和 Reward Model 给出的 $r_t$ 有什么关系？
+### Q6：$`R_t`$ 和 Reward Model 给出的 $r_t$ 有什么关系？
 
 两者符号相似但含义完全不同：
 
@@ -536,9 +542,9 @@ Critic 训练会让 $V_\phi(s_t)$ 接近 $R_t$，但这并不意味着 PPO 的�
 
 $R_t$ 和 $r_t$ 之间有一条清晰的推导链：
 
-**Reward Model 给出 $r_t$** → 结合采样阶段 Critic 的 $V_{\text{old}}(s_t)$ 算出 **TD 误差 $\delta_t = r_t + \gamma V_{\text{old}}(s_{t+1}) - V_{\text{old}}(s_t)$** → 经过 GAE 加权求和得到 **优势 $\hat{A}_t = \sum (\gamma\lambda)^l \delta_{t+l}$** → 移项得到 **回报目标 $R_t = \hat{A}_t + V_{\text{old}}(s_t)$**
+**Reward Model 给出 $r_t$** → 结合采样阶段 Critic 的 $V_{\text{old}}(s_t)$ 算出 **TD 误差 $\delta_t = r_t + \gamma V_{\text{old}}(s_{t+1}) - V_{\text{old}}(s_t)$** → 经过 GAE 加权求和得到 **优势 $`\hat{A}_t = \sum (\gamma\lambda)^l \delta_{t+l}`$** → 移项得到 **回报目标 $`R_t = \hat{A}_t + V_{\text{old}}(s_t)`$**
 
-比喻：$r_t$ 是每次考试的单科成绩，$R_t$ 是加权算出来的综合绩点。Critic 要学的不是预测某一次单科分数，而是预测这个综合绩点。
+比喻：$`r_t`$ 是每次考试的单科成绩，$`R_t`$ 是加权算出来的综合绩点。Critic 要学的不是预测某一次单科分数，而是预测这个综合绩点。
 
 ---
 
@@ -568,13 +574,13 @@ $$
 
 > 根据当前采样轨迹得到的回报目标 $R_t$，校准自己的价值估计 $V_\phi(s_t)$，让它以后预测得更准。
 
-Critic 预测越准，后续采样时计算出来的优势 $\hat{A}_t = R_t - V_{\text{old}}(s_t)$ 就越可靠，Actor 的更新方向也越稳定。
+Critic 预测越准，后续采样时计算出来的优势 $`\hat{A}_t = R_t - V_{\text{old}}(s_t)`$ 就越可靠，Actor 的更新方向也越稳定。
 
 ---
 
-### Q8：$G_t^{GAE}$ 的计算公式是 $r_t + \gamma V(s_{t+1})$ 吗？
+### Q8：$`G_t^{GAE}`$ 的计算公式是 $r_t + \gamma V(s_{t+1})$ 吗？
 
-不是。$r_t + \gamma V_{\text{old}}(s_{t+1})$ 是 **1-step TD 目标**，只是 $G_t^{GAE}$ 在 $\lambda=0$ 时的特例。
+不是。$`r_t + \gamma V_{\text{old}}(s_{t+1})`$ 是 **1-step TD 目标**，只是 $G_t^{GAE}$ 在 $\lambda=0$ 时的特例。
 
 $G_t^{GAE}$（即 $R_t$）的完整公式：
 
@@ -588,18 +594,18 @@ $$R_t = \sum_{l=0}^{\infty}(\gamma\lambda)^l \delta_{t+l} + V_{\text{old}}(s_t)$
 | MC 回报 | $r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots$ | 看到底，偏差小但方差大 |
 | $G_t^{GAE}$（即 $R_t$） | $\sum_{l=0}^{\infty}(\gamma\lambda)^l \delta_{t+l} + V_{\text{old}}(s_t)$ | 通过 $\lambda$ 在两者之间插值 |
 
-- $\lambda = 0$ 时退化为 1-step TD 目标：$R_t = \delta_t + V_{\text{old}}(s_t) = r_t + \gamma V_{\text{old}}(s_{t+1})$
+- $\lambda = 0$ 时退化为 1-step TD 目标：$`R_t = \delta_t + V_{\text{old}}(s_t) = r_t + \gamma V_{\text{old}}(s_{t+1})`$
 - $\lambda = 1$ 时退化为 MC 回报 $G_t$（笔记第五部分已证明）
 
 ---
 
-### Q9：$\delta_t$ 是偏差函数吗？训练 Critic 的目的是消去 $\delta_t$ 吗？
+### Q9：$`\delta_t`$ 是偏差函数吗？训练 Critic 的目的是消去 $\delta_t$ 吗？
 
 $\delta_t$ 不是偏差函数，是 **TD 误差**（Temporal Difference Error）：
 
 $$\delta_t = r_t + \gamma V_{\text{old}}(s_{t+1}) - V_{\text{old}}(s_t)$$
 
-含义是"这一步实际发生的（$r_t + \gamma V_{\text{old}}(s_{t+1})$）"减去"之前的预测（$V_{\text{old}}(s_t)$）"，也就是 **采样阶段 Critic 在这一步的预测偏差**。
+含义是"这一步实际发生的（$`r_t + \gamma V_{\text{old}}(s_{t+1})`$）"减去"之前的预测（$`V_{\text{old}}(s_t)`$）"，也就是 **采样阶段 Critic 在这一步的预测偏差**。
 
 但需要区分两件事：
 
@@ -658,12 +664,12 @@ A:
 这两个比值在公式里虽然长得很像（都是概率相除），但它们约束的时空维度和物理意义完全不同：
 
 ### 1. KL 惩罚：New vs Ref（防偏离）
-* **比值核心**：$\frac{\pi_\theta(y|x)}{\pi_{ref}(y|x)}$ 
+* **比值核心**：$`\frac{\pi_\theta(y|x)}{\pi_{ref}(y|x)}`$
 * **对比对象**：正在更新的模型 (New)  vs  SFT 阶段冻结的初始参考模型 (Ref)。
 * **核心作用（风筝线）**：它衡量的是一种**“绝对距离”**。无论模型在强化学习阶段训练了多少个 Epoch，更新了多少步，它永远都要回头和最开始的“出厂设置”对齐。这是为了防止模型为了迎合奖励而走火入魔（比如输出一堆乱码也能拿高分），确保生成的文本依然具有正常的语言逻辑和常识。
 
 ### 2. Clip 截断：New vs Old（防侧翻）
-* **比值核心**：$\frac{\pi_\theta(y|x)}{\pi_{\theta_{old}}(y|x)}$
+* **比值核心**：$`\frac{\pi_\theta(y|x)}{\pi_{\theta_{old}}(y|x)}`$
 * **对比对象**：正在更新的模型 (New)  vs  当前这**一个 Batch 训练开始前**的模型 (Old)。
 * **核心作用（限速器）**：它衡量的是一种**“相对步长”**。强化学习的梯度通常很不稳定，如果某一步的奖励信号特别大，模型可能会一步跨得太猛导致参数崩盘。Clip 机制强行把单次更新的概率变化范围卡在 $[1-\epsilon, 1+\epsilon]$（比如 $[0.8, 1.2]$）之间。它保证了模型每一步都在一个安全的“信任域（Trust Region）”内平滑微调。
 
@@ -703,13 +709,13 @@ $$Loss^{clip}(\theta) = \mathbb{E}_t\left[\min\left(r_t(\theta)\hat{A}_t,\ \text
 
 体现在 $r_t(\theta)$ 和 clip 的配合上：
 
-1. **$r_t$ 度量新旧策略的距离**：当 $\pi_\theta = \pi_{\theta_{old}}$ 时 $r_t = 1$；$r_t$ 偏离 1 越远，说明新旧策略差别越大。
+1. **$r_t$ 度量新旧策略的距离**：当 $\pi_\theta = \pi_{\theta_{old}}$ 时 $r_t = 1$；$`r_t`$ 偏离 1 越远，说明新旧策略差别越大。
 
 2. **clip 强制策略"不走太远"**：将 $r_t$ 截断在 $[1-\epsilon, 1+\epsilon]$（如 $\epsilon=0.2$ 时为 $[0.8, 1.2]$），超出范围后梯度变为零，不再继续往远处推。
 
 3. **min 操作的具体效果**：
-   - $\hat{A}_t > 0$（好动作）：$r_t$ 增大有利，但最多只享受 $r_t = 1+\epsilon$ 的收益
-   - $\hat{A}_t < 0$（差动作）：$r_t$ 减小有利，但同样截断在 $1-\epsilon$
+   - $\hat{A}_t > 0$（好动作）：$`r_t`$ 增大有利，但最多只享受 $r_t = 1+\epsilon$ 的收益
+   - $\hat{A}_t < 0$（差动作）：$`r_t`$ 减小有利，但同样截断在 $1-\epsilon$
 
 这构成了一个"信任区域"，每次更新只允许策略在旧策略的邻域内移动。相比 TRPO 用 KL 散度硬约束 + 二阶优化，PPO 用 clip 这个简单的 trick 达到了类似效果。
 
@@ -722,11 +728,11 @@ PPO 一轮训练分为两个阶段：
 **采样阶段（用旧策略 $\pi_{\theta_{old}}$）：**
 - 用当前策略对一批 prompt 生成 response
 - 记录每个 token 的概率 $\pi_{\theta_{old}}(a_t|s_t)$
-- 用 Critic 和 RM 算好 $V$、$\hat{A}_t$、reward
+- 用 Critic 和 RM 算好 $V$、$`\hat{A}_t`$、reward
 - 这一步完成后，数据固定
 
-**多轮梯度更新阶段（$\theta$ 在变，数据不变）：**
-- 从第一步更新起，$\theta$ 就变了，$\pi_\theta \neq \pi_{\theta_{old}}$
+**多轮梯度更新阶段（$`\theta`$ 在变，数据不变）：**
+- 从第一步更新起，$`\theta`$ 就变了，$`\pi_\theta \neq \pi_{\theta_{old}}`$
 - 但数据仍来自采样阶段，所以是在用旧策略的数据训练新策略
 - 这就需要 importance sampling ratio 来修正分布偏差，clip 保证不走太远
 
@@ -759,7 +765,7 @@ PPO 一轮训练分为两个阶段：
 - $V_\phi(s_t)$：Critic 也在同步更新，需要重新前向传播
 
 **然后计算 loss：**
-- Actor loss：$r_t = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}$ 乘以固定的 $\hat{A}_t$，加 clip
+- Actor loss：$`r_t = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}`$ 乘以固定的 $\hat{A}_t$，加 clip
 - Critic loss：新的 $V_\phi(s_t)$ 与固定的 $R_t$ 的 MSE，即 $(V_\phi(s_t) - R_t)^2$
 
 每轮更新的计算开销主要就是一次前向传播 + 一次反向传播，不需要自回归生成，也不需要跑 RM 重新打分。这就是多轮更新边际成本低的原因，而采样才是真正的瓶颈。
